@@ -1,6 +1,6 @@
 # EntreNess
 
-After enough stress / sandboxing technologies, it is about time to start a personal project project.
+After enough stress testing / sandboxing technologies, it is about time to start a personal project.
 
 Stack:
 ---
