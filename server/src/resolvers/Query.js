@@ -16,7 +16,7 @@ const Query = {
 
         return prisma.query.users(opArgs, info)
     },
-    me(parent, args, {
+    self(parent, args, {
         prisma,
         request
     }, info) {
