@@ -16,6 +16,25 @@ const Query = {
 
         return prisma.query.users(opArgs, info)
     },
+    reviews(parent, args, {
+        prisma
+    }, info) {
+        const opArgs = {}
+
+        if (args.query) {
+            opArgs.where = {
+                OR: [{
+                    title_contains: args.query
+                },{
+                    body_contains: args.query
+                }, {
+                    experience_contains: args.query
+                }]
+            }
+        }
+
+        return prisma.query.reviews(opArgs, info)
+    },
     self(parent, args, {
         prisma,
         request

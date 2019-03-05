@@ -46,7 +46,7 @@ input CreateReviewInput {
     published: Boolean!
 }
 
-input DeleteReviewInput {
+input UpdateReviewInput {
     title: String!
     body: String!
     experience: String!
@@ -63,7 +63,7 @@ type User {
 }
 
 type Review {
-    id: ID! @unique
+    id: ID!
     title: String!
     body: String!
     experience: String!
