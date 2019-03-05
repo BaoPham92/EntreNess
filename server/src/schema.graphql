@@ -32,6 +32,8 @@ input CreateUserInput {
     name: String!
     email: String!
     password: String!
+    contactNumber: String
+    age: Int
 }
 input LoginUserInput {
     email: String!
@@ -90,7 +92,7 @@ type Business {
     updatedAt: String!
     createdAt: String!    
     reviews: [Review!]!
-    employess: [User!]!    
+    employees: [User!]!    
 }
 
 type Review {

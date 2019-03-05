@@ -53,6 +53,25 @@ const Query = {
         const opArgs = {}
 
         return prisma.query.comments(opArgs, info)
+    },
+    businesses(parent, args, {
+        prisma
+    }, info) {
+        const opArgs = {}
+
+        if (args.query) {
+            opArgs.where = {
+                OR: [{
+                    name_contains: args.query
+                }, {
+                    email_contains: args.query
+                }, {
+                    contactNumber_contains: args.query
+                }]
+            }
+        }
+
+        return prisma.query.businesses(opArgs, info)
     }
 }
 
