@@ -5,4 +5,16 @@ type User {
   password: String!
   updatedAt: DateTime!
   createdAt: DateTime!
+  reviews: [Review!]! @relation(name: "ReviewToUser", onDelete: SET_NULL)
+}
+
+type Review {
+    id: ID! @unique
+    title: String!
+    body: String!
+    experience: String!
+    published: Boolean!
+    updatedAt: DateTime!
+    createdAt: DateTime!
+    author: User! @relation(name: "ReviewToUser", onDelete: SET_NULL)
 }

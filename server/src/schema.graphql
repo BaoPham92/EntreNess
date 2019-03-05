@@ -1,5 +1,6 @@
 type Query {
     users(query: String): [User!]!
+    reviews(query: String): [Review!]!
     self: User!
 }
 
@@ -8,6 +9,9 @@ type Mutation {
     login(data: LoginUserInput!): AuthPayload!
     deleteUser: User!
     updateUser(data: UpdateUserInput!): User!
+    createReview(data: CreateReviewInput!): Review!
+    deleteReview: Review!
+    updateReview(data: UpdateReviewInput!): Review!
 }
 
 # type Subscription {
@@ -35,6 +39,20 @@ input UpdateUserInput {
     password: String
 }
 
+input CreateReviewInput {
+    title: String!
+    body: String!
+    experience: String!
+    published: Boolean!
+}
+
+input DeleteReviewInput {
+    title: String!
+    body: String!
+    experience: String!
+    published: Boolean!
+}
+
 type User {
     id: ID!
     name: String!
@@ -42,6 +60,15 @@ type User {
     password: String!
     updatedAt: String!
     createdAt: String!
+}
+
+type Review {
+    id: ID! @unique
+    title: String!
+    body: String!
+    experience: String!
+    published: Boolean!
+    author: User!
 }
 
 enum MutationType {
