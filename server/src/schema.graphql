@@ -10,8 +10,8 @@ type Mutation {
     deleteUser: User!
     updateUser(data: UpdateUserInput!): User!
     createReview(data: CreateReviewInput!): Review!
-    deleteReview: Review!
-    updateReview(data: UpdateReviewInput!): Review!
+    deleteReview(id: ID!): Review!
+    updateReview(id: ID!, data: UpdateReviewInput!): Review!
 }
 
 # type Subscription {
@@ -47,10 +47,10 @@ input CreateReviewInput {
 }
 
 input UpdateReviewInput {
-    title: String!
-    body: String!
-    experience: String!
-    published: Boolean!
+    title: String
+    body: String
+    experience: String
+    published: Boolean
 }
 
 type User {

@@ -72,6 +72,77 @@ const Mutation = {
             },
             data: args.data
         }, info)
+    },
+    async createReview(parent, args, { 
+        prisma,
+        request
+     }, info) {
+        const userId = await getUserId(request)
+
+        return prisma.mutation.createReview({
+            data: {
+                title: args.data.title,
+                body: args.data.body,
+                experience: args.data.experience,
+                published: args.data.published,
+                author: {
+                    connect: {
+                        id: userId
+                    }
+                }
+            }
+        }, info)
+    },
+    async updateReview(parent, args, {
+        prisma,
+        request
+    }, info) {
+        const userId = getUserId(request)
+        const reviewExist = await prisma.exists.Review({
+            id: args.id,
+            author: {
+                id: userId
+            }
+        })
+        const isPublished = await prisma.exists.Review({
+            id: args.id, published: true
+        })
+
+        if (!reviewExist) {
+            throw new Error('Cannot find post!')
+        }
+
+        // Create if statement when creating (Comment) custom type here.
+        // If published is true && input args.data.published === false | then delete comments.
+
+        return prisma.mutation.updateReview({
+            where: {
+                id: args.id
+            },
+            data: args.data
+        }, info)
+    },
+    async deleteReview(parent, args, {
+        prisma,
+        request
+    }, info) {
+        const userId = getUserId(request)
+        const reviewExist = await prisma.exists.Review({
+            id: args.id,
+            author: {
+                id: userId
+            }
+        })
+
+        if (!reviewExist) {
+            throw new Error('Cannot delete review!')
+        }
+
+        return prisma.mutation.deleteReview({
+            where: {
+                id: args.id
+            }
+        }, info)
     }
 }
 
