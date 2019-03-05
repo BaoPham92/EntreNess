@@ -16,6 +16,18 @@ const Query = {
 
         return prisma.query.users(opArgs, info)
     },
+    self(parent, args, {
+        prisma,
+        request
+    }, info) {
+        const userId = getUserId(request)
+
+        return prisma.query.user({
+            where: {
+                id: userId
+            }
+        })
+    },
     reviews(parent, args, {
         prisma
     }, info) {
@@ -35,17 +47,12 @@ const Query = {
 
         return prisma.query.reviews(opArgs, info)
     },
-    self(parent, args, {
-        prisma,
-        request
+    comments(parent, args, {
+        prisma
     }, info) {
-        const userId = getUserId(request)
+        const opArgs = {}
 
-        return prisma.query.user({
-            where: {
-                id: userId
-            }
-        })
+        return prisma.query.comments(opArgs, info)
     }
 }
 
