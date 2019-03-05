@@ -71,6 +71,13 @@ type Review {
     author: User!
 }
 
+type Comment {
+    id: ID!
+    text: String!
+    author: User!
+    review: Review!
+}
+
 enum MutationType {
     CREATED
     UPDATED

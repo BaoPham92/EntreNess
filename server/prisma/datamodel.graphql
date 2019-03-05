@@ -6,6 +6,7 @@ type User {
   updatedAt: DateTime!
   createdAt: DateTime!
   reviews: [Review!]! @relation(name: "ReviewToUser", onDelete: SET_NULL)
+  comments: [Comment!]! @relation(name: "UserToComments", onDelete: SET_NULL)
 }
 
 type Review {
@@ -17,4 +18,12 @@ type Review {
     updatedAt: DateTime!
     createdAt: DateTime!
     author: User! @relation(name: "ReviewToUser", onDelete: SET_NULL)
+    comments: [Comment!]! @relation(name: "ReviewToComments", onDelete: CASCADE)
+}
+
+type Comment {
+  id: ID! @unique
+  text: String!
+  author: User! @relation(name: "UserToComments", onDelete: SET_NULL)
+  review: Review! @relation(name: "ReviewToComments", onDelete: SET_NULL)
 }
