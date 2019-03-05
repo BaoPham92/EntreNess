@@ -1,6 +1,7 @@
 type Query {
     users(query: String): [User!]!
     reviews(query: String): [Review!]!
+    businesses(query: String): [Business!]!
     comments: [Comment!]!
     self: User!
 }
@@ -70,9 +71,26 @@ type User {
     id: ID!
     name: String!
     email: String
+    contactNumber: String
+    age: Int
     password: String!
     updatedAt: String!
-    createdAt: String!
+    createdAt: String!    
+    reviews: [Review!]!
+    employment: [Business!]!
+    comments: [Comment!]!
+}
+
+type Business {
+    id: ID!
+    name: String!
+    email: String!
+    contactNumber: String!
+    description: String!
+    updatedAt: String!
+    createdAt: String!    
+    reviews: [Review!]!
+    employess: [User!]!    
 }
 
 type Review {
@@ -81,17 +99,20 @@ type Review {
     body: String!
     experience: String!
     published: Boolean!
+    updatedAt: String!
+    createdAt: String!
     author: User!
     comments: [Comment!]!
+    busness: Business!
 }
 
 type Comment {
     id: ID!
     text: String!
+    updatedAt: String!
+    createdAt: String!    
     author: User!
     review: Review!
-    updatedAt: String!
-    createdAt: String!
 }
 
 enum MutationType {

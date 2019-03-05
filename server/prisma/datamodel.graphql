@@ -2,11 +2,26 @@ type User {
   id: ID! @unique
   name: String!
   email: String! @unique
+  contactNumber: String @unique
+  age: Int
   password: String!
   updatedAt: DateTime!
   createdAt: DateTime!
   reviews: [Review!]! @relation(name: "ReviewToUser", onDelete: SET_NULL)
   comments: [Comment!]! @relation(name: "UserToComments", onDelete: SET_NULL)
+  business: [Business!]! @relation(name: "BusinessToUsers", onDelete: SET_NULL)
+}
+
+type Business {
+  id: ID! @unique
+  name: String!
+  email: String! @unique
+  contactNumber: String! @unique
+  description: String!
+  updatedAt: DateTime!
+  createdAt: DateTime!
+  reviews: [Review!]! @relation(name: "BusinessToReviews", onDelete: CASCADE)
+  employees: [User!]! @relation(name: "BusinessToUsers", onDelete: SET_NULL)
 }
 
 type Review {
@@ -19,11 +34,14 @@ type Review {
     createdAt: DateTime!
     author: User! @relation(name: "ReviewToUser", onDelete: SET_NULL)
     comments: [Comment!]! @relation(name: "ReviewToComments", onDelete: CASCADE)
+    business: Business!  @relation(name: "BusinessToReviews", onDelete: SET_NULL)
 }
 
 type Comment {
   id: ID! @unique
   text: String!
+  updatedAt: DateTime!
+  createdAt: DateTime!
   author: User! @relation(name: "UserToComments", onDelete: SET_NULL)
   review: Review! @relation(name: "ReviewToComments", onDelete: SET_NULL)
 }
