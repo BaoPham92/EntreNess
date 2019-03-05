@@ -143,6 +143,81 @@ const Mutation = {
                 id: args.id
             }
         }, info)
+    },
+    async createComment(parent, args, {
+        prisma,
+        request
+    }, info) {
+        const userId = getUserId(request)
+        const reviewExist = await prisma.exists.Review({
+            id: args.data.review,
+            published: true
+        })
+
+        if (!reviewExist) {
+            throw new Error('Unable to post comment!')
+        }
+
+        return prisma.mutation.createComment({
+            data: {
+                text: args.data.text,
+                author: {
+                    connect: {
+                        id: userId
+                    }
+                },
+                review: {
+                    connect: {
+                        id: args.data.review
+                    }
+                }
+            }
+        }, info)
+    },
+    async updateComment(parent, args, { 
+        prisma,
+        request
+    }, info) {
+        const userId = getUserId(request)
+        const commentExist = await prisma.exists.Comment({
+            id: args.id,
+            author: {
+                id: userId
+            }
+        })
+
+        if (!commentExist) {
+            throw new Error('Cannot update comment!')
+        }
+
+        return prisma.mutation.updateComment({
+            where: {
+                id: args.id
+            },
+            data: args.data
+        }, info)
+    },
+    async deleteComment(parent, args, { 
+        prisma,
+        request
+    }, info) {
+        const userId = getUserId(request)
+        const commentExist = await prisma.exists.Comment({
+            id: args.id,
+            author: {
+                id: userId
+            }
+        })
+
+        if (!commentExist) {
+            throw new Error('Unable to delete comment!')
+        }
+
+        return prisma.mutation.deleteComment({
+            where: {
+                id: args.id
+            }
+        }, info)
     }
 }
 
