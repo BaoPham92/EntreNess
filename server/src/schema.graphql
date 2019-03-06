@@ -2,6 +2,7 @@ type Query {
     users(query: String): [User!]!
     reviews(query: String): [Review!]!
     businesses(query: String): [Business!]!
+    events(query: String): [Event!]!
     comments: [Comment!]!
     self: User!
 }
@@ -112,7 +113,21 @@ type Business {
     createdAt: String!
     owner: User!
     reviews: [Review!]!
-    employees: [User!]!    
+    employees: [User!]!
+    events: [Event!]!
+}
+
+type Event {
+    id: ID!
+    title: String!
+    email: String!
+    contactNumber: String!
+    description: String!
+    category: String!
+    location: String
+    updatedAt: String!
+    createdAt: String! 
+    business: Business!
 }
 
 type Review {
@@ -132,7 +147,7 @@ type Comment {
     id: ID!
     text: String!
     updatedAt: String!
-    createdAt: String!    
+    createdAt: String!
     author: User!
     review: Review!
 }

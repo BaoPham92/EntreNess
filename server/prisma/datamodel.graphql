@@ -24,6 +24,20 @@ type Business {
   owner: User! @relation(name: "OwnerToBusiness", onDelete: SET_NULL)
   reviews: [Review!]! @relation(name: "BusinessToReviews", onDelete: CASCADE)
   employees: [User!]! @relation(name: "BusinessToUsers", onDelete: SET_NULL)
+  events: [Event!]! @relation(name: "BusinessToEvents", onDelete: SET_NULL)
+}
+
+type Event {
+  id: ID! @unique
+  title: String!
+  email: String! @unique
+  contactNumber: String! @unique
+  description: String!
+  category: String!
+  location: String
+  updatedAt: DateTime!
+  createdAt: DateTime!
+  business: Business! @relation(name: "BusinessToEvents", onDelete: SET_NULL)
 }
 
 type Review {
