@@ -17,6 +17,9 @@ type Mutation {
     createComment(data: CreateCommentInput!): Comment!
     deleteComment(id: ID!): Comment!
     updateComment(id: ID!, data: UpdateCommentInput!): Comment!
+    createBusiness(data: CreateBusinessInput!): Business!
+    deleteBusiness(id: ID!): Business!
+    updateBusiness(id: ID!, data: UpdateBusinessInput!): Business!
 }
 
 # type Subscription {
@@ -44,6 +47,21 @@ input UpdateUserInput {
     name: String
     email: String
     password: String
+}
+
+input CreateBusinessInput {
+    name: String!
+    email: String!
+    contactNumber: String!
+    description: String!
+}
+
+input UpdateBusinessInput {
+    name: String
+    email: String
+    contactNumber: String
+    description: String
+    employees: ID
 }
 
 input CreateReviewInput {
@@ -77,8 +95,9 @@ type User {
     age: Int
     password: String!
     updatedAt: String!
-    createdAt: String!    
+    createdAt: String!
     reviews: [Review!]!
+    company: Business!
     employment: [Business!]!
     comments: [Comment!]!
 }
@@ -90,7 +109,8 @@ type Business {
     contactNumber: String!
     description: String!
     updatedAt: String!
-    createdAt: String!    
+    createdAt: String!
+    owner: User!
     reviews: [Review!]!
     employees: [User!]!    
 }
@@ -105,7 +125,7 @@ type Review {
     createdAt: String!
     author: User!
     comments: [Comment!]!
-    busness: Business!
+    business: Business!
 }
 
 type Comment {

@@ -73,6 +73,81 @@ const Mutation = {
             data: args.data
         }, info)
     },
+    async createBusiness(parent, args, {
+        prisma,
+        request
+    }, info) {
+        const userId = getUserId(request)
+
+        return prisma.mutation.createBusiness({
+            data: {
+                name: args.data.name,
+                email: args.data.email,
+                contactNumber: args.data.contactNumber,
+                description: args.data.description,
+                owner: {
+                    connect: {
+                        id: userId
+                    }
+                }
+            }
+        }, info)
+    },
+    async updateBusiness(parent, args, {
+        prisma,
+        request
+    }, info) {
+        const userId = getUserId(request)
+        const businessExist = await prisma.exists.Business({
+            id: args.id,
+            owner: {
+                id: userId
+            }
+        })
+
+        if (!businessExist) {
+            throw new Error('Cannot find business!')
+        }
+
+        return prisma.mutation.updateBusiness({
+            where: {
+                id: args.id
+            },
+            data: {
+                name: args.data.name,
+                email: args.data.email,
+                contactNumber: args.data.contactNumber,
+                description: args.data.description,
+                employees: {
+                    connect: {
+                        id: args.data.employees
+                    }
+                }
+            }
+        }, info)
+    },
+    async deleteBusiness(parent, args, {
+        prisma,
+        request
+    }, info) {
+        const userId = getUserId(request)
+        const businessExist = await prisma.exists.Business({
+            id: args.id,
+            owner: {
+                id: userId
+            }
+        })
+
+        if (!businessExist) {
+            throw new Error('Cannot delete business!')
+        }
+
+        return prisma.mutation.deleteBusiness({
+            where: {
+                id: args.id
+            }
+        }, info)
+    },
     async createReview(parent, args, { 
         prisma,
         request

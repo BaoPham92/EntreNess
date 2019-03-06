@@ -1,5 +1,5 @@
 # source: http://localhost:4466/entre_nesss/dev
-# timestamp: Tue Mar 05 2019 17:27:37 GMT-0500 (Eastern Standard Time)
+# timestamp: Tue Mar 05 2019 18:02:16 GMT-0500 (Eastern Standard Time)
 
 type AggregateBusiness {
   count: Int!
@@ -30,6 +30,7 @@ type Business implements Node {
   description: String!
   updatedAt: DateTime!
   createdAt: DateTime!
+  owner: User!
   reviews(where: ReviewWhereInput, orderBy: ReviewOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Review!]
   employees(where: UserWhereInput, orderBy: UserOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [User!]
 }
@@ -49,12 +50,18 @@ input BusinessCreateInput {
   email: String!
   contactNumber: String!
   description: String!
+  owner: UserCreateOneWithoutCompaniesInput!
   reviews: ReviewCreateManyWithoutBusinessInput
-  employees: UserCreateManyWithoutBusinessInput
+  employees: UserCreateManyWithoutEmploymentInput
 }
 
 input BusinessCreateManyWithoutEmployeesInput {
   create: [BusinessCreateWithoutEmployeesInput!]
+  connect: [BusinessWhereUniqueInput!]
+}
+
+input BusinessCreateManyWithoutOwnerInput {
+  create: [BusinessCreateWithoutOwnerInput!]
   connect: [BusinessWhereUniqueInput!]
 }
 
@@ -68,7 +75,17 @@ input BusinessCreateWithoutEmployeesInput {
   email: String!
   contactNumber: String!
   description: String!
+  owner: UserCreateOneWithoutCompaniesInput!
   reviews: ReviewCreateManyWithoutBusinessInput
+}
+
+input BusinessCreateWithoutOwnerInput {
+  name: String!
+  email: String!
+  contactNumber: String!
+  description: String!
+  reviews: ReviewCreateManyWithoutBusinessInput
+  employees: UserCreateManyWithoutEmploymentInput
 }
 
 input BusinessCreateWithoutReviewsInput {
@@ -76,7 +93,8 @@ input BusinessCreateWithoutReviewsInput {
   email: String!
   contactNumber: String!
   description: String!
-  employees: UserCreateManyWithoutBusinessInput
+  owner: UserCreateOneWithoutCompaniesInput!
+  employees: UserCreateManyWithoutEmploymentInput
 }
 
 """An edge in a connection."""
@@ -414,8 +432,9 @@ input BusinessUpdateInput {
   email: String
   contactNumber: String
   description: String
+  owner: UserUpdateOneRequiredWithoutCompaniesInput
   reviews: ReviewUpdateManyWithoutBusinessInput
-  employees: UserUpdateManyWithoutBusinessInput
+  employees: UserUpdateManyWithoutEmploymentInput
 }
 
 input BusinessUpdateManyDataInput {
@@ -444,6 +463,18 @@ input BusinessUpdateManyWithoutEmployeesInput {
   upsert: [BusinessUpsertWithWhereUniqueWithoutEmployeesInput!]
 }
 
+input BusinessUpdateManyWithoutOwnerInput {
+  create: [BusinessCreateWithoutOwnerInput!]
+  connect: [BusinessWhereUniqueInput!]
+  set: [BusinessWhereUniqueInput!]
+  disconnect: [BusinessWhereUniqueInput!]
+  delete: [BusinessWhereUniqueInput!]
+  update: [BusinessUpdateWithWhereUniqueWithoutOwnerInput!]
+  updateMany: [BusinessUpdateManyWithWhereNestedInput!]
+  deleteMany: [BusinessScalarWhereInput!]
+  upsert: [BusinessUpsertWithWhereUniqueWithoutOwnerInput!]
+}
+
 input BusinessUpdateManyWithWhereNestedInput {
   where: BusinessScalarWhereInput!
   data: BusinessUpdateManyDataInput!
@@ -461,7 +492,17 @@ input BusinessUpdateWithoutEmployeesDataInput {
   email: String
   contactNumber: String
   description: String
+  owner: UserUpdateOneRequiredWithoutCompaniesInput
   reviews: ReviewUpdateManyWithoutBusinessInput
+}
+
+input BusinessUpdateWithoutOwnerDataInput {
+  name: String
+  email: String
+  contactNumber: String
+  description: String
+  reviews: ReviewUpdateManyWithoutBusinessInput
+  employees: UserUpdateManyWithoutEmploymentInput
 }
 
 input BusinessUpdateWithoutReviewsDataInput {
@@ -469,12 +510,18 @@ input BusinessUpdateWithoutReviewsDataInput {
   email: String
   contactNumber: String
   description: String
-  employees: UserUpdateManyWithoutBusinessInput
+  owner: UserUpdateOneRequiredWithoutCompaniesInput
+  employees: UserUpdateManyWithoutEmploymentInput
 }
 
 input BusinessUpdateWithWhereUniqueWithoutEmployeesInput {
   where: BusinessWhereUniqueInput!
   data: BusinessUpdateWithoutEmployeesDataInput!
+}
+
+input BusinessUpdateWithWhereUniqueWithoutOwnerInput {
+  where: BusinessWhereUniqueInput!
+  data: BusinessUpdateWithoutOwnerDataInput!
 }
 
 input BusinessUpsertWithoutReviewsInput {
@@ -486,6 +533,12 @@ input BusinessUpsertWithWhereUniqueWithoutEmployeesInput {
   where: BusinessWhereUniqueInput!
   update: BusinessUpdateWithoutEmployeesDataInput!
   create: BusinessCreateWithoutEmployeesInput!
+}
+
+input BusinessUpsertWithWhereUniqueWithoutOwnerInput {
+  where: BusinessWhereUniqueInput!
+  update: BusinessUpdateWithoutOwnerDataInput!
+  create: BusinessCreateWithoutOwnerInput!
 }
 
 input BusinessWhereInput {
@@ -741,6 +794,7 @@ input BusinessWhereInput {
 
   """All values greater than or equal the given value."""
   createdAt_gte: DateTime
+  owner: UserWhereInput
   reviews_every: ReviewWhereInput
   reviews_some: ReviewWhereInput
   reviews_none: ReviewWhereInput
@@ -2037,7 +2091,8 @@ type User implements Node {
   createdAt: DateTime!
   reviews(where: ReviewWhereInput, orderBy: ReviewOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Review!]
   comments(where: CommentWhereInput, orderBy: CommentOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Comment!]
-  business(where: BusinessWhereInput, orderBy: BusinessOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Business!]
+  employment(where: BusinessWhereInput, orderBy: BusinessOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Business!]
+  companies(where: BusinessWhereInput, orderBy: BusinessOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Business!]
 }
 
 """A connection to a list of items."""
@@ -2058,11 +2113,12 @@ input UserCreateInput {
   password: String!
   reviews: ReviewCreateManyWithoutAuthorInput
   comments: CommentCreateManyWithoutAuthorInput
-  business: BusinessCreateManyWithoutEmployeesInput
+  employment: BusinessCreateManyWithoutEmployeesInput
+  companies: BusinessCreateManyWithoutOwnerInput
 }
 
-input UserCreateManyWithoutBusinessInput {
-  create: [UserCreateWithoutBusinessInput!]
+input UserCreateManyWithoutEmploymentInput {
+  create: [UserCreateWithoutEmploymentInput!]
   connect: [UserWhereUniqueInput!]
 }
 
@@ -2071,19 +2127,14 @@ input UserCreateOneWithoutCommentsInput {
   connect: UserWhereUniqueInput
 }
 
-input UserCreateOneWithoutReviewsInput {
-  create: UserCreateWithoutReviewsInput
+input UserCreateOneWithoutCompaniesInput {
+  create: UserCreateWithoutCompaniesInput
   connect: UserWhereUniqueInput
 }
 
-input UserCreateWithoutBusinessInput {
-  name: String!
-  email: String!
-  contactNumber: String
-  age: Int
-  password: String!
-  reviews: ReviewCreateManyWithoutAuthorInput
-  comments: CommentCreateManyWithoutAuthorInput
+input UserCreateOneWithoutReviewsInput {
+  create: UserCreateWithoutReviewsInput
+  connect: UserWhereUniqueInput
 }
 
 input UserCreateWithoutCommentsInput {
@@ -2093,7 +2144,30 @@ input UserCreateWithoutCommentsInput {
   age: Int
   password: String!
   reviews: ReviewCreateManyWithoutAuthorInput
-  business: BusinessCreateManyWithoutEmployeesInput
+  employment: BusinessCreateManyWithoutEmployeesInput
+  companies: BusinessCreateManyWithoutOwnerInput
+}
+
+input UserCreateWithoutCompaniesInput {
+  name: String!
+  email: String!
+  contactNumber: String
+  age: Int
+  password: String!
+  reviews: ReviewCreateManyWithoutAuthorInput
+  comments: CommentCreateManyWithoutAuthorInput
+  employment: BusinessCreateManyWithoutEmployeesInput
+}
+
+input UserCreateWithoutEmploymentInput {
+  name: String!
+  email: String!
+  contactNumber: String
+  age: Int
+  password: String!
+  reviews: ReviewCreateManyWithoutAuthorInput
+  comments: CommentCreateManyWithoutAuthorInput
+  companies: BusinessCreateManyWithoutOwnerInput
 }
 
 input UserCreateWithoutReviewsInput {
@@ -2103,7 +2177,8 @@ input UserCreateWithoutReviewsInput {
   age: Int
   password: String!
   comments: CommentCreateManyWithoutAuthorInput
-  business: BusinessCreateManyWithoutEmployeesInput
+  employment: BusinessCreateManyWithoutEmployeesInput
+  companies: BusinessCreateManyWithoutOwnerInput
 }
 
 """An edge in a connection."""
@@ -2469,7 +2544,8 @@ input UserUpdateInput {
   password: String
   reviews: ReviewUpdateManyWithoutAuthorInput
   comments: CommentUpdateManyWithoutAuthorInput
-  business: BusinessUpdateManyWithoutEmployeesInput
+  employment: BusinessUpdateManyWithoutEmployeesInput
+  companies: BusinessUpdateManyWithoutOwnerInput
 }
 
 input UserUpdateManyDataInput {
@@ -2488,16 +2564,16 @@ input UserUpdateManyMutationInput {
   password: String
 }
 
-input UserUpdateManyWithoutBusinessInput {
-  create: [UserCreateWithoutBusinessInput!]
+input UserUpdateManyWithoutEmploymentInput {
+  create: [UserCreateWithoutEmploymentInput!]
   connect: [UserWhereUniqueInput!]
   set: [UserWhereUniqueInput!]
   disconnect: [UserWhereUniqueInput!]
   delete: [UserWhereUniqueInput!]
-  update: [UserUpdateWithWhereUniqueWithoutBusinessInput!]
+  update: [UserUpdateWithWhereUniqueWithoutEmploymentInput!]
   updateMany: [UserUpdateManyWithWhereNestedInput!]
   deleteMany: [UserScalarWhereInput!]
-  upsert: [UserUpsertWithWhereUniqueWithoutBusinessInput!]
+  upsert: [UserUpsertWithWhereUniqueWithoutEmploymentInput!]
 }
 
 input UserUpdateManyWithWhereNestedInput {
@@ -2512,21 +2588,18 @@ input UserUpdateOneRequiredWithoutCommentsInput {
   upsert: UserUpsertWithoutCommentsInput
 }
 
+input UserUpdateOneRequiredWithoutCompaniesInput {
+  create: UserCreateWithoutCompaniesInput
+  connect: UserWhereUniqueInput
+  update: UserUpdateWithoutCompaniesDataInput
+  upsert: UserUpsertWithoutCompaniesInput
+}
+
 input UserUpdateOneRequiredWithoutReviewsInput {
   create: UserCreateWithoutReviewsInput
   connect: UserWhereUniqueInput
   update: UserUpdateWithoutReviewsDataInput
   upsert: UserUpsertWithoutReviewsInput
-}
-
-input UserUpdateWithoutBusinessDataInput {
-  name: String
-  email: String
-  contactNumber: String
-  age: Int
-  password: String
-  reviews: ReviewUpdateManyWithoutAuthorInput
-  comments: CommentUpdateManyWithoutAuthorInput
 }
 
 input UserUpdateWithoutCommentsDataInput {
@@ -2536,7 +2609,30 @@ input UserUpdateWithoutCommentsDataInput {
   age: Int
   password: String
   reviews: ReviewUpdateManyWithoutAuthorInput
-  business: BusinessUpdateManyWithoutEmployeesInput
+  employment: BusinessUpdateManyWithoutEmployeesInput
+  companies: BusinessUpdateManyWithoutOwnerInput
+}
+
+input UserUpdateWithoutCompaniesDataInput {
+  name: String
+  email: String
+  contactNumber: String
+  age: Int
+  password: String
+  reviews: ReviewUpdateManyWithoutAuthorInput
+  comments: CommentUpdateManyWithoutAuthorInput
+  employment: BusinessUpdateManyWithoutEmployeesInput
+}
+
+input UserUpdateWithoutEmploymentDataInput {
+  name: String
+  email: String
+  contactNumber: String
+  age: Int
+  password: String
+  reviews: ReviewUpdateManyWithoutAuthorInput
+  comments: CommentUpdateManyWithoutAuthorInput
+  companies: BusinessUpdateManyWithoutOwnerInput
 }
 
 input UserUpdateWithoutReviewsDataInput {
@@ -2546,12 +2642,13 @@ input UserUpdateWithoutReviewsDataInput {
   age: Int
   password: String
   comments: CommentUpdateManyWithoutAuthorInput
-  business: BusinessUpdateManyWithoutEmployeesInput
+  employment: BusinessUpdateManyWithoutEmployeesInput
+  companies: BusinessUpdateManyWithoutOwnerInput
 }
 
-input UserUpdateWithWhereUniqueWithoutBusinessInput {
+input UserUpdateWithWhereUniqueWithoutEmploymentInput {
   where: UserWhereUniqueInput!
-  data: UserUpdateWithoutBusinessDataInput!
+  data: UserUpdateWithoutEmploymentDataInput!
 }
 
 input UserUpsertWithoutCommentsInput {
@@ -2559,15 +2656,20 @@ input UserUpsertWithoutCommentsInput {
   create: UserCreateWithoutCommentsInput!
 }
 
+input UserUpsertWithoutCompaniesInput {
+  update: UserUpdateWithoutCompaniesDataInput!
+  create: UserCreateWithoutCompaniesInput!
+}
+
 input UserUpsertWithoutReviewsInput {
   update: UserUpdateWithoutReviewsDataInput!
   create: UserCreateWithoutReviewsInput!
 }
 
-input UserUpsertWithWhereUniqueWithoutBusinessInput {
+input UserUpsertWithWhereUniqueWithoutEmploymentInput {
   where: UserWhereUniqueInput!
-  update: UserUpdateWithoutBusinessDataInput!
-  create: UserCreateWithoutBusinessInput!
+  update: UserUpdateWithoutEmploymentDataInput!
+  create: UserCreateWithoutEmploymentInput!
 }
 
 input UserWhereInput {
@@ -2851,9 +2953,12 @@ input UserWhereInput {
   comments_every: CommentWhereInput
   comments_some: CommentWhereInput
   comments_none: CommentWhereInput
-  business_every: BusinessWhereInput
-  business_some: BusinessWhereInput
-  business_none: BusinessWhereInput
+  employment_every: BusinessWhereInput
+  employment_some: BusinessWhereInput
+  employment_none: BusinessWhereInput
+  companies_every: BusinessWhereInput
+  companies_some: BusinessWhereInput
+  companies_none: BusinessWhereInput
 }
 
 input UserWhereUniqueInput {
