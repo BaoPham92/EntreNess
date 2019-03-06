@@ -1,5 +1,5 @@
 # source: http://localhost:4466/entre_nesss/dev
-# timestamp: Tue Mar 05 2019 22:21:56 GMT-0500 (Eastern Standard Time)
+# timestamp: Wed Mar 06 2019 17:14:36 GMT-0500 (Eastern Standard Time)
 
 type AggregateBusiness {
   count: Int!
@@ -1329,8 +1329,8 @@ scalar DateTime
 type Event implements Node {
   id: ID!
   title: String!
-  email: String!
-  contactNumber: String!
+  email: String
+  contactNumber: String
   description: String!
   category: String!
   location: String
@@ -1351,8 +1351,8 @@ type EventConnection {
 
 input EventCreateInput {
   title: String!
-  email: String!
-  contactNumber: String!
+  email: String
+  contactNumber: String
   description: String!
   category: String!
   location: String
@@ -1366,8 +1366,8 @@ input EventCreateManyWithoutBusinessInput {
 
 input EventCreateWithoutBusinessInput {
   title: String!
-  email: String!
-  contactNumber: String!
+  email: String
+  contactNumber: String
   description: String!
   category: String!
   location: String
@@ -1406,8 +1406,8 @@ enum EventOrderByInput {
 type EventPreviousValues {
   id: ID!
   title: String!
-  email: String!
-  contactNumber: String!
+  email: String
+  contactNumber: String
   description: String!
   category: String!
   location: String
@@ -2192,8 +2192,6 @@ input EventWhereInput {
 
 input EventWhereUniqueInput {
   id: ID
-  email: String
-  contactNumber: String
 }
 
 """Raw JSON value"""

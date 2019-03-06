@@ -21,6 +21,9 @@ type Mutation {
     createBusiness(data: CreateBusinessInput!): Business!
     deleteBusiness(id: ID!): Business!
     updateBusiness(id: ID!, data: UpdateBusinessInput!): Business!
+    createEvent(id: ID! , data: CreateEventInput!): Event!
+    deleteEvent(id: ID!): Event!
+    updateEvent(id: ID!, data: UpdateEventInput!): Event!
 }
 
 # type Subscription {
@@ -65,6 +68,24 @@ input UpdateBusinessInput {
     employees: ID
 }
 
+input CreateEventInput {
+    title: String!
+    email: String
+    contactNumber: String!
+    description: String!
+    category: String!
+    location: String
+}
+
+input UpdateEventInput {
+    title: String
+    email: String
+    contactNumber: String
+    description: String
+    category: String
+    location: String
+}
+
 input CreateReviewInput {
     title: String!
     body: String!
@@ -98,7 +119,7 @@ type User {
     updatedAt: String!
     createdAt: String!
     reviews: [Review!]!
-    company: Business!
+    companies: [Business]!
     employment: [Business!]!
     comments: [Comment!]!
 }
@@ -120,13 +141,13 @@ type Business {
 type Event {
     id: ID!
     title: String!
-    email: String!
+    email: String
     contactNumber: String!
     description: String!
     category: String!
     location: String
     updatedAt: String!
-    createdAt: String! 
+    createdAt: String!
     business: Business!
 }
 

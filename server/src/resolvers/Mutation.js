@@ -148,11 +148,113 @@ const Mutation = {
             }
         }, info)
     },
+    async createEvent(parent, args, {
+        prisma,
+        request
+    }, info) {
+        const userId = getUserId(request)
+        const validBusiness = await prisma.query.businesses({
+            where: {
+                AND: [{
+                    owner: {
+                        id: userId
+                    }
+                },{
+                    owner: {
+                        companies_some: {
+                            id: args.id
+                        }
+                    }
+                }]
+            }
+        })
+
+        console.log(validBusiness, Object.values(validBusiness)[0])
+
+        if (validBusiness.length === 0) {
+            throw new Error('Not able to create event!')
+        }
+
+        return prisma.mutation.createEvent({
+            data: {
+                title: args.data.title,
+                email: args.data.email,
+                contactNumber: args.data.contactNumber,
+                description: args.data.description,
+                category: args.data.category,
+                location: args.data.location,
+                business: {
+                    connect: {
+                        id: Object.values(validBusiness)[0].id
+                    }
+                }
+            }
+        }, info)
+    },
+    async updateEvent(parent, args, {
+        prisma,
+        request
+    }, info) {
+        const userId = getUserId(request)
+        const validEvent = await prisma.query.events({
+            where: {
+                AND: [{
+                    id: args.id
+                }, {
+                    business: {
+                        owner: {
+                            id: userId
+                        }
+                    }
+                }]
+            }
+        })
+
+        if (validEvent.length === 0) {
+            throw new Error('Not able to update!')
+        }
+
+        return prisma.mutation.updateEvent({
+            where: {
+                id: args.id
+            },
+            data: args.data
+        }, info)
+    },
+    async deleteEvent(parent, args, {
+        prisma,
+        request
+    }, info) {
+        const userId = getUserId(request)
+        const validEvent = await prisma.query.events({
+            where: {
+                AND: [{
+                    id: args.id
+                }, {
+                    business: {
+                        owner: {
+                            id: userId
+                        }
+                    }
+                }]
+            }
+        })
+
+        if (validEvent.length === 0) {
+            throw new Error('Not able to delete!')
+        }
+
+        return prisma.mutation.deleteEvent({
+            where: {
+                id: args.id
+            }
+        }, info)
+    },
     async createReview(parent, args, { 
         prisma,
         request
      }, info) {
-        const userId = await getUserId(request)
+        const userId = getUserId(request)
 
         return prisma.mutation.createReview({
             data: {

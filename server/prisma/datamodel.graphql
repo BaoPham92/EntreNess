@@ -30,8 +30,8 @@ type Business {
 type Event {
   id: ID! @unique
   title: String!
-  email: String! @unique
-  contactNumber: String! @unique
+  email: String
+  contactNumber: String
   description: String!
   category: String!
   location: String
