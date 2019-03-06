@@ -72,6 +72,25 @@ const Query = {
         }
 
         return prisma.query.businesses(opArgs, info)
+    },
+    events(parent, args, {
+        prisma
+    }, info) {
+        const opArgs = {}
+
+        if (args.query) {
+            opArgs.where = {
+                OR: [{
+                    title_contains: args.query
+                }, {
+                    description_contains: args.query
+                }, {
+                    category_contains: args.query
+                }]
+            }
+        }
+
+        return prisma.query.events(opArgs, info)
     }
 }
 
