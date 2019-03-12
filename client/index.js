@@ -1,5 +1,6 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
+import { BrowserRouter as Router } from 'react-router-dom'
 import App from './src/components/App'
 import { ApolloClient, InMemoryCache } from 'apollo-boost'
 import { createHttpLink } from 'apollo-link-http'
@@ -30,7 +31,7 @@ const errorLink = onError(({operation, response, graphQLErrors, networkError}) =
     if (graphQLErrors)
         graphQLErrors.map(({message, locations, path}) => {
             console.log(`[graphQL error]: Message ${message}, Location: ${JSON.stringify(locations, null, 2)}, Path: ${path}`)
-        if (message === 'jwt expired') {
+        if (message === 'jwt expired' || 'invalid signature') {
             return localStorage.removeItem('auth_token')
         }
     })
@@ -58,6 +59,8 @@ const client = new ApolloClient({
 
 ReactDOM.render(
     <ApolloProvider client={client}>
-        <App />
+        <Router>
+            <App />
+        </Router>
     </ApolloProvider>
 ,document.getElementById('app'))

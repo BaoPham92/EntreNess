@@ -17,17 +17,6 @@ const LOGIN_DATA = gql`
     }
 `
 
-const USERS_DATA = gql`
-    query GetUsers {
-    users {
-        id
-        name
-        email
-        password
-    }
-}
-`
-
 class Login extends Component {
     state = {
         email: '',
@@ -58,29 +47,20 @@ class Login extends Component {
         return (
             <div>
                 <Mutation
-                    mutation={LOGIN_DATA}
-                    update={(cache, { data: { login } }) => {
-                        const { users } = cache.readQuery({ query: USERS_DATA })
-                        cache.writeQuery({
-                            query: USERS_DATA,
-                            data: { users: users.assign(users, [login.user]) }
-                        })
-                    }}
-                >
+                    mutation={LOGIN_DATA}>
                     {(login, { data }) => (
                         <div>
                             <form
                                 onSubmit={
-                                    e => {
+                                    (e) => {
                                         e.preventDefault()
                                         login({
                                             variables: {
                                                 data: { email: this.state.email, password: this.state.password }
                                             }
                                         }).then(results => {
-                                            console.log(results)
                                             this.props.getAuth(results.data.login.token)
-                                            localStorage.setItem('auth_token', results.data.login.token)
+                                            console.log(results)
                                         })
                                     }
                                 }>

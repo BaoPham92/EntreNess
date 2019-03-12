@@ -10,13 +10,33 @@ const USERS_DATA = gql`
         users {
             id
             name
-            email
-            password
+            reviews {
+                id
+                title
+                body
+                experience
+                published
+            }
+            comments {
+                id
+                text
+            }
         }
     }
 `
 
 export default class Users extends Component {
+
+    state = {
+        isLoggedIn: undefined
+    }
+
+    getAuth = (authData) => {
+        if (authData) {
+            this.setState(() => ({ isLoggedIn: true }))
+            localStorage.setItem('auth_token', authData)
+        }
+    }
 
     render() {
         return (
@@ -28,18 +48,18 @@ export default class Users extends Component {
                     {({ loading, error, data }) => {
                         if (loading) return <p>Loading</p>
                         if (error) return <p>Error</p>
-
-                        return data.users.map(({ id, name, email, password }) => (
+                        return data.users.map(({ id, name, reviews, comments }) => (
                             <ul key={id}>
                                 <li>User id:{id}</li>
                                 <li>Name: {name}</li>
-                                <li>Email: {this.props.authExist ? email : 'Not logged in to see email.'}</li>
+                                <li>Reviews: {reviews.length}</li>
+                                <li>Comments: {comments.length}</li>
                             </ul>
                         ))
                     }}
                 </Query>
 
-                {!localStorage.getItem('auth_token') && <Login getAuth={this.props.getAuth} />}
+                {!localStorage.getItem('auth_token') && <Login getAuth={this.getAuth} />}
 
             </div>
         )
