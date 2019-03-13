@@ -27,17 +27,6 @@ const USERS_DATA = gql`
 
 export default class Users extends Component {
 
-    state = {
-        isLoggedIn: undefined
-    }
-
-    getAuth = (authData) => {
-        if (authData) {
-            this.setState(() => ({ isLoggedIn: true }))
-            localStorage.setItem('auth_token', authData)
-        }
-    }
-
     render() {
         return (
             <div>
@@ -58,8 +47,6 @@ export default class Users extends Component {
                         ))
                     }}
                 </Query>
-
-                {!localStorage.getItem('auth_token') && <Login getAuth={this.getAuth} />}
 
             </div>
         )

@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { Mutation } from 'react-apollo'
 import gql from 'graphql-tag'
+import AuthService from '../../utils/authentication/AuthService'
 
 // Mutations & Queries for GraphQL API
 const LOGIN_DATA = gql`
@@ -18,28 +19,17 @@ const LOGIN_DATA = gql`
 `
 
 class Login extends Component {
-    state = {
-        email: '',
-        password: ''
+
+    Auth = new AuthService()
+
+    handleChange = (e) => {
+        e.persist();
+        this.setState(() => ({ [e.target.name]: e.target.value }))
     }
 
-    saveEmailInput = (e) => {
-        e.preventDefault()
-
-        const email = e.target.value.trim()
-
-        if (email) {
-            this.setState(() => ({ email }))   
-        }
-    }
-
-    savePasswordInput = (e) => {
-        e.preventDefault()
-
-        const password = e.target.value.trim()
-
-        if (password) {
-            this.setState(() => ({ password }))
+    componentDidMount() {
+        if (this.Auth.loggedIn()) {
+            this.props.history.replace('/')
         }
     }
 
@@ -59,22 +49,22 @@ class Login extends Component {
                                                 data: { email: this.state.email, password: this.state.password }
                                             }
                                         }).then(results => {
-                                            this.props.getAuth(results.data.login.token)
-                                            console.log(results)
-                                        })
+                                            this.Auth.setToken(results.data.login.token)
+                                            this.props.history.replace('/')
+                                            }).catch((e) => alert(e))
                                     }
                                 }>
                                 <input
                                     type="text"
                                     name="email"
                                     placeholder="Email"
-                                    onChange={this.saveEmailInput}
+                                    onChange={this.handleChange}
                                 />
                                 <input
-                                    type="text"
+                                    type="password"
                                     name="password"
                                     placeholder="Password"
-                                    onChange={this.savePasswordInput}
+                                    onChange={this.handleChange}
                                 />
                                 <button type="submit"> Login </button>
                             </form>

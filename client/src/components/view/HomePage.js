@@ -1,13 +1,20 @@
 import React, { Component } from 'react'
 import { Route } from 'react-router-dom'
+import withAuth from '../../utils/authentication/withAuth'
 
-export default class HomePage extends Component {
+class HomePage extends Component {
 
     render() {
         return (
             <div>
-                <h1>Entreness HomePage</h1>
+                <div>
+                    <h2>Welcome {this.props.user.userId}</h2>
+                </div>
+
+                <button type="button" onClick={this.props.handleLogout}>Logout</button>
             </div>
         )
     }
 }
+
+export default withAuth(HomePage)

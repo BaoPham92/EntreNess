@@ -1,5 +1,5 @@
 import React from 'react'
-import { Route, Switch, Link, NavLink } from 'react-router-dom'
+import { Route, Switch } from 'react-router-dom'
 import NotFoundPage from '../components/NotFoundPage'
 import Header from '../components/Header'
 import HomePage from '../components/view/HomePage'
@@ -10,9 +10,9 @@ const AppRouter = () => (
     <div>
         <Header />
         <Switch>
-            <Route exact path="/" component={HomePage} />
+            <Route exact path="/" component={HomePage}/>
             <Route path="/login" component={Login}/>
-            <Route path="/users" component={Users} />
+            <Route path="/users" component={Users}/>
             <Route component={NotFoundPage} />
         </Switch>
     </div>

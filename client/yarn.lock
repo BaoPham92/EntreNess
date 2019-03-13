@@ -2472,7 +2472,7 @@ hoist-non-react-statics@^2.5.0:
   resolved "https://registry.yarnpkg.com/hoist-non-react-statics/-/hoist-non-react-statics-2.5.5.tgz#c5903cf409c0dfd908f388e619d86b9c1174cb47"
   integrity sha512-rqcy4pJo55FTTLWt+bU8ukscqHeE/e9KWvsOW2b/a3afxQZhwkQdT1rPPCJ0rYXdj4vNcasY8zHTH+jF/qStxw==
 
-hoist-non-react-statics@^3.0.0:
+hoist-non-react-statics@^3.0.0, hoist-non-react-statics@^3.3.0:
   version "3.3.0"
   resolved "https://registry.yarnpkg.com/hoist-non-react-statics/-/hoist-non-react-statics-3.3.0.tgz#b09178f0122184fb95acf525daaecb4d8f45958b"
   integrity sha512-0XsbTXxgiaCDYDIWFcwkmerZPSwywfUqYmwT4jzewKTQSWoE6FCMoUVOeBJWK3E/CrWbxRG3m5GzY4lnIwGRBA==
@@ -2925,6 +2925,11 @@ json5@^2.1.0:
   integrity sha512-8Mh9h6xViijj36g7Dxi+Y4S6hNGV96vcJZr/SrlHh1LR/pEn/8j/+qIBbs44YKl69Lrfctp4QD+AdWLTMqEZAQ==
   dependencies:
     minimist "^1.2.0"
+
+jwt-decode@^2.2.0:
+  version "2.2.0"
+  resolved "https://registry.yarnpkg.com/jwt-decode/-/jwt-decode-2.2.0.tgz#7d86bd56679f58ce6a84704a657dd392bba81a79"
+  integrity sha1-fYa9VmefWM5qhHBKZX3TkruoGnk=
 
 killable@^1.0.0:
   version "1.0.1"
@@ -3658,6 +3663,11 @@ path-to-regexp@^1.7.0:
   integrity sha1-Wf3g9DW62suhA6hOnTvGTpa5k30=
   dependencies:
     isarray "0.0.1"
+
+path-to-regexp@^3.0.0:
+  version "3.0.0"
+  resolved "https://registry.yarnpkg.com/path-to-regexp/-/path-to-regexp-3.0.0.tgz#c981a218f3df543fa28696be2f88e0c58d2e012a"
+  integrity sha512-ZOtfhPttCrqp2M1PBBH4X13XlvnfhIwD7yCLx+GoGoXRPQyxGOTdQMpIzPSPKXAJT/JQrdfFrgdJOyAzvgpQ9A==
 
 pbkdf2@^3.0.3:
   version "3.0.17"
