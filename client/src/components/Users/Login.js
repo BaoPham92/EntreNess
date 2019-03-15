@@ -27,6 +27,23 @@ class Login extends Component {
         this.setState(() => ({ [e.target.name]: e.target.value }))
     }
 
+    validateSubmit = (e) => {
+        const buttons = e.target.elements
+
+        if (!buttons.email.value || !buttons.password.value) {
+            alert('Fields cannot be empy!')
+        }
+
+        return {
+            variables: {
+                data: {
+                    email: this.state.email,
+                    password: this.state.password
+                }
+            }
+        }
+    }
+
     setToken = (token) => {
         localStorage.setItem('auth_token', token)
     }
@@ -46,14 +63,12 @@ class Login extends Component {
                                 onSubmit={
                                     (e) => {
                                         e.preventDefault()
-                                        login({
-                                            variables: {
-                                                data: { email: this.state.email, password: this.state.password }
-                                            }
-                                        }).then(results => {
+                                        login(this.validateSubmit(e))
+                                        .then(results => {
                                             this.setToken(results.data.login.token)
                                             this.props.checkAuth()
-                                            }).catch((e) => alert(e))
+                                        })
+                                        .catch((e) => alert(e))
                                     }
                                 }>
                                 <input
