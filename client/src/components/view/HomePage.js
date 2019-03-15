@@ -1,20 +1,21 @@
 import React, { Component } from 'react'
-import { Route } from 'react-router-dom'
-import withAuth from '../../utils/authentication/withAuth'
+import { connect } from 'react-redux'
+import { logout } from '../../actions/auth'
 
-class HomePage extends Component {
+export const HomePage = (props) => (
+    <div>
+        <h2>Welcome To EntreNess User: {props.auth.userId ? props.auth.userId : 'Guest'}</h2>
+        {props.auth.userId && <button type="button" onClick={props.logout}>Logout</button>}
+    </div>
+)
 
-    render() {
-        return (
-            <div>
-                <div>
-                    <h2>Welcome {this.props.user.userId}</h2>
-                </div>
-
-                <button type="button" onClick={this.props.handleLogout}>Logout</button>
-            </div>
-        )
+const mapToStateProps = (state) => {
+    return {
+        auth: state.auth
     }
 }
 
-export default withAuth(HomePage)
+const mapToDispatch = (dispatch) => ({
+    logout: () => dispatch(logout())
+})
+export default connect(mapToStateProps, mapToDispatch)(HomePage)

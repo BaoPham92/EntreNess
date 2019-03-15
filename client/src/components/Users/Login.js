@@ -1,7 +1,9 @@
 import React, { Component } from 'react'
+import { connect } from 'react-redux'
 import { Mutation } from 'react-apollo'
 import gql from 'graphql-tag'
-import AuthService from '../../utils/authentication/AuthService'
+
+import { checkAuth } from '../../actions/auth'
 
 // Mutations & Queries for GraphQL API
 const LOGIN_DATA = gql`
@@ -20,17 +22,18 @@ const LOGIN_DATA = gql`
 
 class Login extends Component {
 
-    Auth = new AuthService()
-
     handleChange = (e) => {
         e.persist();
         this.setState(() => ({ [e.target.name]: e.target.value }))
     }
 
+    setToken = (token) => {
+        localStorage.setItem('auth_token', token)
+        this.props.history.replace('/')
+    }
+
     componentDidMount() {
-        if (this.Auth.loggedIn()) {
-            this.props.history.replace('/')
-        }
+        this.props.checkAuth()
     }
 
     render() {
@@ -49,8 +52,7 @@ class Login extends Component {
                                                 data: { email: this.state.email, password: this.state.password }
                                             }
                                         }).then(results => {
-                                            this.Auth.setToken(results.data.login.token)
-                                            this.props.history.replace('/')
+                                            this.setToken(results.data.login.token)
                                             }).catch((e) => alert(e))
                                     }
                                 }>
@@ -76,4 +78,8 @@ class Login extends Component {
     }
 }
 
-export default Login
+const mapToDispatch = (dispatch) => ({
+    checkAuth: () => dispatch(checkAuth())
+})
+
+export default connect(undefined, mapToDispatch)(Login)

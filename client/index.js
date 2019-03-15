@@ -1,14 +1,17 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
+import { Provider } from 'react-redux'
 import { BrowserRouter as Router } from 'react-router-dom'
-import App from './src/components/App'
 import { ApolloClient, InMemoryCache } from 'apollo-boost'
-import { createHttpLink } from 'apollo-link-http'
 import { ApolloProvider } from 'react-apollo'
+import { ApolloLink } from 'apollo-link'
+import { createHttpLink } from 'apollo-link-http'
 import { setContext } from 'apollo-link-context'
 import { onError } from "apollo-link-error"
-import { ApolloLink } from 'apollo-link'
 import gql from 'graphql-tag'
+
+import AppRouter from './src/routers/AppRouter'
+import configureStore from './src/store/configureStore'
 
 // https://www.apollographql.com/docs/react/recipes/authentication.html#Header \\
 // Authentication for all requests.
@@ -57,10 +60,14 @@ const client = new ApolloClient({
     cache
 })
 
-ReactDOM.render(
+const store = configureStore()
+
+const jsx = (
     <ApolloProvider client={client}>
-        <Router>
-            <App />
-        </Router>
+        <Provider store={store}>
+            <AppRouter />
+        </Provider>
     </ApolloProvider>
-,document.getElementById('app'))
+)
+
+ReactDOM.render(jsx,document.getElementById('app'))
