@@ -1,11 +1,12 @@
 import React, { Component } from 'react'
+import { Redirect } from 'react-router-dom'
 import { connect } from 'react-redux'
-import { logout } from '../../actions/auth'
+import Login from '../Users/Login'
 
 export const HomePage = (props) => (
     <div>
-        <h2>Welcome To EntreNess User: {props.auth.userId ? props.auth.userId : 'Guest'}</h2>
-        {props.auth.userId && <button type="button" onClick={props.logout}>Logout</button>}
+        <h2>Welcome To EntreNess</h2>
+        { props.auth.userId ? <Redirect to="/DashBoard" /> : <Login />}
     </div>
 )
 
@@ -15,7 +16,4 @@ const mapToStateProps = (state) => {
     }
 }
 
-const mapToDispatch = (dispatch) => ({
-    logout: () => dispatch(logout())
-})
-export default connect(mapToStateProps, mapToDispatch)(HomePage)
+export default connect(mapToStateProps)(HomePage)

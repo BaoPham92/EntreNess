@@ -9,7 +9,7 @@ export const login = (userId) => ({
 export const logout = () => {
     return (dispatch) => {
         dispatch({type: 'LOG_OUT'})
-        history.replace('/')
+        localStorage.removeItem('auth_token')
     }
 }
 
@@ -22,11 +22,11 @@ export const checkAuth = () => {
             
             if (result) {
                 dispatch(login(decoded.userId))
-                history.replace('/')
+                history.replace('/DashBoard')
             }
         
         } catch(e) {
-            return dispatch({type: 'LOG_OUT'})
+            return dispatch(logout())
         }        
     }
 }

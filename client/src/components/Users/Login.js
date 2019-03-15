@@ -29,7 +29,6 @@ class Login extends Component {
 
     setToken = (token) => {
         localStorage.setItem('auth_token', token)
-        this.props.history.replace('/')
     }
 
     componentDidMount() {
@@ -53,6 +52,7 @@ class Login extends Component {
                                             }
                                         }).then(results => {
                                             this.setToken(results.data.login.token)
+                                            this.props.checkAuth()
                                             }).catch((e) => alert(e))
                                     }
                                 }>
