@@ -9,7 +9,7 @@ export class CreateUser extends Component {
         email: undefined,
         passowrd: undefined,
         contactNumber: undefined,
-        age: this.age ? parseInt(this.age, 10) : undefined
+        age: undefined
     }
 
     handleChange = (e) => {

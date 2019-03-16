@@ -19,8 +19,8 @@ export class UserProfile extends React.Component {
                         <li>User Id: {self.id}</li>
                         <li>Name: {self.name}</li>
                         <li>Email: {self.email}</li>
-                        <li>Contact Number: {!self.contactNumber ? 'No infor provided.' : self.contactNumber}</li>
-                        <li>Age: {!self.age ? 'No infor provided.' : self.age}</li>
+                        <li>Contact Number: {!self.contactNumber ? 'No info provided.' : self.contactNumber}</li>
+                        <li>Age: {!self.age ? 'No info provided.' : self.age}</li>
                         <li>Password: {self.password}</li>
                         <li>Accounted Created: {self.createdAt}</li>
                         <li>Accounted Updated: {self.updatedAt}</li>

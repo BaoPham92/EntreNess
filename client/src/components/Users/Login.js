@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { graphql } from 'react-apollo'
+import { graphql, withApollo } from 'react-apollo'
 import { LoginMutation } from '../../mutations/Users'
 import { checkAuth } from '../../actions/auth'
 
@@ -25,7 +25,7 @@ class Login extends Component {
     }
 
     render() {
-        const { mutate } = this.props
+        const { mutate, client } = this.props
         
         return (
             <div>
@@ -44,6 +44,7 @@ class Login extends Component {
                             .then((res) => {
                                 this.setToken(res.data.login.token)
                                 this.props.checkAuth()
+                                client.resetStore()
                             })
                             .catch(e => alert(e))
                         }
@@ -70,7 +71,7 @@ class Login extends Component {
 }
 
 const mapMutationToProps = graphql(LoginMutation)
-const LoginWithMutation = mapMutationToProps(Login)
+const LoginWithMutation = withApollo(mapMutationToProps(Login))
 
 const mapToDispatch = (dispatch) => ({
     checkAuth: () => dispatch(checkAuth())
