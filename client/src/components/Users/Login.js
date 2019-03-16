@@ -33,13 +33,6 @@ class Login extends Component {
                     onSubmit={
                         (e) => {
                             e.preventDefault()
-
-                            const buttons = e.target.elements
-
-                            if (!buttons.email.value || !buttons.password.value) {
-                                alert('Fields cannot be empy!')
-                            }
-
                             mutate({
                                 variables: {
                                     data: {
@@ -59,12 +52,14 @@ class Login extends Component {
                         type="text"
                         name="email"
                         placeholder="Email"
+                        required
                         onChange={this.handleChange}
                     />
                     <input
                         type="password"
                         name="password"
                         placeholder="Password"
+                        required
                         onChange={this.handleChange}
                     />
                     <button type="submit">Login</button>
