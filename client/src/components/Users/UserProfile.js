@@ -1,23 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { Query } from 'react-apollo'
 import { graphql } from 'react-apollo'
-import gql from 'graphql-tag'
-
-const USER_PROFILE_DATA = gql`
-    {
-        self {
-            id
-            name
-            email
-            contactNumber
-            age
-            password
-            createdAt
-            updatedAt
-        }
-    }
-`
+import { UserProfileQuery } from '../../queries/Users'
 
 export class UserProfile extends React.Component {
 
@@ -47,7 +31,7 @@ export class UserProfile extends React.Component {
     }
 }
 
-const mapQueryToProps = graphql(USER_PROFILE_DATA)
+const mapQueryToProps = graphql(UserProfileQuery)
 const userProfileWithQuery = mapQueryToProps(UserProfile)
 
 export default connect()(userProfileWithQuery)
