@@ -22,6 +22,11 @@ const LOGIN_DATA = gql`
 
 class Login extends Component {
 
+    state = {
+        email: undefined,
+        password: undefined
+    }
+
     handleChange = (e) => {
         e.persist();
         this.setState(() => ({ [e.target.name]: e.target.value }))
