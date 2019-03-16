@@ -7,6 +7,7 @@ const Header = (props) => (
     <header>
         <NavLink exact to="/">HomePage</NavLink>
         <NavLink to="/Users">Users</NavLink>
+        <NavLink to="/UserProfile">UserProfile</NavLink>
         <button type="button" onClick={props.logout}>Logout</button>
     </header>
 )
