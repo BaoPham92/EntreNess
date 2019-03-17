@@ -1,24 +1,17 @@
 import React, { Component } from 'react'
+import { connect } from 'react-redux'
 import { graphql } from 'react-apollo'
 import { CreateUserMutation } from '../../mutations/Users'
+import { startCreateUser } from '../../actions/users'
 
 export class CreateUser extends Component {
 
-    state = {
-        name: undefined,
-        email: undefined,
-        passowrd: undefined,
-        contactNumber: undefined,
-        age: undefined
-    }
-
     handleChange = (e) => {
         e.persist()
-        this.setState(() => ({ [e.target.name]: e.target.value }))
+        this.props.startCreateUser({ [e.target.name]: e.target.value })
     }
 
-    checkAge = () => {
-        const age = this.state.age
+    checkAge = (age) => {
         const valideAge = age >= 16 && age <= 99
 
         if (!valideAge) {
@@ -27,7 +20,8 @@ export class CreateUser extends Component {
     }
 
     render() {
-        const { mutate } = this.props
+        const { mutate, user } = this.props
+        console.log(this.props)
 
         return (
             <div>
@@ -35,19 +29,9 @@ export class CreateUser extends Component {
                     onSubmit={
                         (e) => {
                             e.preventDefault()
-                            this.checkAge()
+                            this.checkAge(user.age)
 
-                            mutate({
-                                variables: {
-                                    data: {
-                                        name: this.state.name,
-                                        email: this.state.email,
-                                        password: this.state.password,
-                                        contactNumber: this.state.contactNumber,
-                                        age: parseInt(this.state.age, 10)
-                                    }
-                                }
-                            })
+                            mutate({variables: { data: user }})
                             .then(res => console.log(res))
                             .catch(e => console.log(e))
                         }
@@ -95,4 +79,14 @@ export class CreateUser extends Component {
 const mapMutationToProps = graphql(CreateUserMutation)
 const createUserWithMutation = mapMutationToProps(CreateUser)
 
-export default createUserWithMutation
+const mapStateToProps = (state) => {
+    return {
+        user: state.user
+    }
+}
+
+const mapDispatchToProps = (dispatch) => ({
+    startCreateUser: (userData) => dispatch(startCreateUser(userData))
+})
+
+export default connect(mapStateToProps, mapDispatchToProps)(createUserWithMutation)
