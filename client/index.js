@@ -21,7 +21,9 @@ import configureStore from './src/store/configureStore'
 const httpLink = createHttpLink({ uri: 'http://localhost:4000/' })
 
 // Caching.
-const cache = new InMemoryCache()
+const cache = new InMemoryCache({
+    dataIdFromObject: object => object.key || null
+})
 
 const errorLink = onError(({operation, response, graphQLErrors, networkError}) => {
     console.groupCollapsed(`onError: `)
