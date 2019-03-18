@@ -21,7 +21,6 @@ export class CreateUser extends Component {
 
     render() {
         const { mutate, user } = this.props
-        console.log(this.props)
 
         return (
             <div>

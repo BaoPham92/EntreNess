@@ -1,9 +1,10 @@
-import React from 'react'
+import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { graphql } from 'react-apollo'
+import { Link } from 'react-router-dom'
 import { UserProfileQuery } from '../../queries/Users'
 
-export class UserProfile extends React.Component {
+export class UserProfile extends Component {
 
     render() {
         const { data: { loading, error, self } } = this.props
@@ -15,6 +16,10 @@ export class UserProfile extends React.Component {
         } else {
             return (
                 <div>
+                    <Link to="/UpdateUser">
+                        Edit Information?
+                    </Link>
+
                     <ul>
                         <li>User Id: {self.id}</li>
                         <li>Name: {self.name}</li>

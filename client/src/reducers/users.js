@@ -15,6 +15,11 @@ export default (state = usersDefaultState, action) => {
                 ...state,
                 ...action.userInfo
             }
+        case 'UPDATE_USER':
+        return {
+            ...action.userInfo,
+            ...state
+        }
         default:
             return state
     }

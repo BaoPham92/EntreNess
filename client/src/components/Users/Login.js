@@ -44,7 +44,6 @@ class Login extends Component {
                             .then((res) => {
                                 this.setToken(res.data.login.token)
                                 this.props.checkAuth()
-                                client.resetStore()
                             })
                             .catch(e => alert(e))
                         }

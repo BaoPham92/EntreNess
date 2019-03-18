@@ -1,6 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { NavLink } from 'react-router-dom'
+import { withApollo } from 'react-apollo'
 import { logout } from '../actions/auth'
 
 const Header = (props) => (
@@ -8,7 +9,10 @@ const Header = (props) => (
         <NavLink exact to="/">HomePage</NavLink>
         <NavLink to="/Users">Users</NavLink>
         <NavLink to="/UserProfile">UserProfile</NavLink>
-        <button type="button" onClick={props.logout}>Logout</button>
+        <button type="button" onClick={ () => {
+            props.logout()
+            props.client.resetStore()
+        }}>Logout</button>
     </header>
 )
 
@@ -22,4 +26,4 @@ const mapToDispatch = (dispatch) => ({
     logout: () => dispatch(logout())
 })
 
-export default connect(mapToStateProps, mapToDispatch)(Header)
+export default withApollo(connect(mapToStateProps, mapToDispatch)(Header))

@@ -30,3 +30,17 @@ export const CreateUserMutation = gql`
         }
     }
 `
+
+// Mutations for CreateUser component.
+export const UpdateUserMutation = gql`
+    mutation UpdateUser($data: UpdateUserInput!) {
+        updateUser(data: $data) {
+            user {
+                id
+                name
+                email
+                password
+            }
+        }
+    }
+`

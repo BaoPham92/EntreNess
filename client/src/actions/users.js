@@ -3,6 +3,11 @@ export const createUser = (userInfo) => ({
     userInfo
 })
 
+export const updateUser = (userInfo) => ({
+    type: 'UPDATE_USER',
+    userInfo
+})
+
 export const startCreateUser = (userData) => {
     return (dispatch) => {
 
@@ -12,5 +17,11 @@ export const startCreateUser = (userData) => {
         }
         
         return dispatch(createUser(userData))
+    }
+}
+
+export const startUpdateUser = () => {
+    return (dispatch) => {
+        // Update user data here.
     }
 }

@@ -27,6 +27,6 @@ export const checkAuth = () => {
         
         } catch(e) {
             return dispatch(logout())
-        }        
+        }
     }
 }
