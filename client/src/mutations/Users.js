@@ -44,3 +44,14 @@ export const UpdateUserMutation = gql`
         }
     }
 `
+
+// Mutations for DeleteUser.
+export const DeleteUserMutation = gql`
+    mutation {
+        deleteUser {
+            id
+            name
+            email
+        }
+    }
+`

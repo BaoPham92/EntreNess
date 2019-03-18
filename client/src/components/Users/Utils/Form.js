@@ -5,7 +5,7 @@ import { withApollo } from 'react-apollo'
 import { UserProfileQuery } from '../../../queries/Users'
 
 const Form = (props) => {
-    const isCreateUser = history
+    const pathname = props.location.pathname
     return (
         <form
             onSubmit={
@@ -21,7 +21,7 @@ const Form = (props) => {
                     props.mutate({ variables: { data: user } })
                         .then(res => {
                             console.log(res)
-                            if (props.location.pathname === "/UpdateUser") {
+                            if (pathname === "/UpdateUser") {
                                 props.client.query({query: UserProfileQuery})
                                 return props.history.replace('/UserProfile')
                             }
@@ -33,21 +33,21 @@ const Form = (props) => {
                 type="text"
                 placeholder="name"
                 name="name"
-                required={props.location.pathname === "/CreateUser" && true}
+                required={pathname === "/CreateUser" && true}
                 onChange={props.handleChange}
             />
             <input
                 type="text"
                 placeholder="email"
                 name="email"
-                required={props.location.pathname === "/CreateUser" && true}
+                required={pathname === "/CreateUser" && true}
                 onChange={props.handleChange}
             />
             <input
                 type="text"
                 placeholder="password"
                 name="password"
-                required={props.location.pathname === "/CreateUser" && true}
+                required={pathname === "/CreateUser" && true}
                 onChange={props.handleChange}
             />
             <input
@@ -62,7 +62,11 @@ const Form = (props) => {
                 name="age"
                 onChange={props.handleChange}
             />
-            <button type="submit">Register</button>
+            <button type="submit">{
+                pathname === '/CreateUser' ? 'Register' 
+                : pathname === '/UpdateUser' ? 'Update' 
+                : 'Error'
+            }</button>
         </form>
     )
 }

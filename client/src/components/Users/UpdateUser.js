@@ -1,8 +1,10 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { graphql, withApollo } from 'react-apollo'
+import { graphql, withApollo, compose } from 'react-apollo'
 import { UpdateUserMutation } from '../../mutations/Users'
 import { startUpdateUser } from '../../actions/users'
+import { logout } from '../../actions/auth'
+import { DeleteUserMutation } from '../../mutations/Users'
 import Form from './Utils/Form'
 
 export class UpdateUser extends Component {
@@ -13,7 +15,7 @@ export class UpdateUser extends Component {
     }
 
     render() {
-        const { client: { cache: { data: { data } }}, mutate } = this.props
+        const { client: { cache: { data: { data } }}, UpdateUser, DeleteUser } = this.props
         const self = data["$ROOT_QUERY.self"]
         return (
             <div>
@@ -29,14 +31,24 @@ export class UpdateUser extends Component {
 
                     <Form 
                     handleChange={this.handleChange}
-                    mutate={mutate}
+                    mutate={UpdateUser}
                     />
+
+                    <button onClick={() => {
+                        DeleteUser()
+                        .then((res) => {
+                            console.log(res)
+                            this.props.logout()
+                        })
+                    }}>
+                    Close Account?
+                    </button>
             </div>
         )
     }
 }
 
-const mapMutationToProps = (graphql(UpdateUserMutation))
+const mapMutationToProps = compose(graphql(UpdateUserMutation, {name: 'UpdateUser'}), graphql(DeleteUserMutation, {name: 'DeleteUser'}))
 const updateUserWithMutation = (mapMutationToProps(UpdateUser))
 
 const mapStateToProps = (state) => {
@@ -46,7 +58,8 @@ const mapStateToProps = (state) => {
 }
 
 const mapDispatchToProps = (dispatch) => ({
-    startUpdateUser: (userData) => dispatch(startUpdateUser(userData))
+    startUpdateUser: (userData) => dispatch(startUpdateUser(userData)),
+    logout: () => dispatch(logout())
 })
 
 export default withApollo(connect(mapStateToProps, mapDispatchToProps)(updateUserWithMutation))

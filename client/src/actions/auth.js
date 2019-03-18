@@ -8,8 +8,8 @@ export const login = (userId) => ({
 
 export const logout = () => {
     return (dispatch) => {
-        dispatch({type: 'LOG_OUT'})
         localStorage.removeItem('auth_token')
+        dispatch({type: 'LOG_OUT'})
     }
 }
 

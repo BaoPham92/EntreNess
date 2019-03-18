@@ -29,6 +29,9 @@ const defaultOptions = {
     watchQuery: {
         fetchPolicy: 'cache-and-network',
         errorPolicy: 'ignore'
+    },
+    mutate: {
+        refetchQueries: 'any'
     }
 }
 
