@@ -20,8 +20,14 @@ export const startCreateUser = (userData) => {
     }
 }
 
-export const startUpdateUser = () => {
+export const startUpdateUser = (userData) => {
     return (dispatch) => {
-        // Update user data here.
+
+        if (userData.age) {
+            userData.age = parseInt(userData.age, 10)
+            dispatch(updateUser({ age: parseInt(userData.age, 10) }))
+        }
+
+        return dispatch(updateUser(userData))
     }
 }

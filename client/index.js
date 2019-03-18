@@ -25,6 +25,13 @@ const cache = new InMemoryCache({
     dataIdFromObject: object => object.key || null
 })
 
+const defaultOptions = {
+    watchQuery: {
+        fetchPolicy: 'cache-and-network',
+        errorPolicy: 'ignore'
+    }
+}
+
 const errorLink = onError(({operation, response, graphQLErrors, networkError}) => {
     console.groupCollapsed(`onError: `)
     if (operation)
@@ -59,7 +66,8 @@ const authLink = setContext((_, { headers }) => {
 
 const client = new ApolloClient({
     link: ApolloLink.from([errorLink, authLink, httpLink]),
-    cache
+    cache,
+    defaultOptions
 })
 
 const store = configureStore()

@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { Redirect } from 'react-router-dom'
 import { connect } from 'react-redux'
+import { checkAuth } from '../../actions/auth'
 
 export const DashBoard = (props) => (
     <div>
@@ -14,4 +15,9 @@ const mapToStateProps = (state) => {
         auth: state.auth
     }
 }
+
+const mapDispatchToProps = (dispatch) => ({
+    checkAuth: () => dispatch(checkAuth())
+})
+
 export default connect(mapToStateProps)(DashBoard)

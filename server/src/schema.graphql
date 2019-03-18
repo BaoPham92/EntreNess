@@ -51,6 +51,8 @@ input UpdateUserInput {
     name: String
     email: String
     password: String
+    contactNumber: String
+    age: Int
 }
 
 input CreateBusinessInput {

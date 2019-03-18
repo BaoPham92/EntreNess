@@ -1,12 +1,19 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { graphql, withApollo } from 'react-apollo'
-import { UpdatedUserMutation } from '../../mutations/Users'
+import { UpdateUserMutation } from '../../mutations/Users'
+import { startUpdateUser } from '../../actions/users'
+import Form from './Utils/Form'
 
 export class UpdateUser extends Component {
 
+    handleChange = (e) => {
+        e.persist()
+        this.props.startUpdateUser({ [e.target.name]: e.target.value })
+    }
+
     render() {
-        const { client: { cache: { data: { data } }}} = this.props
+        const { client: { cache: { data: { data } }}, mutate } = this.props
         const self = data["$ROOT_QUERY.self"]
         return (
             <div>
@@ -19,9 +26,27 @@ export class UpdateUser extends Component {
                         <li>Contact Number: {self.contactNumber}</li>
                         <li>Age: {self.age}</li>
                     </ul>
+
+                    <Form 
+                    handleChange={this.handleChange}
+                    mutate={mutate}
+                    />
             </div>
         )
     }
 }
 
-export default withApollo(connect()(UpdateUser))
+const mapMutationToProps = (graphql(UpdateUserMutation))
+const updateUserWithMutation = (mapMutationToProps(UpdateUser))
+
+const mapStateToProps = (state) => {
+    return {
+        user: state.user
+    }
+}
+
+const mapDispatchToProps = (dispatch) => ({
+    startUpdateUser: (userData) => dispatch(startUpdateUser(userData))
+})
+
+export default withApollo(connect(mapStateToProps, mapDispatchToProps)(updateUserWithMutation))

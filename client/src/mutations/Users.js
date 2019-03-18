@@ -35,12 +35,12 @@ export const CreateUserMutation = gql`
 export const UpdateUserMutation = gql`
     mutation UpdateUser($data: UpdateUserInput!) {
         updateUser(data: $data) {
-            user {
-                id
-                name
-                email
-                password
-            }
+            id
+            name
+            email
+            contactNumber
+            age
+            password
         }
     }
 `
