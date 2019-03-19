@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
 import { graphql } from 'react-apollo'
 import { QueryReviews } from '../../queries/Reviews'
@@ -14,6 +15,8 @@ export class Reviews extends Component {
         } else {
             return (
                 <div>
+                <Link to="/CreateReview"> CreateReview </Link>
+                <Link to="/Dashboard"> Dashboard </Link>
                     <h1>Reviews</h1>
                     {reviews.map((review) => (
                         <ul key={review.id}>

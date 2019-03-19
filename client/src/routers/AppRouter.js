@@ -11,6 +11,7 @@ import PrivateRoute from '../routers/PrivateRoute'
 import PublicRoute from '../routers/PublicRoute'
 import DashBoard from '../components/view/DashBoard'
 import Reviews from '../components/Reviews/Reviews'
+import CreateReview from '../components/Reviews/CreateReview'
 
 export const history = createHistory()
 
@@ -24,6 +25,7 @@ const AppRouter = () => (
                 <PrivateRoute path="/UserProfile" component={UserProfile} />
                 <PrivateRoute path="/UpdateUser" component={UpdateUser}/>
                 <Route path="/Reviews" component={Reviews}/>
+                <PrivateRoute path="/CreateReview" component={CreateReview}/>
                 <Route component={NotFoundPage} />
             </Switch>
         </div>
