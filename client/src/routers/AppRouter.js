@@ -8,7 +8,9 @@ import Users from '../components/Users/Users'
 import UserProfile from '../components/Users/UserProfile'
 import UpdateUser from '../components/Users/UpdateUser'
 import PrivateRoute from '../routers/PrivateRoute'
+import PublicRoute from '../routers/PublicRoute'
 import DashBoard from '../components/view/DashBoard'
+import Reviews from '../components/Reviews/Reviews'
 
 export const history = createHistory()
 
@@ -16,11 +18,12 @@ const AppRouter = () => (
     <Router history={history}>
         <div>
             <Switch>
-                <Route exact path="/" component={HomePage} />
+                <PublicRoute exact path="/" component={HomePage} />
                 <PrivateRoute path="/Dashboard" component={DashBoard} />
                 <PrivateRoute path="/users" component={Users} />
                 <PrivateRoute path="/UserProfile" component={UserProfile} />
                 <PrivateRoute path="/UpdateUser" component={UpdateUser}/>
+                <Route path="/Reviews" component={Reviews}/>
                 <Route component={NotFoundPage} />
             </Switch>
         </div>

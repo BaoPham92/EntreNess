@@ -1,5 +1,5 @@
 # source: http://localhost:4466/entre_nesss/dev
-# timestamp: Wed Mar 06 2019 17:14:36 GMT-0500 (Eastern Standard Time)
+# timestamp: Mon Mar 18 2019 21:33:47 GMT-0400 (Eastern Daylight Time)
 
 type AggregateBusiness {
   count: Int!
@@ -512,9 +512,11 @@ input BusinessUpdateOneRequiredWithoutEventsInput {
   upsert: BusinessUpsertWithoutEventsInput
 }
 
-input BusinessUpdateOneRequiredWithoutReviewsInput {
+input BusinessUpdateOneWithoutReviewsInput {
   create: BusinessCreateWithoutReviewsInput
   connect: BusinessWhereUniqueInput
+  disconnect: Boolean
+  delete: Boolean
   update: BusinessUpdateWithoutReviewsDataInput
   upsert: BusinessUpsertWithoutReviewsInput
 }
@@ -2302,7 +2304,7 @@ type Review implements Node {
   createdAt: DateTime!
   author: User!
   comments(where: CommentWhereInput, orderBy: CommentOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Comment!]
-  business: Business!
+  business: Business
 }
 
 """A connection to a list of items."""
@@ -2322,7 +2324,7 @@ input ReviewCreateInput {
   published: Boolean!
   author: UserCreateOneWithoutReviewsInput!
   comments: CommentCreateManyWithoutReviewInput
-  business: BusinessCreateOneWithoutReviewsInput!
+  business: BusinessCreateOneWithoutReviewsInput
 }
 
 input ReviewCreateManyWithoutAuthorInput {
@@ -2346,7 +2348,7 @@ input ReviewCreateWithoutAuthorInput {
   experience: String!
   published: Boolean!
   comments: CommentCreateManyWithoutReviewInput
-  business: BusinessCreateOneWithoutReviewsInput!
+  business: BusinessCreateOneWithoutReviewsInput
 }
 
 input ReviewCreateWithoutBusinessInput {
@@ -2364,7 +2366,7 @@ input ReviewCreateWithoutCommentsInput {
   experience: String!
   published: Boolean!
   author: UserCreateOneWithoutReviewsInput!
-  business: BusinessCreateOneWithoutReviewsInput!
+  business: BusinessCreateOneWithoutReviewsInput
 }
 
 """An edge in a connection."""
@@ -2668,7 +2670,7 @@ input ReviewUpdateInput {
   published: Boolean
   author: UserUpdateOneRequiredWithoutReviewsInput
   comments: CommentUpdateManyWithoutReviewInput
-  business: BusinessUpdateOneRequiredWithoutReviewsInput
+  business: BusinessUpdateOneWithoutReviewsInput
 }
 
 input ReviewUpdateManyDataInput {
@@ -2727,7 +2729,7 @@ input ReviewUpdateWithoutAuthorDataInput {
   experience: String
   published: Boolean
   comments: CommentUpdateManyWithoutReviewInput
-  business: BusinessUpdateOneRequiredWithoutReviewsInput
+  business: BusinessUpdateOneWithoutReviewsInput
 }
 
 input ReviewUpdateWithoutBusinessDataInput {
@@ -2745,7 +2747,7 @@ input ReviewUpdateWithoutCommentsDataInput {
   experience: String
   published: Boolean
   author: UserUpdateOneRequiredWithoutReviewsInput
-  business: BusinessUpdateOneRequiredWithoutReviewsInput
+  business: BusinessUpdateOneWithoutReviewsInput
 }
 
 input ReviewUpdateWithWhereUniqueWithoutAuthorInput {

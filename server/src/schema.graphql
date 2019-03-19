@@ -135,7 +135,7 @@ type Business {
     updatedAt: String!
     createdAt: String!
     owner: User!
-    reviews: [Review!]!
+    reviews: [Review!]
     employees: [User!]!
     events: [Event!]!
 }
@@ -162,8 +162,8 @@ type Review {
     updatedAt: String!
     createdAt: String!
     author: User!
-    comments: [Comment!]!
-    business: Business!
+    comments: [Comment!]
+    business: Business
 }
 
 type Comment {

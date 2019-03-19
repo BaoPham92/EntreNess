@@ -9,6 +9,7 @@ const Header = (props) => (
         <NavLink exact to="/">HomePage</NavLink>
         <NavLink to="/Users">Users</NavLink>
         <NavLink to="/UserProfile">UserProfile</NavLink>
+        <NavLink to="/Reviews">Reviews</NavLink>
         <button type="button" onClick={ () => {
             props.logout()
             props.client.resetStore()
