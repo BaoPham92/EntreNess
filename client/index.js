@@ -46,9 +46,6 @@ const errorLink = onError(({operation, response, graphQLErrors, networkError}) =
     if (graphQLErrors)
         graphQLErrors.map(({message, locations, path}) => {
             console.log(`[graphQL error]: Message ${message}, Location: ${JSON.stringify(locations, null, 2)}, Path: ${path}`)
-        if (message === 'jwt expired' || 'invalid signature') {
-            return localStorage.removeItem('auth_token')
-        }
     })
 
     if (networkError)

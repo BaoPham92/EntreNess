@@ -7,6 +7,7 @@ import Login from '../components/Users/Login'
 import Users from '../components/Users/Users'
 import UserProfile from '../components/Users/UserProfile'
 import UpdateUser from '../components/Users/UpdateUser'
+import UserReviews from '../components/Users/Reviews/UserReviews'
 import PrivateRoute from '../routers/PrivateRoute'
 import PublicRoute from '../routers/PublicRoute'
 import DashBoard from '../components/view/DashBoard'
@@ -24,8 +25,9 @@ const AppRouter = () => (
                 <PrivateRoute path="/users" component={Users} />
                 <PrivateRoute path="/UserProfile" component={UserProfile} />
                 <PrivateRoute path="/UpdateUser" component={UpdateUser}/>
-                <Route path="/Reviews" component={Reviews}/>
+                <Route exact={true} path="/Reviews" component={Reviews}/>
                 <PrivateRoute path="/CreateReview" component={CreateReview}/>
+                <PrivateRoute exact={true} path="/Reviews/:id" component={UserReviews}/>
                 <Route component={NotFoundPage} />
             </Switch>
         </div>

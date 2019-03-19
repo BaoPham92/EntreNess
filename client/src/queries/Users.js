@@ -33,6 +33,17 @@ export const UserProfileQuery = gql`
             password
             createdAt
             updatedAt
+            reviews {
+                id
+                title
+                body
+                experience
+                published
+            }
+            comments {
+                id
+                text
+            }
         }
     }
 `

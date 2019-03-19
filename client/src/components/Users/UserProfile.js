@@ -30,6 +30,12 @@ export class UserProfile extends Component {
                         <li>Accounted Created: {self.createdAt}</li>
                         <li>Accounted Updated: {self.updatedAt}</li>
                     </ul>
+
+                    <h2>User Content</h2>
+
+                    <ul>
+                        <li>Reviews: <Link to={`/Reviews/${self.id}`}>{self.reviews.length}</Link></li>
+                    </ul>
                 </div>
             )
         }

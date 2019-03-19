@@ -26,7 +26,7 @@ const Query = {
             where: {
                 id: userId
             }
-        })
+        }, info)
     },
     reviews(parent, args, {
         prisma
