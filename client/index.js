@@ -8,6 +8,7 @@ import { ApolloLink } from 'apollo-link'
 import { createHttpLink } from 'apollo-link-http'
 import { setContext } from 'apollo-link-context'
 import { onError } from "apollo-link-error"
+import { refetchQueries } from './ApolloUtils/mutate'
 import gql from 'graphql-tag'
 
 import AppRouter from './src/routers/AppRouter'
@@ -31,7 +32,8 @@ const defaultOptions = {
         errorPolicy: 'ignore'
     },
     mutate: {
-        refetchQueries: 'any'
+        awaitRefetchQueries: true,
+        refetchQueries: refetchQueries
     }
 }
 

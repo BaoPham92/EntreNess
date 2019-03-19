@@ -2,7 +2,6 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { withRouter } from 'react-router'
 import { withApollo } from 'react-apollo'
-import { UserProfileQuery } from '../../../queries/Users'
 
 const Form = (props) => {
     const pathname = props.location.pathname
@@ -22,7 +21,6 @@ const Form = (props) => {
                         .then(res => {
                             console.log(res)
                             if (pathname === "/UpdateUser") {
-                                props.client.query({query: UserProfileQuery})
                                 return props.history.replace('/UserProfile')
                             }
                         })

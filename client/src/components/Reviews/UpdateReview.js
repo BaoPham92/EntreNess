@@ -1,8 +1,9 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { graphql, withApollo } from 'react-apollo'
+import { graphql, compose, withApollo } from 'react-apollo'
 import { startUpdateReview } from '../../actions/reviews'
 import { UpdateReviewMutation } from '../../mutations/Reviews'
+import { DeleteReviewMutation } from '../../mutations/Reviews'
 import Form from './Utils/Form'
 
 export class UpdateReview extends Component {
@@ -13,7 +14,7 @@ export class UpdateReview extends Component {
     }
     
     render() {
-        const { location: { state: { review } }, mutate } = this.props
+        const { location: { state: { review } }, history, UpdateReview, DeleteReview } = this.props
         console.log(this.props, review)
 
         return (
@@ -29,15 +30,31 @@ export class UpdateReview extends Component {
 
                 <Form 
                 handleChange={this.handleChange}
-                mutate={mutate}
+                mutate={UpdateReview}
                 id={review.id}
                 />
+
+                <button onClick={
+                    () => {
+                        confirm('Are you sure you want to delete?')
+                        DeleteReview({variables: { id: review.id }})
+                        .then(() => history.replace('/UserProfile'))
+                    }
+                }>
+                Delete Review?
+                </button>
             </div>
         )
     }
 }
 
-const mapMutationToProps = graphql(UpdateReviewMutation)
+const mapMutationToProps = compose(
+graphql(UpdateReviewMutation, {
+    name: 'UpdateReview'
+}), 
+graphql(DeleteReviewMutation, {
+    name: 'DeleteReview'
+}))
 const updateReviewWithMutation = mapMutationToProps(UpdateReview)
 
 const mapDispatchToProps = (dispatch) => ({

@@ -28,3 +28,15 @@ export const UpdateReviewMutation = gql`
         }
     }
 `
+
+// Mutation for DeleteReview
+export const DeleteReviewMutation = gql`
+    mutation DeleteReview($id: ID!) {
+        deleteReview(id: $id) {
+            title
+            body
+            experience
+            published
+        }
+    }
+`

@@ -48,7 +48,13 @@ export class UpdateUser extends Component {
     }
 }
 
-const mapMutationToProps = compose(graphql(UpdateUserMutation, {name: 'UpdateUser'}), graphql(DeleteUserMutation, {name: 'DeleteUser'}))
+const mapMutationToProps = compose(
+graphql(UpdateUserMutation, {
+    name: 'UpdateUser'
+}), 
+graphql(DeleteUserMutation, {
+    name: 'DeleteUser'
+}))
 const updateUserWithMutation = (mapMutationToProps(UpdateUser))
 
 const mapStateToProps = (state) => {

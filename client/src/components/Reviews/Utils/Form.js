@@ -2,7 +2,6 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { withRouter } from 'react-router'
 import { withApollo, Query } from 'react-apollo'
-import { QueryReviews } from '../../../queries/Reviews'
 
 export const Form = (props) => {
     const pathname = props.location.pathname
@@ -24,7 +23,6 @@ export const Form = (props) => {
                     props.mutate(validId)
                     .then((res) => {
                         console.log(res)
-                        props.client.query({ query: QueryReviews })
                         return props.history.replace('/Reviews')
                     })
                     .catch(e => console.log(e))
