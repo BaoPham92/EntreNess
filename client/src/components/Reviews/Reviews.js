@@ -19,6 +19,7 @@ export class Reviews extends Component {
                 <Link to="/Dashboard"> Dashboard </Link>
                     <h1>Reviews</h1>
                     {reviews.map((review) => (
+                        review.published && 
                         <ul key={review.id}>
                             <li>Title: {review.title}</li>
                             <li>Description: {review.body}</li>

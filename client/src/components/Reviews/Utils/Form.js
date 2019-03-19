@@ -16,13 +16,16 @@ export const Form = (props) => {
                     const review = props.review
                     review.published = JSON.parse(review.published)
 
-                    props.mutate({variables: { data: review }})
+                    const hasId = props.id
+                    const validId = 
+                    hasId ? { variables: { id: hasId, data: review }} 
+                    : { variables: { data: review } }
+
+                    props.mutate(validId)
                     .then((res) => {
                         console.log(res)
-                        if (pathname === '/CreateReview') {
-                            props.client.query({ query: QueryReviews })
-                            return props.history.replace('/Reviews')
-                        }
+                        props.client.query({ query: QueryReviews })
+                        return props.history.replace('/Reviews')
                     })
                     .catch(e => console.log(e))
                 }

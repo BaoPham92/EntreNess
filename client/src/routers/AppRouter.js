@@ -13,6 +13,7 @@ import PublicRoute from '../routers/PublicRoute'
 import DashBoard from '../components/view/DashBoard'
 import Reviews from '../components/Reviews/Reviews'
 import CreateReview from '../components/Reviews/CreateReview'
+import UpdateReview from '../components/Reviews/UpdateReview'
 
 export const history = createHistory()
 
@@ -28,6 +29,7 @@ const AppRouter = () => (
                 <Route exact={true} path="/Reviews" component={Reviews}/>
                 <PrivateRoute path="/CreateReview" component={CreateReview}/>
                 <PrivateRoute exact={true} path="/Reviews/:id" component={UserReviews}/>
+                <PrivateRoute exact={true} path="/EditReview/:id" component={UpdateReview}/>
                 <Route component={NotFoundPage} />
             </Switch>
         </div>

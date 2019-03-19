@@ -34,7 +34,9 @@ export class UserProfile extends Component {
                     <h2>User Content</h2>
 
                     <ul>
-                        <li>Reviews: <Link to={`/Reviews/${self.id}`}>{self.reviews.length}</Link></li>
+                        <li>
+                        Reviews: <Link to={`/Reviews/${self.id}`}>{self.reviews.length}</Link>
+                        </li>
                     </ul>
                 </div>
             )

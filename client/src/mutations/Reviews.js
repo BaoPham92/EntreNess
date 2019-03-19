@@ -16,3 +16,15 @@ export const CreateReviewMutation = gql`
         }
     }
 `
+// Mutation for UpdateReview
+export const UpdateReviewMutation = gql`
+    mutation UpdateReview($id: ID!, $data: UpdateReviewInput!) {
+        updateReview(id: $id, data: $data) {
+            id
+            title
+            body
+            experience
+            published
+        }
+    }
+`
