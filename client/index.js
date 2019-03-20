@@ -25,7 +25,6 @@ const httpLink = createHttpLink({ uri: 'http://localhost:4000/' })
 const cache = new InMemoryCache({
     dataIdFromObject: object => object.key || null
 })
-
 const defaultOptions = {
     watchQuery: {
         fetchPolicy: 'cache-and-network',

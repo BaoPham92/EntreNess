@@ -6,7 +6,7 @@ import { QueryReviews } from '../../queries/Reviews'
 
 export class Reviews extends Component {
     render() {
-        const { data: { loading, error, reviews }} = this.props
+        const { data: { loading, error, reviews, history }} = this.props
 
         if (loading) {
             return <span>Loading</span>
@@ -21,12 +21,7 @@ export class Reviews extends Component {
                     {reviews.map((review, index) => (
                         review.published && 
                         <ul key={index}>
-                        <Link to={{
-                            pathname:`/ReviewItem/${review.id}`,
-                            state: {
-                                review: review
-                            }
-                        }}>
+                        <Link to={`/ReviewItem/${review.id}`}>
                             <li>Title: {review.title}</li>
                             <li>Description: {review.body}</li>
                             <li>Experience: {review.experience}</li>

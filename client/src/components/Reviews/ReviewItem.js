@@ -1,32 +1,59 @@
-import React from 'react'
+import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
+import { connect } from 'react-redux'
+import { graphql } from 'react-apollo'
+import CreateComment from '../Comments/CreateComment'
+import { QueryReviews } from '../../queries/Reviews'
 
-export const ReviewItem = (props) => {
-    const {location: { state: { review }, location }} = props
+export class ReviewItem extends Component {
 
-    return (
-        <div>
-        <Link to="/Reviews"> Reviews </Link>
-            <h1>EntreNess</h1>
-            
-            <section>
-                <h2>Title: {review.title}</h2>
+    render() {
+        const { data: { loading, error, reviews }, location } = this.props
 
-                <p>Description: {review.body}</p>
-                <p>Experience: {review.experience}</p>
-            </section>
+        if (loading) {
+            return <span>Loading</span>
+        } else if (error) {
+            return <span>Error</span>
+        } else {
+            return (
+                <div>
+                    <Link to="/Reviews"> Reviews </Link>
+                    <h1>EntreNess</h1>
+                    { reviews.map((review, index) => (
+                        review.id === this.props.match.params.id && 
+                        <div key={index}>
+                            <section>
+                                <h2>Title: {review.title}</h2>
 
-            <section>
-                <h3>Comments: </h3>
+                                <p>Description: {review.body}</p>
+                                <p>Experience: {review.experience}</p>
+                            </section>
 
-                {review.comments.length > 0 && review.comments.map((comment, index) => (
-                    <ul key={index}>
-                        <li>Username: {comment.author.name}</li>
-                        <li>Comment: {comment.text}</li>
-                    </ul>
-                ))}
-            </section>
+                            <section>
+                                <h3>Comments: </h3>
+                                
+                                {review.comments.length > 0 && review.comments.map((comment, index) => (
+                                    <ul key={index}>
+                                        <li>Username: {comment.author.name}</li>
+                                        <li>Comment: {comment.text}</li>
+                                    </ul>
+                                ))}
 
-        </div>
-    )
+                                <CreateComment
+                                    reviewId={review.id}
+                                    history={this.props.history}
+                                />
+                            </section>
+                        </div>
+                    ))}
+
+                </div>
+            )
+        }
+    }
 }
+
+const mapQueriesToProps = graphql(QueryReviews)
+const ReviewItemWithQuery = mapQueriesToProps(ReviewItem)
+
+export default connect()(ReviewItemWithQuery)

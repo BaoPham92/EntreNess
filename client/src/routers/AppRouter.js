@@ -12,7 +12,7 @@ import PrivateRoute from '../routers/PrivateRoute'
 import PublicRoute from '../routers/PublicRoute'
 import DashBoard from '../components/view/DashBoard'
 import Reviews from '../components/Reviews/Reviews'
-import { ReviewItem } from '../components/Reviews/ReviewItem'
+import ReviewItem from '../components/Reviews/ReviewItem'
 import CreateReview from '../components/Reviews/CreateReview'
 import UpdateReview from '../components/Reviews/UpdateReview'
 
