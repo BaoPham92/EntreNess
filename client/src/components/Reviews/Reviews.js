@@ -18,12 +18,22 @@ export class Reviews extends Component {
                 <Link to="/CreateReview"> CreateReview </Link>
                 <Link to="/Dashboard"> Dashboard </Link>
                     <h1>Reviews</h1>
-                    {reviews.map((review) => (
+                    {reviews.map((review, index) => (
                         review.published && 
-                        <ul key={review.id}>
+                        <ul key={index}>
+                        <Link to={{
+                            pathname:`/ReviewItem/${review.id}`,
+                            state: {
+                                review: review
+                            }
+                        }}>
                             <li>Title: {review.title}</li>
                             <li>Description: {review.body}</li>
                             <li>Experience: {review.experience}</li>
+                            <li>Comments: {review.comments.length}</li>
+                            <li>CreatedAt: {review.createdAt}</li>
+                            <li>UpdatedAt: {review.updatedAt}</li>
+                        </Link>
                         </ul>
                     ))}
                 </div>

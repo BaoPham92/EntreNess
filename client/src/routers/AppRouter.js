@@ -12,6 +12,7 @@ import PrivateRoute from '../routers/PrivateRoute'
 import PublicRoute from '../routers/PublicRoute'
 import DashBoard from '../components/view/DashBoard'
 import Reviews from '../components/Reviews/Reviews'
+import { ReviewItem } from '../components/Reviews/ReviewItem'
 import CreateReview from '../components/Reviews/CreateReview'
 import UpdateReview from '../components/Reviews/UpdateReview'
 
@@ -27,6 +28,7 @@ const AppRouter = () => (
                 <PrivateRoute path="/UserProfile" component={UserProfile} />
                 <PrivateRoute path="/UpdateUser" component={UpdateUser}/>
                 <Route exact={true} path="/Reviews" component={Reviews}/>
+                <Route exact={true} path="/ReviewItem/:id" component={ReviewItem}/>
                 <PrivateRoute path="/CreateReview" component={CreateReview}/>
                 <PrivateRoute exact={true} path="/Reviews/:id" component={UserReviews}/>
                 <PrivateRoute exact={true} path="/EditReview/:id" component={UpdateReview}/>

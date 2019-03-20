@@ -9,9 +9,15 @@ export const QueryReviews = gql`
             body
             experience
             published
+            createdAt
+            updatedAt
             comments {
                 id
                 text
+                author {
+                    id
+                    name
+                }
             }
         }
     }
