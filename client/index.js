@@ -10,6 +10,7 @@ import { setContext } from 'apollo-link-context'
 import { onError } from "apollo-link-error"
 import { refetchQueries } from './ApolloUtils/mutate'
 import gql from 'graphql-tag'
+import './src/styles/styles.scss'
 
 import AppRouter from './src/routers/AppRouter'
 import configureStore from './src/store/configureStore'
