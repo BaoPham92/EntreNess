@@ -10,3 +10,16 @@ export const startCreateComment = (commentData) => {
         }
     }
 }
+
+export const updateComment = (commentInfo) => ({
+    type: 'UPDATE_COMMENT',
+    commentInfo
+})
+
+export const startUpdateComment = (commentData) => {
+    return (disptach) => {
+        if (commentData) {
+            return disptach(updateComment(commentData))
+        }
+    }
+}

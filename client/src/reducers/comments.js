@@ -12,6 +12,11 @@ export default (state = commentsDefaultState, action) => {
             ...state,
             ...action.commentInfo
         }
+        case 'UPDATE_COMMENT': 
+        return {
+            ...state,
+            ...action.commentInfo
+        }
         default:
             return state
     }
