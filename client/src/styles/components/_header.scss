@@ -1,0 +1,35 @@
+.header {
+    background-color: $darken-pink;
+    padding: 0.5rem $s-size;
+    color: $apollo-gray;
+    border-bottom: 5px solid darken($darken-pink, 15%);
+}
+
+.header 
+a:visited,
+a:link {
+    color: white;
+    text-decoration: none;
+    margin: 0 0.5rem;
+}
+
+.header nav {
+    font-size: $m-size;
+    margin: auto 0;
+    border-bottom: 1px solid darken($darken-pink, 15%)
+}
+
+.header__title {
+    font-size: $l-size;
+    margin: auto 0;
+}
+
+.header__subtitle {
+    font-size: $m-size;
+    margin: 0;
+}
+
+.header__top-container {
+    display: flex;
+    justify-content: space-between;
+}
