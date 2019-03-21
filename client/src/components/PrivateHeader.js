@@ -4,15 +4,15 @@ import { NavLink } from 'react-router-dom'
 import { withApollo } from 'react-apollo'
 import { logout } from '../actions/auth'
 
-const Header = (props) => (
+const PrivateHeader = (props) => (
     <div className="container">
         <header className="header">
 
-        <div className="header__top-container">
+        <div className="header__inner-container">
             <h1 className="header__title">EntreNess</h1>
 
             <nav>
-                <NavLink exact to="/">HomePage</NavLink>
+                <NavLink exact to="/DashBoard">DashBoard</NavLink>
                 <NavLink to="/Users">Users</NavLink>
                 <NavLink to="/UserProfile">UserProfile</NavLink>
                 <NavLink to="/Reviews">Reviews</NavLink>
@@ -41,4 +41,4 @@ const mapToDispatch = (dispatch) => ({
     logout: () => dispatch(logout())
 })
 
-export default withApollo(connect(mapToStateProps, mapToDispatch)(Header))
+export default withApollo(connect(mapToStateProps, mapToDispatch)(PrivateHeader))

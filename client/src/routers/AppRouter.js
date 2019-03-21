@@ -24,11 +24,11 @@ const AppRouter = () => (
             <Switch>
                 <PublicRoute exact path="/" component={HomePage} />
                 <PrivateRoute path="/Dashboard" component={DashBoard} />
-                <PrivateRoute path="/users" component={Users} />
+                <PublicRoute path="/users" component={Users} />
                 <PrivateRoute path="/UserProfile" component={UserProfile} />
                 <PrivateRoute path="/UpdateUser" component={UpdateUser}/>
-                <Route exact={true} path="/Reviews" component={Reviews}/>
-                <Route exact={true} path="/ReviewItem/:id" component={ReviewItem}/>
+                <PublicRoute exact={true} path="/Reviews" component={Reviews}/>
+                <PublicRoute exact={true} path="/ReviewItem/:id" component={ReviewItem}/>
                 <PrivateRoute path="/CreateReview" component={CreateReview}/>
                 <PrivateRoute exact={true} path="/Reviews/:id" component={UserReviews}/>
                 <PrivateRoute exact={true} path="/EditReview/:id" component={UpdateReview}/>

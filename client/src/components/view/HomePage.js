@@ -6,9 +6,9 @@ import Login from '../Users/Login'
 
 export const HomePage = (props) => (
     <div>
-        <h2>Welcome To EntreNess</h2>
+        <h3>Login</h3>
         { props.auth.userId ? <Redirect to="/DashBoard" /> : <Login />}
-        <p>Would you like to register?</p>
+        <h3>Would you like to register?</h3>
         <CreateUser />
     </div>
 )

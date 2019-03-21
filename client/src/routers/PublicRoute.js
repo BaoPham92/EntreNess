@@ -1,6 +1,7 @@
 import React from 'react'
 import { Route, Redirect } from 'react-router-dom'
 import { connect } from 'react-redux'
+import PublicHeader from '../components/PublicHeader'
 
 export const PublicRoute = ({
     auth,
@@ -9,9 +10,17 @@ export const PublicRoute = ({
 }) => (
         <Route {...rest} component={(props) => (
             auth ? (
-                <Redirect to="/Dashboard" />
+
+                <div>
+                    <PublicHeader />
+                    <Component {...props} />
+                </div>
+
             ) : (
-                        <Component {...props}/>
+                <div>
+                    <PublicHeader />
+                    <Component {...props} />
+                </div>
                 )
         )} />
     )
