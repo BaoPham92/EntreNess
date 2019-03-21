@@ -7,25 +7,31 @@ import { logout } from '../actions/auth'
 const PrivateHeader = (props) => (
     <div className="container">
         <header className="header">
+            <div className="header__inner-container">
+                <h1 className="header__title">EntreNess</h1>
+                <nav>
+                    <NavLink exact to="/DashBoard">DashBoard</NavLink>
+                    <NavLink to="/Users">Users</NavLink>
+                    <NavLink to="/UserProfile">UserProfile</NavLink>
+                    <NavLink to="/Reviews">Reviews</NavLink>
+                </nav>
+            </div>
 
-        <div className="header__inner-container">
-            <h1 className="header__title">EntreNess</h1>
+            <div className="header__inner-container">
+                <h2 className="header__subtitle">
+                    Explore entreprenuership, authentic ratings, and community trust!
+                </h2>
 
-            <nav>
-                <NavLink exact to="/DashBoard">DashBoard</NavLink>
-                <NavLink to="/Users">Users</NavLink>
-                <NavLink to="/UserProfile">UserProfile</NavLink>
-                <NavLink to="/Reviews">Reviews</NavLink>
-                <button type="button" onClick={() => {
-                    props.logout()
-                    props.client.resetStore()
-                }}>Logout</button>
-            </nav>
-        </div>
-
-        <h2 className="header__subtitle">
-            Explore entreprenuership, authentic ratings, and community trust!
-        </h2>
+                <button
+                    className="button"
+                    type="button"
+                    onClick={() => {
+                        props.logout()
+                        props.client.resetStore()
+                    }}>
+                    Logout
+                </button>
+            </div>
 
         </header>
     </div>
@@ -37,8 +43,4 @@ const mapToStateProps = (state) => {
     }
 }
 
-const mapToDispatch = (dispatch) => ({
-    logout: () => dispatch(logout())
-})
-
-export default withApollo(connect(mapToStateProps, mapToDispatch)(PrivateHeader))
+export default withApollo(connect(mapToStateProps)(PrivateHeader))

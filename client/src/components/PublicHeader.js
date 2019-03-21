@@ -7,12 +7,12 @@ import { logout } from '../actions/auth'
 const PublicHeader = (props) => (
     <div className="container">
         <header className="header">
-
             <div className="header__inner-container">
                 <h1 className="header__title">EntreNess</h1>
-
                 <nav>
-                    <NavLink exact to="/">HomePage</NavLink>
+                    {!props.auth ? <NavLink exact to="/">HomePage</NavLink>
+                    : <NavLink exact to="/DashBoard">DashBoard</NavLink>}
+
                     <NavLink to="/Users">Users</NavLink>
                     <NavLink to="/Reviews">Reviews</NavLink>
                 </nav>
@@ -23,7 +23,18 @@ const PublicHeader = (props) => (
                 Explore entreprenuership, authentic ratings, and community trust!
             </h2>
 
-            <span className="header__login">Log In and get started!</span>
+            {
+                !props.auth ? <span className="header__login">Log In and get started!</span>
+                : <button
+                    className="button"
+                    type="button"
+                    onClick={() => {
+                        props.logout()
+                        props.client.resetStore()
+                    }}>
+                    Logout
+                </button>
+            }
         </div>
 
         </header>

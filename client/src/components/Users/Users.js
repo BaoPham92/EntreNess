@@ -1,8 +1,14 @@
 import React, { Component } from 'react'
+import { connect } from 'react-redux'
 import { graphql } from 'react-apollo'
 import { UsersQuery } from '../../queries/Users'
+import { checkAuth } from '../../actions/auth'
 
 export class Users extends Component {
+
+    componentDidMount() {
+        this.props.checkAuth()
+    }
 
     render() {
         const { data: { loading, error, users } } = this.props
@@ -33,4 +39,8 @@ export class Users extends Component {
 const mapQueryToProps = graphql(UsersQuery)
 const UserWithQuery = mapQueryToProps(Users)
 
-export default UserWithQuery
+const mapDispatchToProps = (dispatch) => ({
+    checkAuth: () => dispatch(checkAuth())
+})
+
+export default connect(undefined, mapDispatchToProps)(UserWithQuery)

@@ -3,8 +3,14 @@ import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
 import { graphql } from 'react-apollo'
 import { QueryReviews } from '../../queries/Reviews'
+import { checkAuth } from '../../actions/auth'
 
 export class Reviews extends Component {
+
+    componentDidMount() {
+        this.props.checkAuth()
+    }
+
     render() {
         const { data: { loading, error, reviews, history }} = this.props
 
@@ -16,7 +22,6 @@ export class Reviews extends Component {
             return (
                 <div>
                 <Link to="/CreateReview"> CreateReview </Link>
-                <Link to="/Dashboard"> Dashboard </Link>
                     <h1>Reviews</h1>
                     {reviews.map((review, index) => (
                         review.published && 
@@ -40,4 +45,8 @@ export class Reviews extends Component {
 const mapQueriesToProps = graphql(QueryReviews)
 const ReviewsWithQuery = mapQueriesToProps(Reviews)
 
-export default connect()(ReviewsWithQuery)
+const mapDispatchToProps = (dispatch) => ({
+    checkAuth: () => dispatch(checkAuth())
+})
+
+export default connect(undefined, mapDispatchToProps)(ReviewsWithQuery)

@@ -22,13 +22,14 @@ export const checkAuth = () => {
             
             if (result) {
                 dispatch(login(decoded.userId))
-                history.replace('/DashBoard')
             } else if (!result) {
                 return dispatch(logout())
+                history.replace('/HomePage')
             }
         
         } catch(e) {
             return dispatch(logout())
+            history.replace('/HomePage')
         }
     }
 }

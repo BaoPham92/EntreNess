@@ -16,8 +16,4 @@ const mapToStateProps = (state) => {
     }
 }
 
-const mapDispatchToProps = (dispatch) => ({
-    checkAuth: () => dispatch(checkAuth())
-})
-
 export default connect(mapToStateProps)(DashBoard)
