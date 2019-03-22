@@ -8,6 +8,11 @@ export const login = (userId) => ({
 
 export const logout = () => {
     return (dispatch) => {
+
+        if (history.location.pathname !== '/') {
+            history.replace('/')
+        }
+
         localStorage.removeItem('auth_token')
         dispatch({type: 'LOG_OUT'})
     }
@@ -21,15 +26,12 @@ export const checkAuth = () => {
             const result = !!token && !(decoded.exp < Date.now() / 1000)
             
             if (result) {
-                history.replace('/DashBoard')
                 return dispatch(login(decoded.userId))
-            } else if (!result) {                
-                history.replace('/')
+            } else if (!result) {
                 return dispatch(logout())
             }
         
         } catch(e) {
-            history.replace('/')
             return dispatch(logout())
         }
     }
