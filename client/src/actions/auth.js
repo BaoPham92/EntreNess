@@ -21,15 +21,16 @@ export const checkAuth = () => {
             const result = !!token && !(decoded.exp < Date.now() / 1000)
             
             if (result) {
-                dispatch(login(decoded.userId))
-            } else if (!result) {
+                history.replace('/DashBoard')
+                return dispatch(login(decoded.userId))
+            } else if (!result) {                
+                history.replace('/')
                 return dispatch(logout())
-                history.replace('/HomePage')
             }
         
         } catch(e) {
+            history.replace('/')
             return dispatch(logout())
-            history.replace('/HomePage')
         }
     }
 }

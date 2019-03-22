@@ -4,12 +4,17 @@ import { graphql } from 'react-apollo'
 import { CreateUserMutation } from '../../mutations/Users'
 import { startCreateUser } from '../../actions/users'
 import Form from './Utils/Form'
+import { checkAuth } from '../../actions/auth'
 
 export class CreateUser extends Component {
 
     handleChange = (e) => {
         e.persist()
         this.props.startCreateUser({ [e.target.name]: e.target.value })
+    }
+
+    componentDidMount() {
+        this.props.checkAuth()
     }
 
     render() {
@@ -36,7 +41,8 @@ const mapStateToProps = (state) => {
 }
 
 const mapDispatchToProps = (dispatch) => ({
-    startCreateUser: (userData) => dispatch(startCreateUser(userData))
+    startCreateUser: (userData) => dispatch(startCreateUser(userData)),
+    checkAuth: () => dispatch(checkAuth())
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(createUserWithMutation)

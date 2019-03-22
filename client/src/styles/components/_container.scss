@@ -3,3 +3,9 @@
     margin: 0 auto;
     padding: 0 $m-size;
 }
+
+.container__user-details {
+    max-width: 50rem;
+    margin: $l-size auto;
+    padding: 0 0 $l-size 0;
+}

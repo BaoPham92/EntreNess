@@ -1,0 +1,39 @@
+.user__details {
+    position: relative;
+    min-width: $m-size;
+    background: $apollo-gray;
+    margin-bottom: $s-size;
+    border-bottom: .5rem solid lighten($darken-pink, 10%);
+    text-align: center;
+}
+
+.user__form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: $m-size;
+}
+
+.user__form input {
+    text-align: center;
+    font-weight: 1000;
+    padding: $m-size;
+    background: darken($off-white, 10%);
+    margin-bottom: 0.2rem;
+    border: none;
+}
+
+.user__detail-header {
+    min-width: $m-size;
+    background: $darken-pink;
+    color: darken($off-white, 5%);
+    padding: $m-size;
+    text-align: center;
+    margin: 0;
+}
+
+.user__form-background {
+    padding: 2.6rem;
+    background: darken($react-blue, 20%);
+    border-radius: 1.5px;
+}

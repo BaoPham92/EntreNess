@@ -7,6 +7,7 @@ const Form = (props) => {
     const pathname = props.location.pathname
     return (
         <form
+        className="user__form"
             onSubmit={
                 (e) => {
                     e.preventDefault()
@@ -60,11 +61,16 @@ const Form = (props) => {
                 name="age"
                 onChange={props.handleChange}
             />
-            <button type="submit">{
-                pathname === '/CreateUser' ? 'Register' 
+            <button 
+            className="button button--userInfo"
+            type="submit"
+            >
+            {
+                pathname === '/' ? 'Register' 
                 : pathname === '/UpdateUser' ? 'Update' 
                 : 'Error'
-            }</button>
+            }
+            </button>
         </form>
     )
 }

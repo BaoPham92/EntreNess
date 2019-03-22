@@ -20,16 +20,13 @@ class Login extends Component {
         localStorage.setItem('auth_token', token)
     }
 
-    componentDidMount() {
-        this.props.checkAuth()
-    }
-
     render() {
         const { mutate, client } = this.props
         
         return (
             <div>
                 <form
+                className="user__form"
                     onSubmit={
                         (e) => {
                             e.preventDefault()
@@ -62,7 +59,12 @@ class Login extends Component {
                         required
                         onChange={this.handleChange}
                     />
-                    <button type="submit">Login</button>
+                    <button 
+                    className="button button--userInfo"
+                    type="submit"
+                    >
+                    Login
+                    </button>
                 </form>
             </div>
         )
@@ -72,8 +74,8 @@ class Login extends Component {
 const mapMutationToProps = graphql(LoginMutation)
 const LoginWithMutation = withApollo(mapMutationToProps(Login))
 
-const mapToDispatch = (dispatch) => ({
+const mapDispatchToProps = (dispatch) => ({
     checkAuth: () => dispatch(checkAuth())
 })
 
-export default connect(undefined, mapToDispatch)(LoginWithMutation)
+export default connect(undefined, mapDispatchToProps)(LoginWithMutation)

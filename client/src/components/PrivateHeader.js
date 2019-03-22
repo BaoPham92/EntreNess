@@ -43,4 +43,8 @@ const mapToStateProps = (state) => {
     }
 }
 
-export default withApollo(connect(mapToStateProps)(PrivateHeader))
+const mapDispatchToProps = (dispatch) => ({
+    logout: () => dispatch(logout())
+})
+
+export default withApollo(connect(mapToStateProps, mapDispatchToProps)(PrivateHeader))
