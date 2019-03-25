@@ -11,7 +11,6 @@ export class CreateComment extends Component {
 
         return (
             <div>
-                <span>Create Comment</span>
                 <Form
                     handleChange={this.props.handleChange}
                     mutate={mutate}

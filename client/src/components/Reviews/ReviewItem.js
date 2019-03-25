@@ -46,46 +46,89 @@ export class ReviewItem extends Component {
         } else {
             return (
                 <div>
-                    <Link to="/Reviews"> Reviews </Link>
-                    <h1>EntreNess</h1>
+
                     {reviews.map((review, index) => (
                         review.id === this.props.match.params.id &&
-                        <div key={index}>
-                            <section>
-                                <h2>Title: {review.title}</h2>
+                        <div
+                            className="container__reviews-main"
+                            key={index}
+                        >
 
-                                <p>Description: {review.body}</p>
-                                <p>Experience: {review.experience}</p>
-                            </section>
+                            <div className="container__reviews-intro-section-outer">
+                                <section className="section__intro">
+                                    <div className="container__reviews-intro-section">
+                                        <h2>{review.title}</h2>
+                                        <Link to="/CreateReview"> CreateReview </Link>
+                                    </div>
+                                </section>
+                            </div>
 
-                            <section>
-                                <h3>Comments: </h3>
+                            <div className="reviews__main reviews__main--reviewItems">
 
-                                {review.comments.length > 0 && review.comments.map((comment, index) => (
-                                    <ul key={index}>
-                                        <button
-                                            onClick={() => this.updateClicker(comment)}>
-                                            Update Comment?
-                                        </button>
+                                <div className="section__reviews-header">
+                                    <div className="container__reviews-header-top reviewItem--head">
+                                        <h3>Description</h3>
+                                        <span>Created by: {review.author.name}</span>
+                                    </div>
+                                </div>
 
-                                        <li>Username: {comment.author.name}</li>
-                                        <li>Comment: {comment.text}</li>
-                                    </ul>
-                                ))}
+                                <div className="reviews__info-box">
+                                    <p>{review.body}</p>
 
-                                <CreateComment
-                                    handleChange={this.handleCreateComment}
-                                    reviewId={review.id}
-                                    history={this.props.history}
-                                />
-                                <UpdateComment
-                                    updateSelected={this.state.updateSelected}
-                                    updateClear={this.updateClear}
-                                    selectedComment={this.state.selectedComment}
-                                    handleChange={this.handleUpdateComment}
-                                    history={this.props.history}
-                                />
-                            </section>
+                                    <div className="section__reviews-header reviewItem--head">
+                                        <h4>Experience</h4>
+                                    </div>
+                                    
+                                    <p>{review.experience}</p>
+                                </div>
+                            </div>
+
+                            <div>
+                                <section>
+
+                                    {review.comments.length > 0 && review.comments.map((comment, index) => (
+                                        <div>
+                                            <div
+                                                className="reviewItems__comments-main"
+                                                key={index}>
+                                                <div className="user__comment">
+                                                    <p className="comment__user"><span>User</span>: {comment.author.name}</p>
+                                                    <p>{comment.text}</p>
+                                                </div>
+                                            </div>
+                                            <div className="user__comment-bottom">
+                                                <div className="container__user--comment-bottom">
+                                                    
+                                                    <div>
+                                                        <p><span>Created</span>: {comment.createdAt}</p>
+                                                        <p><span>Updated</span>: {comment.updatedAt}</p>
+                                                    </div>
+
+                                                    <button
+                                                        className="button button--update-comment"
+                                                        onClick={() => this.updateClicker(comment)}>
+                                                        Update Comment?
+                                                    </button>
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                    ))}
+
+                                    <CreateComment
+                                        handleChange={this.handleCreateComment}
+                                        reviewId={review.id}
+                                        history={this.props.history}
+                                    />
+                                    <UpdateComment
+                                        updateSelected={this.state.updateSelected}
+                                        updateClear={this.updateClear}
+                                        selectedComment={this.state.selectedComment}
+                                        handleChange={this.handleUpdateComment}
+                                        history={this.props.history}
+                                    />
+                                </section>
+                            </div>
                         </div>
                     ))}
 

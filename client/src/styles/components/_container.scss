@@ -45,3 +45,10 @@
     margin: 0 0 $s-size 0;
     border-bottom: 1px solid $react-blue;
 }
+
+// container for reviewItem component
+
+.container__user--comment-bottom {
+    display: flex;
+    justify-content: space-between;
+}

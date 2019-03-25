@@ -14,6 +14,8 @@ export const QueryReviews = gql`
             comments {
                 id
                 text
+            createdAt
+            updatedAt
                 author {
                     id
                     name

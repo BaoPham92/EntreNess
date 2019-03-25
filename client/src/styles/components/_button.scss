@@ -6,6 +6,12 @@
     color: lighten($darken-pink, 15%);
 }
 
+.button--update-comment {
+    color: lighten($darken-pink, 20%);
+    border-bottom: none;
+    border-left: none;
+}
+
 .button--userInfo {
     border-left: none;
     margin-top: $s-size;

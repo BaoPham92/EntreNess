@@ -13,6 +13,7 @@ export const Form = (props) => {
 
         <div>
             <form
+                className="user__form"
                 onSubmit={
                     (e) => {
                         e.preventDefault()
@@ -31,9 +32,12 @@ export const Form = (props) => {
                 <input
                     type="text"
                     name="text"
+                    placeholder={ selectedComment? 'Update Comment' : 'Add Comment'}
                     onChange={handleChange}
                 />
-                <button>{selectedComment ? 'Update Comment' : 'Add Comment'}</button>
+                <button className="button button--userInfo">
+                {selectedComment ? 'Update Comment' : 'Add Comment'}
+                </button>
             </form>
         </div>
     )

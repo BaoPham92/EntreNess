@@ -1,0 +1,45 @@
+.reviews__main--reviewItems {
+    margin-bottom: $s-size;
+}
+
+.reviewItem--head {
+    color: $react-blue;
+    padding: 0.4rem;
+    border-bottom: none;
+    margin: 0;
+}
+
+.reviewItem--head h3 {
+    font-size: 2.4rem;
+}
+
+.reviewItem--head h4 {
+    margin: 0;
+}
+
+.reviewItems__comments-main {
+    background: $darken-pink;
+    padding: 1rem;
+    border-bottom: 4px solid darken($darken-pink, 15%);
+    padding-bottom: 0;
+}
+
+.user__comment p {
+    color: darken($off-white, 5%);
+    margin: 0 0 $s-size 0;
+}
+
+.comment__user {
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid $apollo-gray;
+}
+
+.user__comment-bottom {
+    width: 100%;
+    background: darken($apollo-gray, 5%);
+}
+
+.user__comment-bottom p {
+    color: $off-white;
+    margin: 0;
+}
