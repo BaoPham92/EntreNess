@@ -5,13 +5,6 @@
     border-bottom: 5px solid darken($darken-pink, 15%);
 }
 
-.header a:visited,
-a:link {
-    color: $react-blue;
-    text-decoration: none;
-    margin: 0 0.5rem;
-}
-
 .header nav {
     font-size: $m-size;
     margin: auto 0;
@@ -27,9 +20,4 @@ a:link {
     font-size: $m-size;
     margin: 0;
     color: $react-blue;
-}
-
-.header__inner-container {
-    display: flex;
-    justify-content: space-between;
 }

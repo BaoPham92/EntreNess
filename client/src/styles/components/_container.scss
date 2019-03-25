@@ -1,11 +1,47 @@
+// container for header component
 .container {
     max-width: 100rem;
     margin: 0 auto;
     padding: 0 $m-size;
 }
 
+.header__inner-container {
+    display: flex;
+    justify-content: space-between;
+}
+
+// container for user forms component
 .container__user-details {
     max-width: 50rem;
     margin: $l-size auto;
     padding: 0 0 $l-size 0;
+}
+
+// container for reviews component
+.container__reviews-intro-section-outer {
+    max-width: 60rem;
+    margin: 5rem auto;
+}
+
+.container__reviews-intro-section {
+    display: flex;
+    justify-content: space-between;
+}
+
+.container__reviews-main {
+    max-width: 80rem;
+    margin: 0 auto;
+    margin-bottom: 5rem;
+}
+
+.container__reviews-header-bottom {
+    display: flex;
+    justify-content: space-between;
+}
+
+.container__reviews-header-top {
+    display: flex;
+    justify-content: space-between;
+    margin: 0 0 $s-size 0;
+    border-bottom: 1px solid $react-blue;
 }

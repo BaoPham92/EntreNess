@@ -19,6 +19,9 @@ export const QueryReviews = gql`
                     name
                 }
             }
+            author {
+                name
+            }
         }
     }
 `

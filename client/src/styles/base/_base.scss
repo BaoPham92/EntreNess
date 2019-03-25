@@ -11,3 +11,10 @@ body {
 button {
     cursor: pointer;
 }
+
+a:visited,
+a:link {
+    color: $react-blue;
+    text-decoration: none;
+    margin: 0 0.5rem;
+}

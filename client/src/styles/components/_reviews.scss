@@ -1,0 +1,68 @@
+// Page intro header.
+.section__intro {
+    background: $darken-pink;
+    border-bottom: 4px solid darken($darken-pink, 15%);
+    padding: 0.6rem $s-size;
+}
+
+.section__intro h2 {
+    color: $react-blue;
+    font-weight: 800;
+    margin: 0;
+}
+
+.section__intro a {
+    font-weight: 650;
+    margin: auto 0;
+}
+
+// Main styling element for reviews
+.reviews__main {
+    background: $darken-pink;
+    padding: 1rem;
+    border-bottom: 4px solid darken($darken-pink, 15%)
+}
+
+.section__reviews-main {
+    max-width: 75rem;
+    margin: 1rem auto;
+}
+
+.section__reviews-main a {
+    margin: 0;
+}
+
+// Reviews header (title, comments, time create/updated)
+.section__reviews-header {
+    background: $redux-purple;
+    margin: 0;
+    padding: 0.8rem;
+}
+
+.section__reviews-header h3 {
+    font-size: 2.8rem;
+    margin: 0;
+}
+
+.section__reviews-header>div>span {
+    font-size: $m-size;
+    margin: auto 0;
+}
+
+.section__reviews-header p {
+    font-size: $s-size;
+    margin: 0.1rem 0;
+}
+
+// Brief description of reviews
+.reviews__info-box {
+    background: darken($redux-purple, 10%);
+}
+
+.reviews__info-box p {
+    font-size: $s-size;
+    color: $react-blue;
+    margin: 0;
+    padding: 0.8rem;
+    border-bottom: 1px solid $redux-purple;
+}
