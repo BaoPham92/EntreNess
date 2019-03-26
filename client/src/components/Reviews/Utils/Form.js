@@ -66,7 +66,7 @@ export const Form = (props) => {
                     onChange={props.handleChange}
                     required={pathname === '/CreateReview' && true}
                 >
-                    <option value="" diabled selected>Published?</option>
+                    <option value="" disabled selected>Published?</option>
                     <option value="true">True</option>
                     <option value="false">False</option>
                 </select>
