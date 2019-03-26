@@ -87,10 +87,8 @@ export class ReviewItem extends Component {
                                 <section>
 
                                     {review.comments.length > 0 && review.comments.map((comment, index) => (
-                                        <div>
-                                            <div
-                                                className="reviewItems__comments-main"
-                                                key={index}>
+                                        <div key={index}>
+                                            <div className="reviewItems__comments-main">
                                                 <div className="user__comment">
                                                     <p className="comment__user"><span>User</span>: {comment.author.name}</p>
                                                     <p>{comment.text}</p>

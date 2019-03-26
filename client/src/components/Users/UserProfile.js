@@ -16,28 +16,67 @@ export class UserProfile extends Component {
         } else {
             return (
                 <div>
-                    <Link to="/UpdateUser">
-                        Edit Information?
-                    </Link>
 
-                    <ul>
-                        <li>User Id: {self.id}</li>
-                        <li>Name: {self.name}</li>
-                        <li>Email: {self.email}</li>
-                        <li>Contact Number: {!self.contactNumber ? 'No info provided.' : self.contactNumber}</li>
-                        <li>Age: {!self.age ? 'No info provided.' : self.age}</li>
-                        <li>Password: {self.password}</li>
-                        <li>Accounted Created: {self.createdAt}</li>
-                        <li>Accounted Updated: {self.updatedAt}</li>
-                    </ul>
+                    <div className="container__intro-user-profile">
+                        <section className="section__intro">
+                            <div className="container__user-profile-intro-section">
+                                <h2>User Profile</h2>
+                                <Link to="/UpdateUser">Edit Information?</Link>
+                            </div>
+                        </section>
+                    </div>
 
-                    <h2>User Content</h2>
+                    <div className="container__user-profile-main">
+                        <div className="user-profile__main">
+                            <section className="section__user-profile-main">
 
-                    <ul>
-                        <li>
-                        Reviews: <Link to={`/Reviews/${self.id}`}>{self.reviews.length}</Link>
-                        </li>
-                    </ul>
+                                <div className="section__user-profile-header">
+                                    <h3>User Information</h3>
+                                </div>
+
+                                <div className="section__user-profile-info">
+                                    <div className="grid__usesr-profile-info">
+                                        <span>User Id:</span>
+                                        <p>{self.id}</p>
+                                        <span>Name:</span>
+                                        <p>{self.name}</p>
+                                        <span>Email:</span>
+                                        <p>{self.email}</p>
+                                        <span>Contact Number:</span>
+                                        <p>{!self.contactNumber ? 'No info provided.' : self.contactNumber}</p>
+                                        <span>Age:</span>
+                                        <p>{!self.age ? 'No info provided.' : self.age}</p>
+                                        <span>Password:</span>
+                                        <p>{self.password}</p>
+                                        <span>Accounted Created:</span>
+                                        <p>{self.createdAt}</p>
+                                        <span>Accounted Updated:</span>
+                                        <p>{self.updatedAt}</p>
+                                    </div>
+                                </div>
+                            </section>
+                        </div>
+                    </div>
+
+                    <div className="container__user-profile-main">
+                        <div className="user-profile__main">
+                            <section className="section__user-profile-main">
+
+                                <div className="section__user-profile-header">
+                                    <h3>User Content</h3>
+                                </div>
+
+                                <div className="section__user-profile-info">
+                                    <div className="grid__usesr-profile-info">
+                                        <span>Reviews:</span>
+                                        <p><Link to={`/Reviews/${self.id}`}>{self.reviews.length} Reviews made.</Link></p>
+                                        <span>Comments:</span>
+                                        <p><Link to={`/Comments/${self.id}`}>{self.comments.length} Comments made.</Link></p>
+                                    </div>
+                                </div>
+                            </section>
+                        </div>
+                    </div>
                 </div>
             )
         }

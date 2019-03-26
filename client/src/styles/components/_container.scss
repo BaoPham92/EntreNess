@@ -52,3 +52,21 @@
     display: flex;
     justify-content: space-between;
 }
+
+// container for userProfile component
+
+.container__intro-user-profile {
+    max-width: 60rem;
+    margin: 5rem auto;
+}
+
+.container__user-profile-intro-section {
+    display: flex;
+    justify-content: space-between;
+}
+
+.container__user-profile-main {
+    max-width: 80rem;
+    margin: 0 auto;
+    margin-bottom: 5rem;
+}

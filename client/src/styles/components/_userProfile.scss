@@ -1,0 +1,63 @@
+.user-profile__main {
+    padding-top: 1rem;
+    background: $darken-pink;
+    border-bottom: $s-size solid darken($darken-pink, 10%);
+}
+
+.section__user-profile-main {
+    max-width: 72rem;
+    margin: 1rem auto;
+    background: $redux-purple;
+}
+
+.section__user-profile-header {
+    background: $react-blue;
+    color: $redux-purple;
+    text-align: center;
+    padding: 0.5rem 0;
+}
+
+.section__user-profile-header h3 {
+    font-size: $l-size;
+    margin: 0.4rem auto;
+}
+
+.section__user-profile-info {
+    margin: 0.5rem auto;
+    padding-bottom: 0.6rem;
+    border-bottom: $s-size solid darken($redux-purple, 10%);
+}
+
+.section__user-profile-info p {
+    margin: 0;
+    margin-left: 0.6rem;
+}
+
+.grid__usesr-profile-info {
+    display: grid;
+    grid-template-columns: auto;
+    grid-template-rows: auto;
+    grid-column-gap: 0.4rem;
+    grid-template-rows: repeat(8, auto);
+    grid-row-gap: 0.2rem;
+}
+
+.grid__usesr-profile-info span {
+    background: $react-blue;
+    color: $darken-pink;
+    font-size: $m-size;
+    font-weight: 550;
+    text-align: center;
+    margin-left: 0.2rem;
+    border-bottom: 3px solid darken($darken-pink, 5%);
+    grid-column: 1;
+}
+
+.grid__usesr-profile-info p {
+    color: $react-blue;
+    font-size: $m-size;
+    text-align: center;
+    border-bottom: 2px solid $darken-pink;
+    word-break: break-all;
+    grid-column: 2;
+}
