@@ -35,7 +35,7 @@ export class UserProfile extends Component {
                                 </div>
 
                                 <div className="section__user-profile-info">
-                                    <div className="grid__usesr-profile-info">
+                                    <div className="grid__user-profile-info">
                                         <span>User Id:</span>
                                         <p>{self.id}</p>
                                         <span>Name:</span>
@@ -67,7 +67,7 @@ export class UserProfile extends Component {
                                 </div>
 
                                 <div className="section__user-profile-info">
-                                    <div className="grid__usesr-profile-info">
+                                    <div className="grid__user-profile-info">
                                         <span>Reviews:</span>
                                         <p><Link to={`/Reviews/${self.id}`}>{self.reviews.length} Reviews made.</Link></p>
                                         <span>Comments:</span>

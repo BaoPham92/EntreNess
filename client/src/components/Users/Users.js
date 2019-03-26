@@ -20,15 +20,29 @@ export class Users extends Component {
         } else {
             return (
                 <div>
-                    <h2> One or more User info should show: </h2>
 
-                    {users.map(({ id, name, reviews, comments }) => (
-                        <ul key={id}>
-                            <li>Username: {name}</li>
-                            <li>Reviews: {reviews.length}</li>
-                            <li>Comments: {comments.length}</li>
-                        </ul>
-                    ))}
+                    <div className="container__intro-users">
+                        <section className="section__intro">
+                            <h2>Registered Users</h2>
+                        </section>
+                    </div>
+
+                    <div className="container__users-main">
+                        <div className="users__main">
+                            <section className="section__users-main">
+                                {users.map(({ id, name, reviews, comments }) => (
+                                    <div key={id} className="grid__users">
+                                        <span>User:</span>
+                                        <p>{name}</p>
+                                        <span>Reviews:</span>
+                                        <p>{reviews.length} Reviews made.</p>
+                                        <span>Comments:</span>
+                                        <p>{comments.length} Comments made.</p>
+                                    </div>
+                                ))}
+                            </section>
+                        </div>
+                    </div>
 
                 </div>
             )
