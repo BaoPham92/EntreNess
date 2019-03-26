@@ -24,9 +24,10 @@ export class UpdateComment extends Component {
                     isOpen={!!updateSelected}
                     onRequestClose={updateClear}
                     contentLabel="Update Comment"
+                    className="modal"
                 >
                     <h1>Update Comment</h1>
-                    <p>{selectedComment && selectedComment.text}</p>
+                    <p className="modal__body">{selectedComment && selectedComment.text}</p>
 
                     <Form
                         handleChange={handleChange}
