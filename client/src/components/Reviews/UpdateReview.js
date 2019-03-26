@@ -69,16 +69,6 @@ export class UpdateReview extends Component {
                         </div>
                     </section>
                 </div>
-
-                <button onClick={
-                    () => {
-                        confirm('Are you sure you want to delete?')
-                        DeleteReview({variables: { id: review.id }})
-                        .then(() => history.replace('/UserProfile'))
-                    }
-                }>
-                Delete Review?
-                </button>
             </div>
         )
     }
