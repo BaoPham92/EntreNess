@@ -24,23 +24,46 @@ export class UserReviews extends Component {
 
         return (
             <div>
-                <h1>User Reviews</h1>
 
-                {this.state.reviews.map((review) => (
-                    <ul key={review.id}>
-                    <Link to={{
-                        pathname:`/EditReview/${review.id}`,
-                        state: {
-                            review: review
-                        }
-                    }}>Edit Review
-                    </Link>
-                        <li>Title: {review.title}</li>
-                        <li>Body: {review.body}</li>
-                        <li>Experience: {review.experience}</li>
-                        <li>Published?: {review.published === true ? 'Published.' : 'Not Published.'}</li>
-                    </ul>
-                ))}
+                <div className="container__reviews-intro-section-outer">
+                    <section className="section__intro reviews--user-main">
+                        <h2>User Reviews</h2>
+                    </section>
+                </div>
+
+                <div className="container__reviews-main">
+                    <div className="reviews__main">
+                        {this.state.reviews.map((review, index) => (
+                            <section
+                                className="section__reviews-main"
+                                key={index}
+                            >
+
+                                <div className="section__reviews-header user--reviews-header">
+                                    <div className="container__reviews-header-top">
+                                        <h3>{review.title}</h3>
+                                        <Link to={{
+                                            pathname: `/EditReview/${review.id}`,
+                                            state: {
+                                                review: review
+                                            }
+                                        }}
+                                            className="userReview__edit"
+                                        >Edit Review
+                                </Link>
+                                    </div>
+                                </div>
+
+                                <div className="reviews__info-box">
+                                    <p>{review.body}</p>
+                                    <p><span>Experience:</span> {review.experience}</p>
+                                    <p><span>Published?:</span> {review.published === true ? 'Published.' : 'Not Published.'}</p>
+                                </div>
+
+                            </section>
+                        ))}                    
+                    </div>
+                </div>
             </div>
         )
     }
