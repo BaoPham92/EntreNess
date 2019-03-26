@@ -16,11 +16,23 @@ export class CreateReview extends Component {
         console.log(this.props)
         return (
             <div>
-                <h1>CreateReview</h1>
-                <Form 
-                handleChange={this.handleChange}
-                mutate={mutate}
-                />
+
+                <div className="container__review-details">
+
+                    <div className="head__review-details">
+                        <h2>Create Review</h2>
+                    </div>
+
+                    <section className="main__review-details">
+                        <div>
+                            <Form
+                                handleChange={this.handleChange}
+                                mutate={mutate}
+                            />
+                        </div>
+                    </section>
+                </div>
+
             </div>
         )
     }

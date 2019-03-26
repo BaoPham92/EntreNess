@@ -9,6 +9,7 @@ export const Form = (props) => {
     return (
         <div>
             <form
+            className="review__form"
             onSubmit={
                 (e) => {
                     e.preventDefault()
@@ -32,35 +33,49 @@ export const Form = (props) => {
                 <input 
                 type="text"
                 name="title"
+                className="review__title-input"
                 placeholder="title"
                 required={pathname === '/CreateReview' && true}
                 onChange={props.handleChange}
                 />
-                <input 
+                <textarea
+                className="review__text-area" 
                 type="text"
+                cols="50"
+                rows="15"
                 name="body"
                 placeholder="body"
                 required={pathname === '/CreateReview' && true}
                 onChange={props.handleChange}
                 />
-                <input 
+                <textarea
+                className="review__text-area" 
                 type="text"
+                cols="50"
+                rows="15"
                 name="experience"
                 placeholder="experience"
                 required={pathname === '/CreateReview' && true}
                 onChange={props.handleChange}
                 />
 
-                <select 
-                name="published"
-                onChange={props.handleChange}
-                required={pathname === '/CreateReview' && true}
+            <div>
+                <select
+                    name="published"
+                    className="button button--review-details"
+                    onChange={props.handleChange}
+                    required={pathname === '/CreateReview' && true}
                 >
-                    <option value="undefined">None</option>
+                    <option value="" diabled selected>Published?</option>
                     <option value="true">True</option>
                     <option value="false">False</option>
                 </select>
-                <button>Publish?</button>
+
+                <button className="button button--review-details">
+                    {pathname === '/CreateReview' ? 'Create Review' : 'Update'}
+                </button>
+            </div>
+
             </form>
         </div>
     )

@@ -6,6 +6,15 @@
     color: lighten($darken-pink, 15%);
 }
 
+.button--review-details {
+    border-left: none;
+    border-bottom: 0.25rem solid lighten($darken-pink, 5%);
+    margin-top: $s-size;
+    padding: $s-size;
+    background: darken($react-blue, 10%);
+    font-weight: 700;
+}
+
 .button--update-comment {
     color: lighten($darken-pink, 20%);
     border-bottom: none;

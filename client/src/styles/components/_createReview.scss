@@ -1,0 +1,62 @@
+.container__review-details {
+    max-width: 70rem;
+    margin: 0 auto;
+    margin-bottom: 5rem;
+}
+
+.main__review-details {
+    background: $darken-pink;
+    padding: 1rem 0;
+}
+
+.main__review-details div {
+    margin: 0 auto;
+    max-width: 65rem;
+    background: $redux-purple;
+}
+
+.head__review-details {
+    color: $react-blue;
+    text-align: center;
+    background: $darken-pink;
+    border-bottom: 4px solid darken($darken-pink, 15%);
+    margin: $s-size 0;
+}
+
+.head__review-details h2 {
+    margin: 0;
+}
+
+.review__text-area {
+    background: darken($off-white, 10%);
+    text-align: center;
+    resize: none;
+}
+
+.review__title-input {
+    background: darken($off-white, 10%);
+    min-width: 46.5rem;
+    padding: 1rem 0;
+}
+
+.review__form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: $m-size $s-size;
+    margin: $s-size 0;
+}
+
+.review__form input,
+textarea {
+    margin: 1rem 0;
+    text-align: center;
+    border: none;
+}
+
+.review__form div {
+    display: flex;
+    min-width: 50rem;
+    justify-content: space-evenly;
+    margin: 0;
+}
