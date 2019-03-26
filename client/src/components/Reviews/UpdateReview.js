@@ -19,20 +19,56 @@ export class UpdateReview extends Component {
 
         return (
             <div>
-                <h1>Update Review</h1>
 
-                    <ul>
-                        <li>Title: {review.title}</li>
-                        <li>Body: {review.body}</li>
-                        <li>Experience: {review.experience}</li>
-                        <li>Published?: {review.published === true ? 'Published.' : 'Not Published.'}</li>
-                    </ul>
+                <div className="container__reviews-intro-section-outer">
+                    <section className="section__intro reviews--user-main">
+                        <h2>Update Review</h2>
+                    </section>
+                </div>
 
-                <Form 
-                handleChange={this.handleChange}
-                mutate={UpdateReview}
-                id={review.id}
-                />
+                <div className="container__reviews-main">
+                    <div className="reviews__main">
+                        <section className="section__reviews-main">
+
+                            <div className="section__reviews-header user--reviews-header">
+                                <div className="container__reviews-header-top">
+                                    <h3>{review.title}</h3>
+
+                                    <button onClick={
+                                        () => {
+                                            confirm('Are you sure you want to delete?')
+                                            DeleteReview({ variables: { id: review.id } })
+                                                .then(() => history.replace('/UserProfile'))
+                                        }
+                                    }
+                                    className="button button--review-update"
+                                    >
+                                        Delete Review?
+                                    </button>
+                                </div>
+                            </div>
+
+                            <div className="reviews__info-box">
+                                <p>{review.body}</p>
+                                <p><span>Experience:</span> {review.experience}</p>
+                                <p><span>Published?:</span> {review.published === true ? 'Published.' : 'Not Published.'}</p>
+                            </div>
+
+                        </section>
+                    </div>
+                </div>
+
+                <div className="container__review-details">
+                    <section className="main__review-details">
+                        <div>
+                            <Form
+                                handleChange={this.handleChange}
+                                mutate={UpdateReview}
+                                id={review.id}
+                            />
+                        </div>
+                    </section>
+                </div>
 
                 <button onClick={
                     () => {

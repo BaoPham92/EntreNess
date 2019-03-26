@@ -15,6 +15,15 @@
     font-weight: 700;
 }
 
+.button--review-update {
+    border-left: none;
+    border-bottom: 0.25rem solid lighten($darken-pink, 5%);
+    margin: 0;
+    padding: 0.4rem;
+    background: darken($react-blue, 10%);
+    font-weight: 700;
+}
+
 .button--update-comment {
     color: lighten($react-blue, 10%);
     border-bottom: none;
