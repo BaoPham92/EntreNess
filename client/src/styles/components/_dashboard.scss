@@ -1,95 +1,33 @@
-.dashboard__main {
-    background: darken($apollo-gray, 10%);
-    border-bottom: $s-size solid darken($apollo-gray, 15%);
-    padding: 0.5rem;
+.dashboard--title {
+    @extend .template__title;
+    animation: penta-title 4.5s infinite alternate ease-in-out;
 }
 
-.section__intro-dashboard {
-    max-width: 85rem;
-    background: $darken-pink;
-    margin: 0 auto;
-    padding: 1rem;
+.dashboard--section {
+    @extend .section__intro;
+    border-bottom: none !important;
 }
 
-// animation: border-change
+// Styling filler data
 
-.section__intro-dashboard h2 {
-    margin: 0;
-    color: $react-blue;
-    text-align: center;
-    animation: pentaChange 5s infinite alternate ease;
-}
+.dashboard-section-main {
+    @extend .section__main;
 
-.section__dashboard {
-    max-width: 80rem;
-    background: $darken-pink;
-    border-bottom: $s-size solid darken($darken-pink, 10%);
-    margin: 0 auto;
-    text-align: center;
-    padding: $s-size;
-}
-
-.section__dashboard h3 {
-    color: $react-blue;
-    padding-bottom: 1rem;
-    margin: 0 auto;
-    border-bottom: 2px solid $apollo-gray;
-}
-
-.section__dashboard li {
-    font-size: $m-size;
-    color: $off-white;
-    list-style: none;
-    line-height: 2rem;
-}
-
-.section__dashboard ul {
-    margin: 1rem auto;
-}
-
-// animations & keyframes
-
-.penta-bar {
-    position: relative;
-    bottom: 0;
-    left: 0;
-    height: 0.8rem;
-    max-width: 85rem;
-    margin: 0 auto;
-    padding: 0 1rem;
-    background-image: linear-gradient(90deg,
-        $apollo-gray 0%,
-        $redux-purple 46%,
-        $darken-pink 66%,
-        darken($off-white, 68%) 100%,
-        $react-blue 48%);
-    animation: penta-bar 1.2s linear infinite;
-}
-
-@keyframes penta-bar {
-    to {
-        background-position: 325rem;
-    }
-}
-
-@keyframes pentaChange {
-    20% {
-        color: $apollo-gray;
-    }
-
-    40% {
-        color: $off-white;
-    }
-
-    60% {
-        color: $darken-pink;
-    }
-
-    80% {
+    h3 {
+        font-size: 2rem;
         color: $react-blue;
+        padding-bottom: 1rem;
+        margin: 0 auto;
+        border-bottom: 2px solid $apollo-gray;
     }
 
-    100% {
-        color: $redux-purple;
+    ul {
+        margin: 1rem auto;
+    }
+
+    li {
+        font-size: 1.6rem;
+        color: $off-white;
+        list-style: none;
     }
 }

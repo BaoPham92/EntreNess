@@ -1,0 +1,11 @@
+.template__main {
+    background: darken($apollo-gray, 10%);
+    border-bottom: $s-size solid darken($apollo-gray, 15%);
+    padding: 0.5rem;
+    padding-bottom: 0.8rem;
+}
+
+.template__title {
+    margin: 0;
+    text-align: center;
+}

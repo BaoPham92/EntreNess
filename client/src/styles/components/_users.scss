@@ -1,41 +1,39 @@
-.users__main {
-    max-width: 75rem;
-    background: $darken-pink;
-    border-bottom: $s-size solid darken($darken-pink, 10%);
-    padding-top: 0.6rem;
+.users--title {
+    @extend .template__title;
+    animation: penta-title 4.5s infinite alternate ease-in-out;
 }
 
-.section__users-main {
-    max-width: 70rem;
-    background: darken($react-blue, 5%);
-    border-bottom: $s-size solid darken($react-blue, 18%);
-    margin: 1rem auto;
+.users--section-intro {
+    @extend .section__intro;
+    animation: penta-border 6s infinite alternate ease-in-out;
 }
 
-.grid__users {
-    display: grid;
-    grid-template-columns: auto;
-    grid-column-gap: 0.5rem;
-    grid-template-rows: repeat(3, auto);
-    grid-row-gap: 0.2rem;
-    padding-top: 0.5rem;
-    text-align: center;
-    font-size: $m-size;
-}
-
-.grid__users span {
+.users--section-main {
+    @extend .section__main;
     background: $redux-purple;
-    color: lighten($darken-pink, 15%);
-    font-weight: 550;
-    border-bottom: 3px solid darken($redux-purple, 10%);
-    margin-left: 2rem;
-    grid-column: 1;
+    border-bottom-color: darken($redux-purple, 13%);
+    border-bottom-width: 4px;
 }
 
-.grid__users p {
-    color: $redux-purple;
-    font-weight: 550;
-    border-bottom: 2px solid $redux-purple;
-    margin: 0;
-    grid-column: 2;
+.users--grid-main {
+    @extend .grid__main;
+
+    span {
+        grid-column: 1;
+        margin-left: 2rem;
+        background: $apollo-gray;
+        border-bottom: 3px solid darken($apollo-gray, 10%);
+    }
+
+    p {
+        grid-column: 2;
+        margin: 0;
+        border-bottom: 2px solid darken($apollo-gray, 5%);
+    }
+
+    p,
+    span {
+        color: $react-blue;
+        font-weight: 550;
+    }
 }

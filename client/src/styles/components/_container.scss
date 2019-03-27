@@ -87,12 +87,16 @@
 
 // container for dashboard component
 
-.container__dashboard {
+.container__main {
     max-width: 90rem;
     margin: 2rem auto;
 }
 
-.container__intro-dashboard {
-    max-width: 88rem;
+.container__sub {
+    max-width: 80rem;
+    margin: 0 auto;
+}
+
+.container__intro {
     margin: 2rem auto;
 }

@@ -1,0 +1,45 @@
+// animations & keyframes
+
+.penta-bar {
+    position: relative;
+    bottom: 0;
+    left: 0;
+    height: 0.8rem;
+    max-width: 85rem;
+    margin: 0 auto;
+    padding: 0 1rem;
+    background-image: linear-gradient(90deg,
+        $apollo-gray 0%,
+        $redux-purple 46%,
+        $darken-pink 66%,
+        darken($off-white, 68%) 100%,
+        $react-blue 48%);
+    animation: penta-bar 1.2s linear infinite;
+}
+
+@keyframes penta-bar {
+    to {
+        background-position: 325rem;
+    }
+}
+
+@keyframes penta-title {
+    20% {color: $apollo-gray;}
+    40% {color: $off-white;}
+    60% {color: $darken-pink;}
+    80% {color: $react-blue;}
+    100% {color: $redux-purple;}
+}
+
+@keyframes penta-border {
+    10% {border-bottom-color: transparentize($apollo-gray, 0.1);}
+    20% {border-bottom-color: transparentize($darken-pink, 0.2);}
+    30% {border-bottom-color: transparentize($redux-purple, 0.3);}
+    40% {border-bottom-color: transparentize($react-blue, 0.4);}
+    50% {border-bottom-color: transparentize($off-white, 0.5);}
+    60% {border-bottom-color: transparentize($apollo-gray, 0.6);}
+    70% {border-bottom-color: transparentize($darken-pink, 0.5);}
+    80% {border-bottom-color: transparentize($redux-purple, 0.4);}
+    90% {border-bottom-color: transparentize($react-blue, 0.3);}
+    100% {border-bottom-color: transparentize($apollo-gray, 0.2);}
+}

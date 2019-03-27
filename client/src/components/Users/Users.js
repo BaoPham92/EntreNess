@@ -12,26 +12,22 @@ export class Users extends Component {
 
     render() {
         const { data: { loading, error, users } } = this.props
+        if (loading) return <p>loading</p>
+        if (error) return <p>error</p>
+        return (
+            <div className="container__main">
+                <div className="template__main">
 
-        if (loading) {
-            return <span>Loading</span>
-        } else if (error) {
-            return <span>Error</span>
-        } else {
-            return (
-                <div>
-
-                    <div className="container__intro-users">
-                        <section className="section__intro">
-                            <h2>Registered Users</h2>
+                    <div className="container__intro">
+                        <section className="users--section-intro">
+                            <h2 className="users--title">Registered Users</h2>
                         </section>
                     </div>
 
-                    <div className="container__users-main">
-                        <div className="users__main">
-                            <section className="section__users-main">
-                                {users.map(({ id, name, reviews, comments }) => (
-                                    <div key={id} className="grid__users">
+                    <div className="container__sub">
+                        <section className="users--section-main">
+                            {users.map(({ id, name, reviews, comments }) => (
+                                    <div key={id} className="users--grid-main">
                                         <span>User:</span>
                                         <p>{name}</p>
                                         <span>Reviews:</span>
@@ -40,13 +36,11 @@ export class Users extends Component {
                                         <p>{comments.length} Comments made.</p>
                                     </div>
                                 ))}
-                            </section>
-                        </div>
+                        </section>
                     </div>
-
                 </div>
-            )
-        }
+            </div>
+        )
     }
 }
 

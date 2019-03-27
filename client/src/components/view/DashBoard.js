@@ -4,21 +4,22 @@ import { connect } from 'react-redux'
 import { checkAuth } from '../../actions/auth'
 
 export const DashBoard = (props) => (
-    <div className="container__dashboard">
-        <div className="dashboard__main">
+    <div className="container__main">
+        <div className="template__main">
 
             {/* 
-            News section is temporary & is filler.
+            News section is a temporary filler.
             More complex components for dashboard will be developed.
             */}
-            <div className="container__intro-dashboard">
-                <section className="section__intro-dashboard">
-                    <h2>Current News</h2>
-                </section>
-                <div className="penta-bar"></div>
-            </div>
+
+                <div className="container__intro">
+                    <section className="dashboard--section">
+                        <h2 className="dashboard--title">Current News</h2>
+                    </section>
+                    <div className="penta-bar"></div>
+                </div>
             
-            <section className="section__dashboard">
+            <section className="dashboard-section-main">
                 <h3>Incoming Features:</h3>
                 <ul>
                     <li>Create your own business</li>
