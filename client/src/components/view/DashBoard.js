@@ -4,9 +4,48 @@ import { connect } from 'react-redux'
 import { checkAuth } from '../../actions/auth'
 
 export const DashBoard = (props) => (
-    <div>
-        <h2>EntreNess</h2>
-        <span>User: {props.auth.userId ? props.auth.userId : <Redirect to="/" />}</span>
+    <div className="container__dashboard">
+        <div className="dashboard__main">
+
+            {/* 
+            News section is temporary & is filler.
+            More complex components for dashboard will be developed.
+            */}
+            <div className="container__intro-dashboard">
+                <section className="section__intro-dashboard">
+                    <h2>Current News</h2>
+                </section>
+                <div className="penta-bar"></div>
+            </div>
+            
+            <section className="section__dashboard">
+                <h3>Incoming Features:</h3>
+                <ul>
+                    <li>Create your own business</li>
+                    <li>Employ members to the business</li>
+                    <li>Create events related to your business</li>
+                </ul>
+                
+                {/* 
+                None of these are actual priorities. 
+                Personal interest of implementations only.
+                The main focus is reinforcing GrapQL & Apollo skillsets.
+                */}
+
+                <h3>Proposals:</h3>
+
+                <ul>
+                    <li>
+                    (RW) For Business to consumer contracts - 
+                    A solution instead of (CRUD) which fails to provide real authentication compared to today's review apps.
+                    </li>
+                    <li>Mobile app conversion.</li>
+                    <li>Multi focus instead of business only. Entreprenuership isn't the only form of skill to business for personal growth.</li>
+                </ul>
+            </section>
+
+        </div>
+        {!props.auth.userId && <Redirect to="/" />}
     </div>
 )
 
