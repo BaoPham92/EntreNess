@@ -13,26 +13,27 @@
     background: $redux-purple;
     border-bottom-color: darken($redux-purple, 13%);
     border-bottom-width: 4px;
+    text-align: center;
 }
 
 .users--grid-main {
     @extend .grid__main;
 
-    span {
+    dt {
         grid-column: 1;
         margin-left: 2rem;
         background: $apollo-gray;
         border-bottom: 3px solid darken($apollo-gray, 10%);
     }
 
-    p {
+    dd {
         grid-column: 2;
         margin: 0;
         border-bottom: 2px solid darken($apollo-gray, 5%);
     }
 
-    p,
-    span {
+    dd,
+    dt {
         color: $react-blue;
         font-weight: 550;
     }

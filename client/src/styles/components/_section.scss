@@ -6,11 +6,24 @@
     padding: 1rem;
 }
 
+.section__info {
+    max-width: 72rem;
+    margin: 0 auto;
+    background: $darken-pink;
+    border-bottom: $xs-size solid darken($darken-pink, 10%);
+}
+
 .section__main {
     max-width: 80rem;
     background: $darken-pink;
     border-bottom: $s-size solid darken($darken-pink, 10%);
     margin: 0 auto;
-    text-align: center;
     padding: $s-size;
+}
+
+.section__sub {
+    max-width: 70rem;
+    margin: 0 auto;
+    background: $darken-pink;
+    border-bottom: $xs-size solid darken($darken-pink, 10%);
 }

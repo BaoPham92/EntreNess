@@ -9,77 +9,74 @@ export class UserProfile extends Component {
     render() {
         const { data: { loading, error, self } } = this.props
 
-        if (loading) {
-            return <span>Loading</span>
-        } else if (error) {
-            return <span>Error</span>
-        } else {
-            return (
-                <div>
+        if (loading) return <span>Loading</span>
+        if (error) return <span>Error</span>
 
-                    <div className="container__intro-user-profile">
-                        <section className="section__intro">
-                            <div className="container__user-profile-intro-section">
-                                <h2>User Profile</h2>
-                                <Link to="/UpdateUser">Edit Information?</Link>
+        return (
+            <div className="container__main">
+                <div className="template__main">
+
+                    <div className="container__intro">
+                        <section className="user-profile--section-intro">
+                            <h2 className="user-profile--title">User Profile</h2>
+                        </section>
+                        <div className="penta-bar"></div>
+                    </div>
+
+                    <div className="container__sub">
+                        <section className="user-profile--section-main">
+
+                            <div className="user-profile--section-info">
+                                <h3>User Information</h3>
                             </div>
+
+                            <div className="user-profile--section-sub">
+                                <div className="user-profile--grid-main">
+                                    <dt>User Id:</dt>
+                                    <dd>{self.id}</dd>
+                                    <dt>Name:</dt>
+                                    <dd>{self.name}</dd>
+                                    <dt>Email:</dt>
+                                    <dd>{self.email}</dd>
+                                    <dt>Contact Number:</dt>
+                                    <dd>{!self.contactNumber ? 'No info provided.' : self.contactNumber}</dd>
+                                    <dt>Age:</dt>
+                                    <dd>{!self.age ? 'No info provided.' : self.age}</dd>
+                                    <dt>Accounted Created:</dt>
+                                    <dd>{self.createdAt}</dd>
+                                    <dt>Accounted Updated:</dt>
+                                    <dd>{self.updatedAt}</dd>
+                                </div>
+                            </div>
+                            
+                            <Link to="/UpdateUser">Edit Information?</Link>
                         </section>
                     </div>
 
-                    <div className="container__user-profile-main">
-                        <div className="user-profile__main">
-                            <section className="section__user-profile-main">
+                    <div className="container__sub">
+                        <section className="user-profile--section-main">
 
-                                <div className="section__user-profile-header">
-                                    <h3>User Information</h3>
-                                </div>
+                            <div className="user-profile--section-info">
+                                <h3>User Content</h3>
+                            </div>
 
-                                <div className="section__user-profile-info">
-                                    <div className="grid__user-profile-info">
-                                        <span>User Id:</span>
-                                        <p>{self.id}</p>
-                                        <span>Name:</span>
-                                        <p>{self.name}</p>
-                                        <span>Email:</span>
-                                        <p>{self.email}</p>
-                                        <span>Contact Number:</span>
-                                        <p>{!self.contactNumber ? 'No info provided.' : self.contactNumber}</p>
-                                        <span>Age:</span>
-                                        <p>{!self.age ? 'No info provided.' : self.age}</p>
-                                        <span>Password:</span>
-                                        <p>{self.password}</p>
-                                        <span>Accounted Created:</span>
-                                        <p>{self.createdAt}</p>
-                                        <span>Accounted Updated:</span>
-                                        <p>{self.updatedAt}</p>
+                            <div className="user-profile--grid-main">
+                                <div className="user-profile--section-sub">
+                                    <div className="user-profile--grid-main">
+                                        <dt>Reviews:</dt>
+                                        <dd><Link to={`/Reviews/${self.id}`}>{self.reviews.length} Reviews made.</Link></dd>
+                                        <dt>Comments:</dt>
+                                        <dd><Link to={`/Comments/${self.id}`}>{self.comments.length} Comments made.</Link></dd>
                                     </div>
                                 </div>
-                            </section>
-                        </div>
+                            </div>
+
+                        </section>
                     </div>
 
-                    <div className="container__user-profile-main">
-                        <div className="user-profile__main">
-                            <section className="section__user-profile-main">
-
-                                <div className="section__user-profile-header">
-                                    <h3>User Content</h3>
-                                </div>
-
-                                <div className="section__user-profile-info">
-                                    <div className="grid__user-profile-info">
-                                        <span>Reviews:</span>
-                                        <p><Link to={`/Reviews/${self.id}`}>{self.reviews.length} Reviews made.</Link></p>
-                                        <span>Comments:</span>
-                                        <p><Link to={`/Comments/${self.id}`}>{self.comments.length} Comments made.</Link></p>
-                                    </div>
-                                </div>
-                            </section>
-                        </div>
-                    </div>
                 </div>
-            )
-        }
+            </div>
+        )
     }
 }
 

@@ -12,8 +12,10 @@ export class Users extends Component {
 
     render() {
         const { data: { loading, error, users } } = this.props
-        if (loading) return <p>loading</p>
-        if (error) return <p>error</p>
+        
+        if (loading) return <dt>loading</dt>
+        if (error) return <dt>error</dt>
+
         return (
             <div className="container__main">
                 <div className="template__main">
@@ -28,12 +30,12 @@ export class Users extends Component {
                         <section className="users--section-main">
                             {users.map(({ id, name, reviews, comments }) => (
                                     <div key={id} className="users--grid-main">
-                                        <span>User:</span>
-                                        <p>{name}</p>
-                                        <span>Reviews:</span>
-                                        <p>{reviews.length} Reviews made.</p>
-                                        <span>Comments:</span>
-                                        <p>{comments.length} Comments made.</p>
+                                        <dt>User:</dt>
+                                        <dd>{name}</dd>
+                                        <dt>Reviews:</dt>
+                                        <dd>{reviews.length} Reviews made.</dd>
+                                        <dt>Comments:</dt>
+                                        <dd>{comments.length} Comments made.</dd>
                                     </div>
                                 ))}
                         </section>
