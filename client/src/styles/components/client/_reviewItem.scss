@@ -112,3 +112,9 @@
     color: $react-blue;
     font-size: $s-size;
 }
+
+// Create individual create comment for reviews. *TODO*
+.review--create-comment {
+    @extend .user__form;
+    background: $darken-pink;
+}

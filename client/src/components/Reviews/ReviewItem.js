@@ -42,7 +42,7 @@ export class ReviewItem extends Component {
     }
 
     render() {
-        const { data: { loading, error, reviews }, location, auth, ref } = this.props
+        const { data: { loading, error, reviews }, location, auth } = this.props
 
         if (loading) return <span>Loading</span>
         if (error) return <span>Error</span>
@@ -82,7 +82,6 @@ export class ReviewItem extends Component {
                                 </div>
 
                                 <CreateComment
-                                    className="review--create-comment"
                                     handleChange={this.handleCreateComment}
                                     reviewId={review.id}
                                     history={this.props.history}
