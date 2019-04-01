@@ -31,7 +31,6 @@
 
 .user-profile--section-sub {
     @extend .section__sub;
-    background: $redux-purple;
     padding: $s-size;
     margin: $s-size auto;
     border-bottom-color: darken($redux-purple, 10%);

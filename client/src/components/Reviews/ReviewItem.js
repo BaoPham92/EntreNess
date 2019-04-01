@@ -1,10 +1,11 @@
 import React, { Component } from 'react'
-import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
 import { graphql } from 'react-apollo'
+import { ReviewContent } from './Utils/ReviewContent'
+import { CommentContent } from './Utils/CommentContent'
 import CreateComment from '../Comments/CreateComment'
-import UpdateComment from '../Comments/UpdateComment'
 import { QueryReviews } from '../../queries/Reviews'
+import { checkAuth } from '../../actions/auth'
 import { startCreateComment } from '../../actions/comments'
 import { startUpdateComment } from '../../actions/comments'
 
@@ -36,103 +37,62 @@ export class ReviewItem extends Component {
         this.props.startUpdateComment({ [e.target.name]: e.target.value })
     }
 
-    render() {
-        const { data: { loading, error, reviews }, location } = this.props
+    componentDidMount() {
+        this.props.checkAuth()
+    }
 
-        if (loading) {
-            return <span>Loading</span>
-        } else if (error) {
-            return <span>Error</span>
-        } else {
-            return (
-                <div>
+    render() {
+        const { data: { loading, error, reviews }, location, auth, ref } = this.props
+
+        if (loading) return <span>Loading</span>
+        if (error) return <span>Error</span>
+
+        return (
+            <div className="container__main">
+                <div className="review--main">
 
                     {reviews.map((review, index) => (
                         review.id === this.props.match.params.id &&
-                        <div
-                            className="container__reviews-main"
-                            key={index}
-                        >
+                        <div className="container__sub" key={index}>
+                            <section className="review--section-main">
 
-                            <div className="container__reviews-intro-section-outer">
-                                <section className="section__intro">
-                                    <div className="container__reviews-intro-section">
-                                        <h2>{review.title}</h2>
-                                        <Link to="/CreateReview"> CreateReview </Link>
-                                    </div>
-                                </section>
-                            </div>
-
-                            <div className="reviews__main reviews__main--reviewItems">
-
-                                <div className="section__reviews-header">
-                                    <div className="container__reviews-header-top reviewItem--head">
-                                        <h3>Description</h3>
-                                        <span>Created by: {review.author.name}</span>
-                                    </div>
+                                <div className="review--section-intro">
+                                    <h2 className="review--title">{review.title}</h2>
                                 </div>
 
-                                <div className="reviews__info-box">
-                                    <p>{review.body}</p>
+                                <ReviewContent 
+                                review={review}
+                                auth={auth}
+                                />
 
-                                    <div className="section__reviews-header reviewItem--head">
-                                        <h4>Experience</h4>
-                                    </div>
-                                    
-                                    <p>{review.experience}</p>
-                                </div>
-                            </div>
-
-                            <div>
-                                <section>
-
+                                <div>
                                     {review.comments.length > 0 && review.comments.map((comment, index) => (
-                                        <div key={index}>
-                                            <div className="reviewItems__comments-main">
-                                                <div className="user__comment">
-                                                    <p className="comment__user"><span>User</span>: {comment.author.name}</p>
-                                                    <p>{comment.text}</p>
-                                                </div>
-                                            </div>
-                                            <div className="user__comment-bottom">
-                                                <div className="container__user--comment-bottom">
-                                                    
-                                                    <div>
-                                                        <p><span>Created</span>: {comment.createdAt}</p>
-                                                        <p><span>Updated</span>: {comment.updatedAt}</p>
-                                                    </div>
-
-                                                    <button
-                                                        className="button button--update-comment"
-                                                        onClick={() => this.updateClicker(comment)}>
-                                                        Update Comment?
-                                                    </button>
-
-                                                </div>
-                                            </div>
-                                        </div>
-                                    ))}
-
-                                    <CreateComment
-                                        handleChange={this.handleCreateComment}
-                                        reviewId={review.id}
-                                        history={this.props.history}
-                                    />
-                                    <UpdateComment
+                                        <CommentContent
+                                        key={index}
+                                        comment={comment}
+                                        auth={auth}
                                         updateSelected={this.state.updateSelected}
                                         updateClear={this.updateClear}
+                                        updateClicker={this.updateClicker}
                                         selectedComment={this.state.selectedComment}
                                         handleChange={this.handleUpdateComment}
                                         history={this.props.history}
-                                    />
-                                </section>
-                            </div>
+                                        />
+                                    ))}
+                                </div>
+
+                                <CreateComment
+                                    className="review--create-comment"
+                                    handleChange={this.handleCreateComment}
+                                    reviewId={review.id}
+                                    history={this.props.history}
+                                />
+                            </section>
                         </div>
                     ))}
-
                 </div>
-            )
-        }
+            </div>
+        )
     }
 }
 
@@ -141,7 +101,14 @@ const ReviewItemWithQuery = mapQueriesToProps(ReviewItem)
 
 const mapDispatchToProps = (dispatch) => ({
     startCreateComment: (commentData) => dispatch(startCreateComment(commentData)),
-    startUpdateComment: (commentData) => dispatch(startUpdateComment(commentData))
+    startUpdateComment: (commentData) => dispatch(startUpdateComment(commentData)),
+    checkAuth: () => dispatch(checkAuth())
 })
 
-export default connect(undefined, mapDispatchToProps)(ReviewItemWithQuery)
+const mapStateToProps = (state) => {
+    return {
+        auth: state.auth.userId
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(ReviewItemWithQuery)

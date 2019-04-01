@@ -19,10 +19,41 @@ export const QueryReviews = gql`
                 author {
                     id
                     name
+                    createdAt
+                    reviews {
+                        id
+                    }
+                    comments {
+                        id
+                    }
+                    companies {
+                        id
+                        name
+                    }
+                    employment {
+                        id
+                        name
+                    }
                 }
             }
             author {
+                id
                 name
+                createdAt
+                reviews {
+                    id
+                }
+                comments {
+                    id
+                }
+                companies {
+                    id
+                    name
+                }
+                employment {
+                    id
+                    name
+                }
             }
         }
     }

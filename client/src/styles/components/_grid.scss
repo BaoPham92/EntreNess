@@ -5,3 +5,29 @@
     grid-template-rows: auto;
     grid-row-gap: 0.2rem;
 }
+
+.grid__review {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: repeat(3, min-content);
+}
+
+.grid__review-content {
+    display: grid;
+    grid-template-columns: 1fr 4fr;
+}
+
+.grid__user-box {
+    display: grid;
+    grid-template-columns: repeat(10, minmax(1rem,1fr));
+    grid-template-rows: repeat(3, min-content);
+    grid-row-gap: 1rem;
+}
+
+.grid__user-details {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(1rem, 12rem));
+    grid-column-gap: 1rem;
+    grid-template-rows: repeat(auto-fit, minmax(1.2rem, min-content));
+    justify-items: start;
+}
