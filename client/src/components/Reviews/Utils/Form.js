@@ -48,16 +48,6 @@ export const Form = (props) => {
                 required={pathname === '/CreateReview' && true}
                 onChange={props.handleChange}
                 />
-                <textarea
-                className="review__text-area" 
-                type="text"
-                cols="50"
-                rows="15"
-                name="experience"
-                placeholder="experience"
-                required={pathname === '/CreateReview' && true}
-                onChange={props.handleChange}
-                />
 
             <div>
                 <select

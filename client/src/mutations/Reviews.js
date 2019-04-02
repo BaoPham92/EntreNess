@@ -7,7 +7,6 @@ export const CreateReviewMutation = gql`
             id
             title
             body
-            experience
             published
             author {
                 id
@@ -23,7 +22,6 @@ export const UpdateReviewMutation = gql`
             id
             title
             body
-            experience
             published
         }
     }
@@ -35,7 +33,6 @@ export const DeleteReviewMutation = gql`
         deleteReview(id: $id) {
             title
             body
-            experience
             published
         }
     }

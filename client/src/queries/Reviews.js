@@ -7,7 +7,6 @@ export const QueryReviews = gql`
             id
             title
             body
-            experience
             published
             createdAt
             updatedAt

@@ -44,7 +44,6 @@ type Review {
     id: ID! @unique
     title: String!
     body: String!
-    experience: String!
     published: Boolean!
     updatedAt: DateTime!
     createdAt: DateTime!

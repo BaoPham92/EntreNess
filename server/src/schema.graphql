@@ -157,7 +157,6 @@ type Review {
     id: ID!
     title: String!
     body: String!
-    experience: String!
     published: Boolean!
     updatedAt: String!
     createdAt: String!

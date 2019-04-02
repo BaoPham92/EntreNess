@@ -3,7 +3,6 @@
 const reviewsDefaultState = {
     title: undefined,
     body: undefined,
-    experience: undefined,
     published: undefined
 }
 

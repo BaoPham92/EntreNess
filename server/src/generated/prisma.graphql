@@ -1,5 +1,5 @@
 # source: http://localhost:4466/entre_nesss/dev
-# timestamp: Mon Mar 18 2019 21:33:47 GMT-0400 (Eastern Daylight Time)
+# timestamp: Tue Apr 02 2019 15:44:10 GMT-0400 (Eastern Daylight Time)
 
 type AggregateBusiness {
   count: Int!
@@ -2298,7 +2298,6 @@ type Review implements Node {
   id: ID!
   title: String!
   body: String!
-  experience: String!
   published: Boolean!
   updatedAt: DateTime!
   createdAt: DateTime!
@@ -2320,7 +2319,6 @@ type ReviewConnection {
 input ReviewCreateInput {
   title: String!
   body: String!
-  experience: String!
   published: Boolean!
   author: UserCreateOneWithoutReviewsInput!
   comments: CommentCreateManyWithoutReviewInput
@@ -2345,7 +2343,6 @@ input ReviewCreateOneWithoutCommentsInput {
 input ReviewCreateWithoutAuthorInput {
   title: String!
   body: String!
-  experience: String!
   published: Boolean!
   comments: CommentCreateManyWithoutReviewInput
   business: BusinessCreateOneWithoutReviewsInput
@@ -2354,7 +2351,6 @@ input ReviewCreateWithoutAuthorInput {
 input ReviewCreateWithoutBusinessInput {
   title: String!
   body: String!
-  experience: String!
   published: Boolean!
   author: UserCreateOneWithoutReviewsInput!
   comments: CommentCreateManyWithoutReviewInput
@@ -2363,7 +2359,6 @@ input ReviewCreateWithoutBusinessInput {
 input ReviewCreateWithoutCommentsInput {
   title: String!
   body: String!
-  experience: String!
   published: Boolean!
   author: UserCreateOneWithoutReviewsInput!
   business: BusinessCreateOneWithoutReviewsInput
@@ -2385,8 +2380,6 @@ enum ReviewOrderByInput {
   title_DESC
   body_ASC
   body_DESC
-  experience_ASC
-  experience_DESC
   published_ASC
   published_DESC
   updatedAt_ASC
@@ -2399,7 +2392,6 @@ type ReviewPreviousValues {
   id: ID!
   title: String!
   body: String!
-  experience: String!
   published: Boolean!
   updatedAt: DateTime!
   createdAt: DateTime!
@@ -2534,46 +2526,6 @@ input ReviewScalarWhereInput {
 
   """All values not ending with the given string."""
   body_not_ends_with: String
-  experience: String
-
-  """All values that are not equal to given value."""
-  experience_not: String
-
-  """All values that are contained in given list."""
-  experience_in: [String!]
-
-  """All values that are not contained in given list."""
-  experience_not_in: [String!]
-
-  """All values less than the given value."""
-  experience_lt: String
-
-  """All values less than or equal the given value."""
-  experience_lte: String
-
-  """All values greater than the given value."""
-  experience_gt: String
-
-  """All values greater than or equal the given value."""
-  experience_gte: String
-
-  """All values containing the given string."""
-  experience_contains: String
-
-  """All values not containing the given string."""
-  experience_not_contains: String
-
-  """All values starting with the given string."""
-  experience_starts_with: String
-
-  """All values not starting with the given string."""
-  experience_not_starts_with: String
-
-  """All values ending with the given string."""
-  experience_ends_with: String
-
-  """All values not ending with the given string."""
-  experience_not_ends_with: String
   published: Boolean
 
   """All values that are not equal to given value."""
@@ -2666,7 +2618,6 @@ input ReviewSubscriptionWhereInput {
 input ReviewUpdateInput {
   title: String
   body: String
-  experience: String
   published: Boolean
   author: UserUpdateOneRequiredWithoutReviewsInput
   comments: CommentUpdateManyWithoutReviewInput
@@ -2676,14 +2627,12 @@ input ReviewUpdateInput {
 input ReviewUpdateManyDataInput {
   title: String
   body: String
-  experience: String
   published: Boolean
 }
 
 input ReviewUpdateManyMutationInput {
   title: String
   body: String
-  experience: String
   published: Boolean
 }
 
@@ -2726,7 +2675,6 @@ input ReviewUpdateOneRequiredWithoutCommentsInput {
 input ReviewUpdateWithoutAuthorDataInput {
   title: String
   body: String
-  experience: String
   published: Boolean
   comments: CommentUpdateManyWithoutReviewInput
   business: BusinessUpdateOneWithoutReviewsInput
@@ -2735,7 +2683,6 @@ input ReviewUpdateWithoutAuthorDataInput {
 input ReviewUpdateWithoutBusinessDataInput {
   title: String
   body: String
-  experience: String
   published: Boolean
   author: UserUpdateOneRequiredWithoutReviewsInput
   comments: CommentUpdateManyWithoutReviewInput
@@ -2744,7 +2691,6 @@ input ReviewUpdateWithoutBusinessDataInput {
 input ReviewUpdateWithoutCommentsDataInput {
   title: String
   body: String
-  experience: String
   published: Boolean
   author: UserUpdateOneRequiredWithoutReviewsInput
   business: BusinessUpdateOneWithoutReviewsInput
@@ -2906,46 +2852,6 @@ input ReviewWhereInput {
 
   """All values not ending with the given string."""
   body_not_ends_with: String
-  experience: String
-
-  """All values that are not equal to given value."""
-  experience_not: String
-
-  """All values that are contained in given list."""
-  experience_in: [String!]
-
-  """All values that are not contained in given list."""
-  experience_not_in: [String!]
-
-  """All values less than the given value."""
-  experience_lt: String
-
-  """All values less than or equal the given value."""
-  experience_lte: String
-
-  """All values greater than the given value."""
-  experience_gt: String
-
-  """All values greater than or equal the given value."""
-  experience_gte: String
-
-  """All values containing the given string."""
-  experience_contains: String
-
-  """All values not containing the given string."""
-  experience_not_contains: String
-
-  """All values starting with the given string."""
-  experience_starts_with: String
-
-  """All values not starting with the given string."""
-  experience_not_starts_with: String
-
-  """All values ending with the given string."""
-  experience_ends_with: String
-
-  """All values not ending with the given string."""
-  experience_not_ends_with: String
   published: Boolean
 
   """All values that are not equal to given value."""

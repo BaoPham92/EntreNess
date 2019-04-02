@@ -260,7 +260,6 @@ const Mutation = {
             data: {
                 title: args.data.title,
                 body: args.data.body,
-                experience: args.data.experience,
                 published: args.data.published,
                 author: {
                     connect: {
