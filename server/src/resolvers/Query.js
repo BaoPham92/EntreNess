@@ -41,6 +41,10 @@ const Query = {
                     body_contains: args.query
                 }, {
                     experience_contains: args.query
+                }, {
+                    author: {
+                        id: args.query
+                    }
                 }]
             }
         }

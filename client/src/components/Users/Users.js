@@ -28,8 +28,8 @@ export class Users extends Component {
 
                     <div className="container__sub">
                         {users.map(({ id, name, reviews, comments }) => (
-                            <section className="users--section-main">
-                                <div key={id} className="users--grid-main">
+                            <section key={id} className="users--section-main">
+                                <div className="users--grid-main">
                                     <dt>User:</dt>
                                     <dd>{name}</dd>
                                     <dt>Reviews:</dt>

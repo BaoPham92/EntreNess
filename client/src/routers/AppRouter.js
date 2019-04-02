@@ -7,7 +7,6 @@ import Login from '../components/Users/Login'
 import Users from '../components/Users/Users'
 import UserProfile from '../components/Users/UserProfile'
 import UpdateUser from '../components/Users/UpdateUser'
-import UserReviews from '../components/Users/Reviews/UserReviews'
 import PrivateRoute from '../routers/PrivateRoute'
 import PublicRoute from '../routers/PublicRoute'
 import DashBoard from '../components/view/DashBoard'
@@ -30,7 +29,7 @@ const AppRouter = () => (
                 <PublicRoute exact={true} path="/Reviews" component={Reviews}/>
                 <PublicRoute exact={true} path="/ReviewItem/:id" component={ReviewItem}/>
                 <PrivateRoute path="/CreateReview" component={CreateReview}/>
-                <PrivateRoute exact={true} path="/Reviews/:id" component={UserReviews}/>
+                <PrivateRoute exact={true} path="/Reviews/:id" component={Reviews}/>
                 <PrivateRoute exact={true} path="/EditReview/:id" component={UpdateReview}/>
                 <Route component={NotFoundPage} />
             </Switch>

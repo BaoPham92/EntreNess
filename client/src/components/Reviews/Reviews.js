@@ -2,13 +2,26 @@ import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
 import { graphql } from 'react-apollo'
-import { QueryReviews } from '../../queries/Reviews'
+import { QueryReviews, QueryReviewOptions } from '../../queries/Reviews'
 import { checkAuth } from '../../actions/auth'
 
 export class Reviews extends Component {
 
-    componentDidMount() {
+    async componentDidMount() {
+
         this.props.checkAuth()
+
+        try {
+            // Get user id and search for related reviews.
+            const params = await this.props.match.params
+
+            if (params) {
+                this.props.data.variables.query = params.id
+            }
+
+        } catch(e) {
+            console.log(e)
+        }
     }
 
     render() {

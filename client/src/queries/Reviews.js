@@ -2,8 +2,8 @@ import gql from 'graphql-tag'
 
 // Queries for User Reviews.
 export const QueryReviews = gql`
-    {
-        reviews {
+    query Reviews($query: String) {
+        reviews(query: $query) {
             id
             title
             body
