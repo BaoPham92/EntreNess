@@ -15,58 +15,53 @@ export class Reviews extends Component {
         const { data: { loading, error, reviews, history } } = this.props
         console.log(this.props)
 
-        if (loading) {
-            return <span>Loading</span>
-        } else if (error) {
-            return <span>Error</span>
-        } else {
-            return (
-                <div>
+        if (loading) return <span>Loading</span>
+        if (error) return <span>Error</span>
 
-                    <div className="container__reviews-intro-section-outer">
-                        <section className="section__intro">
-                            <div className="container__reviews-intro-section">
-                                <h2>Reviews</h2>
-                                <Link to="/CreateReview"> CreateReview </Link>
-                            </div>
+        return (
+            <div className="container__main">
+                <div className="template__main">
+
+                    <div className="container__intro">
+                        <section className="reviews--section-intro">
+                            <h2 className="reviews--title">Reviews</h2>
                         </section>
-                    </div>
-
-                    <div className="container__reviews-main">
-                        <div className="reviews__main">
-                            {reviews.map((review, index) => (
-                                review.published &&
-                                <section
-                                    className="section__reviews-main"
-                                    key={index}
-                                >
-
-                                    <Link to={`/ReviewItem/${review.id}`}>
-                                        <div className="section__reviews-header">
-                                            <div className="container__reviews-header-top">
-                                                <h3>{review.title}</h3>
-                                                <span>Created by: {review.author.name}</span>
-                                            </div>
-
-                                            <div className="container__reviews-header-bottom">
-                                                <p><span>Created</span>: {review.createdAt}</p>
-                                                <p><span>Updated</span>: {review.updatedAt}</p>
-                                                <p><span>Comments</span>: {review.comments.length}</p>
-                                            </div>
-                                        </div>
-                                    </Link>
-
-                                        <div className="reviews__info-box">
-                                            <p>{review.body}</p>
-                                        </div>
-                                </section>
-                            ))}
+                        <div className="reviews__create-review">
+                            <Link to="/CreateReview">
+                            CreateReview
+                            </Link>
                         </div>
                     </div>
 
+                    <div className="container__sub">
+                        {reviews.map((review, index) => (
+                            review.published &&
+                            <section className="reviews--section-main" key={index}>
+
+                                <div className="reviews__content">
+                                    <div className="reviews__head">
+                                        <span className="head-item-1"> Titile / Author </span>
+                                        <span className="head-item-2"> Comments </span>
+                                    </div>
+
+                                    <article className="reviews__article">
+                                        <Link to={`/ReviewItem/${review.id}`}>
+                                            <h3>{review.title}</h3>
+                                        </Link>
+
+                                        <span>{review.author.name}</span>
+                                    </article>
+
+                                    <aside className="reviews__aside">
+                                        <span>{review.comments.length}</span>
+                                    </aside>
+                                </div>
+                            </section>
+                        ))}
+                    </div>
                 </div>
-            )
-        }
+            </div>
+        )
     }
 }
 

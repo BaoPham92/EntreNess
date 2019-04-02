@@ -6,13 +6,20 @@
     grid-row-gap: 0.2rem;
 }
 
-.grid__review {
+// Reviews component grid.
+.grid__reviews {
+    display: grid;
+    grid-template-columns: 3fr 1fr;
+}
+
+// ReviewItem component grid.
+.grid__reviewItem {
     display: grid;
     grid-template-columns: 1fr;
     grid-template-rows: repeat(3, min-content);
 }
 
-.grid__review-content {
+.grid__reviewItem-content {
     display: grid;
     grid-template-columns: 1fr 4fr;
 }

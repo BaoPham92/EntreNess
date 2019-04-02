@@ -13,7 +13,7 @@ export const Form = (props) => {
 
         <div>
             <form
-                className="review--create-comment"
+                className="reviewItem--create-comment"
                 onSubmit={
                     (e) => {
                         e.preventDefault()

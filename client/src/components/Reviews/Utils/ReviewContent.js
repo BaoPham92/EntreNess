@@ -7,14 +7,14 @@ export const ReviewContent = (props)  => {
     const { review, auth } = props
 
     return (
-        <div className="review__content">
-            <aside className="review__aside">
-                <div className="review__user">
+        <div className="reviewItem__content">
+            <aside className="reviewItem__aside">
+                <div className="reviewItem__user">
                     <span className="penta-title">{review.author.name}</span>
                     <div className="penta-bar"></div>
                 </div>
 
-                <div className="review__user-details">
+                <div className="reviewItem__user-details">
                     <dt>Reviews:</dt>
                     <dd>{review.author.reviews.length}</dd>
                     <dt>Comments:</dt>
@@ -28,12 +28,12 @@ export const ReviewContent = (props)  => {
                 </div>
             </aside>
 
-            <article className="review__article">
-                <div className="review--article-head">{moment(review.updatedAt).format("YYYY-MM-DD, h:mm:ss a")}</div>
+            <article className="reviewItem__article">
+                <div className="reviewItem--article-head">{moment(review.updatedAt).format("YYYY-MM-DD, h:mm:ss a")}</div>
                 <p>{review.author.id === auth && review.body}</p>
             </article>
 
-            <div className="review__footer">
+            <div className="reviewItem__footer">
                 {
                     review.author.id === auth &&
                     <Link

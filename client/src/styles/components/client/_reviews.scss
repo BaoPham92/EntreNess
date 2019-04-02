@@ -1,1 +1,81 @@
-// Reserved for reviews page.
+.reviews--section-intro {
+    @extend .section__intro;
+    animation: penta-border 6s infinite alternate ease-in-out;
+}
+
+.reviews--title {
+    @extend .template__title;
+    animation: penta-title 4.5s infinite alternate ease-in-out;
+}
+
+.reviews--section-main {
+    @extend .section__main;
+    clear: both;
+    margin: $m-size auto;
+    background: $redux-purple;
+    border-bottom-color: darken($redux-purple, 15%);
+}
+
+.reviews__content {
+    @extend .grid__reviews;
+    background: $apollo-gray;
+
+    & .reviews__head {
+        grid-column: 1 / 3;
+    }
+
+    & .reviews__article {
+        grid-column: 1 / 2;
+    }
+
+    & .reviews__aside {
+        grid-column: 2 / 3;
+    }
+}
+
+.reviews__head {
+    @extend .grid__reviews;
+    background: darken($apollo-gray, 10%);
+    color: $off-white;
+    padding: $xs-size;
+    margin-bottom: 1rem;
+
+    & .head-item-1 {
+        grid-column: 1 / 2;
+    }
+
+    & .head-item-2 {
+        text-align: center;
+        grid-column: 2 / 3;
+    }
+}
+
+.reviews__article {
+    padding: 0 0 $xs-size $xs-size;
+
+    & a {
+        margin: 0;
+    }
+
+    & span {
+        color: $off-white;
+    }
+}
+
+.reviews__aside {
+    text-align: center;
+
+    & span {
+        color: $off-white;
+    }
+}
+
+.reviews__create-review {
+    width: 15rem;
+    color: $react-blue;
+    text-align: center;
+    margin: 1rem auto;
+    padding: $xs-size;
+    background: $redux-purple;
+    border-bottom: 2px solid darken($redux-purple, 15%);
+}

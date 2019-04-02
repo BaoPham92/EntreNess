@@ -49,15 +49,15 @@ export class ReviewItem extends Component {
 
         return (
             <div className="container__main">
-                <div className="review--main">
+                <div className="reviewItem--main">
 
                     {reviews.map((review, index) => (
                         review.id === this.props.match.params.id &&
                         <div className="container__sub" key={index}>
-                            <section className="review--section-main">
+                            <section className="reviewItem--section-main">
 
-                                <div className="review--section-intro">
-                                    <h2 className="review--title">{review.title}</h2>
+                                <div className="reviewItem--section-intro">
+                                    <h2 className="reviewItem--title">{review.title}</h2>
                                 </div>
 
                                 <ReviewContent 
