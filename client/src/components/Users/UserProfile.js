@@ -49,7 +49,7 @@ export class UserProfile extends Component {
                                 </div>
                             </div>
                             
-                            <Link to="/UpdateUser">Edit Information?</Link>
+                            <Link className="user--profile-edit" to="/UpdateUser">Edit Information?</Link>
                         </section>
                     </div>
 
