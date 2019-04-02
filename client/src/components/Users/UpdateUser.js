@@ -15,46 +15,74 @@ export class UpdateUser extends Component {
     }
 
     render() {
-        const { client: { cache: { data: { data } }}, UpdateUser, DeleteUser } = this.props
+        const { client: { cache: { data: { data } } }, UpdateUser, DeleteUser } = this.props
         const self = data["$ROOT_QUERY.self"]
         return (
-            <div>
-                <h1>Update User</h1>
+            <div className="container__main">
+                <div className="template__main">
 
-                    <ul>
-                        <li>User name: {self.name}</li>
-                        <li>Email: {self.email}</li>
-                        <li>Password: {self.password}</li>
-                        <li>Contact Number: {self.contactNumber}</li>
-                        <li>Age: {self.age}</li>
-                    </ul>
+                    <div className="container__sub">
+                        <section className="user-profile--section-main">
 
-                    <Form 
-                    handleChange={this.handleChange}
-                    mutate={UpdateUser}
-                    />
+                            <div className="user-profile--section-info">
+                                <h3>User Information</h3>
+                            </div>
 
-                    <button onClick={() => {
-                        DeleteUser()
-                        .then((res) => {
-                            console.log(res)
-                            this.props.logout()
-                        })
-                    }}>
-                    Close Account?
-                    </button>
+                            <div className="user-profile--section-sub">
+                                <div className="user-profile--grid-main">
+                                    <dt>Name:</dt>
+                                    <dd>{self.name}</dd>
+                                    <dt>Email:</dt>
+                                    <dd>{self.email}</dd>
+                                    <dt>Password:</dt>
+                                    <dd>{self.password}</dd>
+                                    <dt>Contact Number:</dt>
+                                    <dd>{!self.contactNumber ? 'No info provided.' : self.contactNumber}</dd>
+                                    <dt>Age:</dt>
+                                    <dd>{!self.age ? 'No info provided.' : self.age}</dd>
+                                </div>
+                            </div>
+                        </section>
+                    </div>
+
+                    <div className="container__sub">
+                        <section className="user-profile--section-main">
+
+                            <div className="user-profile--section-info">
+                                <h3>Adjust Information Here</h3>
+                            </div>
+
+                            <div className="user-profile--grid-main">
+                                <div className="user-profile--section-sub">
+                                    <Form
+                                        handleChange={this.handleChange}
+                                        mutate={UpdateUser}
+                                    />
+
+                                    <button onClick={() => {
+                                        DeleteUser()
+                                            .then((res) => {
+                                                console.log(res)
+                                                this.props.logout()
+                                            })
+                                    }}>Close Account?</button>
+                                </div>
+                            </div>
+                        </section>
+                    </div>
+                </div>
             </div>
         )
     }
 }
 
 const mapMutationToProps = compose(
-graphql(UpdateUserMutation, {
-    name: 'UpdateUser'
-}), 
-graphql(DeleteUserMutation, {
-    name: 'DeleteUser'
-}))
+    graphql(UpdateUserMutation, {
+        name: 'UpdateUser'
+    }),
+    graphql(DeleteUserMutation, {
+        name: 'DeleteUser'
+    }))
 const updateUserWithMutation = (mapMutationToProps(UpdateUser))
 
 const mapStateToProps = (state) => {

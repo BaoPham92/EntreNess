@@ -1,3 +1,19 @@
+// main container styling.
+
+.container__main {
+    max-width: 90rem;
+    margin: 2rem auto;
+}
+
+.container__sub {
+    max-width: 80rem;
+    margin: 0 auto;
+}
+
+.container__intro {
+    margin: 2rem auto;
+}
+
 // container for header component
 .container {
     max-width: 100rem;
@@ -15,39 +31,4 @@
     max-width: 50rem;
     margin: $l-size auto;
     padding: 0 0 $l-size 0;
-}
-
-.container__user--comment-bottom {
-    display: flex;
-    justify-content: space-between;
-}
-
-//  container for users component
-
-.container__intro-users {
-    max-width: 60rem;
-    margin: 5rem auto;
-    text-align: center;
-}
-
-.container__users-main {
-    max-width: 80rem;
-    margin: 0 auto;
-    margin-bottom: 5rem;
-}
-
-// container for dashboard component
-
-.container__main {
-    max-width: 90rem;
-    margin: 2rem auto;
-}
-
-.container__sub {
-    max-width: 80rem;
-    margin: 0 auto;
-}
-
-.container__intro {
-    margin: 2rem auto;
 }
