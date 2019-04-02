@@ -30,7 +30,7 @@ export const ReviewContent = (props)  => {
 
             <article className="reviewItem__article">
                 <div className="reviewItem--article-head">{moment(review.updatedAt).format("YYYY-MM-DD, h:mm:ss a")}</div>
-                <p>{review.author.id === auth && review.body}</p>
+                <p>{review.body}</p>
             </article>
 
             <div className="reviewItem__footer">

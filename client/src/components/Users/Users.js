@@ -12,7 +12,7 @@ export class Users extends Component {
 
     render() {
         const { data: { loading, error, users } } = this.props
-        
+
         if (loading) return <dt>loading</dt>
         if (error) return <dt>error</dt>
 
@@ -27,18 +27,18 @@ export class Users extends Component {
                     </div>
 
                     <div className="container__sub">
-                        <section className="users--section-main">
-                            {users.map(({ id, name, reviews, comments }) => (
-                                    <div key={id} className="users--grid-main">
-                                        <dt>User:</dt>
-                                        <dd>{name}</dd>
-                                        <dt>Reviews:</dt>
-                                        <dd>{reviews.length} Reviews made.</dd>
-                                        <dt>Comments:</dt>
-                                        <dd>{comments.length} Comments made.</dd>
-                                    </div>
-                                ))}
-                        </section>
+                        {users.map(({ id, name, reviews, comments }) => (
+                            <section className="users--section-main">
+                                <div key={id} className="users--grid-main">
+                                    <dt>User:</dt>
+                                    <dd>{name}</dd>
+                                    <dt>Reviews:</dt>
+                                    <dd>{reviews.length} Reviews made.</dd>
+                                    <dt>Comments:</dt>
+                                    <dd>{comments.length} Comments made.</dd>
+                                </div>
+                            </section>
+                        ))}
                     </div>
                 </div>
             </div>

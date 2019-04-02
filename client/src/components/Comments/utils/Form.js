@@ -17,9 +17,9 @@ export const Form = (props) => {
                 onSubmit={
                     (e) => {
                         e.preventDefault()
-                        const hasCommentId = selectedComment.id
+                        const hasCommentId = selectedComment
                         const validCommentId =
-                            hasCommentId ? { variables: { data: comment, id: hasCommentId } }
+                            hasCommentId ? { variables: { data: comment, id: hasCommentId.id } }
                                 : { variables: { data: { ...comment, review: props.reviewId } } }
 
                         console.log(validCommentId)
