@@ -26,7 +26,6 @@ export class Reviews extends Component {
 
     render() {
         const { data: { loading, error, reviews, history } } = this.props
-        console.log(this.props)
 
         if (loading) return <span>Loading</span>
         if (error) return <span>Error</span>

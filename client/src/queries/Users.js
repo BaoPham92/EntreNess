@@ -10,7 +10,6 @@ export const UsersQuery = gql`
                 id
                 title
                 body
-                experience
                 published
             }
             comments {
@@ -37,7 +36,6 @@ export const UserProfileQuery = gql`
                 id
                 title
                 body
-                experience
                 published
             }
             comments {

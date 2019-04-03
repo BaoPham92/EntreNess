@@ -32,7 +32,6 @@ export const CommentContent = (props) => {
             <article className="reviewItem__article">
                 <div className="reviewItem--article-head">{moment(comment.updatedAt).format("YYYY-MM-DD, h:mm:ss a")}</div>
                 <p>{comment.text}</p>
-                {console.log(props)}
             </article>
 
             <div className="reviewItem__footer">

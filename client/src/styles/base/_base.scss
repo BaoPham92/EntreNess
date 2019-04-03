@@ -12,7 +12,9 @@ html {
 }
 
 body {
-    background-color: lighten($apollo-gray, 4%);
+    // background-color: lighten($apollo-gray, 4%);
+    background: url('/Images/pattern/pattern.svg');
+    background-size: 10rem;
     font-family: Helvetica, Arial, sans-serif;
     font-size: $m-size;
     line-height: 2.2rem;
