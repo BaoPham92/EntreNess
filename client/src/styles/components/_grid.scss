@@ -6,6 +6,14 @@
     grid-row-gap: 0.2rem;
 }
 
+// UpdateReview component grid.
+.form__update-grid {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    grid-template-rows: repeat(5, min-content);
+    grid-row-gap: 0.5rem;
+}
+
 // Reviews component grid.
 .grid__reviews {
     display: grid;
@@ -26,7 +34,7 @@
 
 .grid__user-box {
     display: grid;
-    grid-template-columns: repeat(10, minmax(1rem,1fr));
+    grid-template-columns: repeat(10, minmax(1rem, 1fr));
     grid-template-rows: repeat(3, min-content);
     grid-row-gap: 1rem;
 }

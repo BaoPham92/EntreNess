@@ -6,22 +6,19 @@
     color: lighten($darken-pink, 15%);
 }
 
-.button--review-details {
-    border-left: none;
-    border-bottom: 0.25rem solid lighten($darken-pink, 5%);
-    margin-top: $s-size;
-    padding: $s-size;
-    background: darken($react-blue, 10%);
-    font-weight: 700;
+.btn--update-review {
+    background: darken($off-white, 2%);
+    color: $apollo-gray;
+    text-align: center;
+    width: 15rem;
+    border: none;
+    border-radius: 0.5rem;
+    cursor: pointer;
 }
 
-.button--review-update {
-    border-left: none;
-    border-bottom: 0.25rem solid lighten($darken-pink, 5%);
-    margin: 0;
-    padding: 0.4rem;
-    background: darken($react-blue, 10%);
-    font-weight: 700;
+.btn--update-review:hover {
+    background: darken($off-white, 6%);
+    color: darken($apollo-gray, 4%);
 }
 
 .button--update-comment {

@@ -7,21 +7,8 @@ import { checkAuth } from '../../actions/auth'
 
 export class Reviews extends Component {
 
-    async componentDidMount() {
-
+    componentDidMount() {
         this.props.checkAuth()
-
-        try {
-            // Get user id and search for related reviews.
-            const params = await this.props.match.params
-
-            if (params) {
-                this.props.data.variables.query = params.id
-            }
-
-        } catch(e) {
-            console.log(e)
-        }
     }
 
     render() {
@@ -77,7 +64,11 @@ export class Reviews extends Component {
     }
 }
 
-const mapQueriesToProps = graphql(QueryReviews)
+const mapQueriesToProps = graphql(QueryReviews, {
+    options: (props) => ({
+        variables: { query: props.match.params.id }
+    })
+})
 const ReviewsWithQuery = mapQueriesToProps(Reviews)
 
 const mapDispatchToProps = (dispatch) => ({

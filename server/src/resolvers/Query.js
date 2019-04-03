@@ -37,8 +37,10 @@ const Query = {
             opArgs.where = {
                 OR: [{
                     title_contains: args.query
-                },{
+                }, {
                     body_contains: args.query
+                }, {
+                    id: args.query
                 }, {
                     author: {
                         id: args.query
@@ -98,5 +100,5 @@ const Query = {
 
 export {
     Query as
-    default
+        default
 }
