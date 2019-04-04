@@ -1,42 +1,56 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { graphql, compose, withApollo } from 'react-apollo'
-import { startUpdateReview } from '../../actions/reviews'
-import { UpdateReviewMutation } from '../../mutations/Reviews'
-import { DeleteReviewMutation } from '../../mutations/Reviews'
-import { QueryReviews } from '../../queries/Reviews'
 import Form from './Utils/Form'
+import { startUpdateReview, startCreateReview } from '../../actions/reviews'
+import { UserProfileQuery } from '../../queries/Users'
+import { QueryReviews } from '../../queries/Reviews'
+import {
+    UpdateReviewMutation,
+    DeleteReviewMutation,
+    CreateReviewMutation
+} from '../../mutations/Reviews'
 
 export class UpdateReview extends Component {
 
     handleChange = (e) => {
         e.persist()
-        this.props.startUpdateReview({ [e.target.name]: e.target.value })
+        const match = this.props.match
+
+        match.path === '/CreateReview'
+        ? this.props.startCreateReview({ [e.target.name]: e.target.value })
+        : this.props.startUpdateReview({ [e.target.name]: e.target.value })
     }
 
     render() {
         
-        const { 
-            data,
-            data: { loading, error, reviews },
+        const {
+            match: { path },
             UpdateReview,
             DeleteReview,
+            CreateReview,
+            reviews,
+            self,
         } = this.props
+        console.log(this.props, self, reviews)
 
-        console.log(this.props)
+        const result = path === '/CreateReview' 
+        ? CreateReview
+        : UpdateReview
 
-        if (loading) return <span>Loading</span>
-        if (error) return <span>Error</span>
+        if (self.error || reviews.error) return <span>Error</span>
+        if (self.loading || reviews.loading) return <span>Loading</span>
 
         return (
             <div className="container__main">
                 <div className="template__main">
                     <Form
                         handleChange={this.handleChange}
-                        mutate={UpdateReview}
-                        review={reviews[0]}
+                        mutate={result}
+                        review={reviews.reviews[0]}
                         remove={DeleteReview}
-                        id={reviews[0].id}
+                        id={reviews.reviews[0].id}
+                        user={self.self}
                     />
 
                 </div>
@@ -48,9 +62,17 @@ export class UpdateReview extends Component {
 const mapOperationsToProps = compose(
     graphql(QueryReviews, {
         options: (props) => ({
-            variables: { query: props.match.params.id }
+            variables: { 
+                query: props.match.params.id 
+            }
         }),
-        name: 'data'
+        name: 'reviews'
+    }),
+    graphql(UserProfileQuery, {
+        name: 'self'
+    }),
+    graphql(CreateReviewMutation, {
+        name: 'CreateReview'
     }),
     graphql(UpdateReviewMutation, {
         name: 'UpdateReview'
@@ -62,7 +84,8 @@ const mapOperationsToProps = compose(
 const updateReviewWithOperations = mapOperationsToProps(UpdateReview)
 
 const mapDispatchToProps = (dispatch) => ({
-    startUpdateReview: (reviewData) => dispatch(startUpdateReview(reviewData))
+    startUpdateReview: (reviewData) => dispatch(startUpdateReview(reviewData)),
+    startCreateReview: (reviewData) => dispatch(startCreateReview(reviewData))
 })
 
 export default withApollo(connect(undefined, mapDispatchToProps)(updateReviewWithOperations))

@@ -20,7 +20,7 @@ export const logout = () => {
 
 export const checkAuth = () => {
     return (dispatch) => {
-        try {
+        try { 
             const token = localStorage.getItem('auth_token')
             const decoded = decode(token)
             const result = !!token && !(decoded.exp < Date.now() / 1000)

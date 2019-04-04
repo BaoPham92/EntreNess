@@ -13,6 +13,11 @@ export default (state = reviewsDefaultState, action) => {
             ...state,
             ...action.reviewInfo
         }
+        case 'UPDATE_REVIEW': 
+        return {
+            ...state,
+            ...action.reviewInfo
+        }
         default: 
             return state
     }

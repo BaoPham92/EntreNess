@@ -1,15 +1,12 @@
-import React, { useState } from 'react'
+import React from 'react'
 import { withRouter } from 'react-router'
-import { withApollo, Query } from 'react-apollo'
+import { withApollo } from 'react-apollo'
 
 export const Form = (props) => {
 
-    const pathname = props.location.pathname
-    const { mutate, remove, review } = props
-
-    const [textValue] = useState(review.body)
-
-    console.log(props, textValue)
+    const { mutate, remove, review, user } = props
+    const match = props.match
+    const urlMatched = props.match.path === '/CreateReview'
 
     return (
         <form
@@ -35,12 +32,12 @@ export const Form = (props) => {
             <div className="update--grid">
 
                 <section className="update--head">
-                    <h3>Edit Review</h3>
+                    <h3> {urlMatched ? 'Create' : 'Edit'} Review</h3>
                 </section>
 
                 <div className="update--username">
                     <strong>User:</strong>
-                    <span>{review.author.name}</span>
+                    <span>{urlMatched ? user.name : review.author.name}</span>
                 </div>
 
                 <div className="update--subject">
@@ -50,8 +47,8 @@ export const Form = (props) => {
                         type="text"
                         name="title"
                         placeholder="title"
-                        defaultValue={review.title}
-                        required={pathname === '/CreateReview' && true}
+                        defaultValue={urlMatched ? '' : review.title}
+                        required={urlMatched && true}
                         onChange={props.handleChange}
                     />
                 </div>
@@ -65,8 +62,8 @@ export const Form = (props) => {
                         rows="15"
                         name="body"
                         placeholder="body"
-                        defaultValue={review.body}
-                        required={pathname === '/CreateReview' && true}
+                        defaultValue={urlMatched ? '' : review.body}
+                        required={urlMatched && true}
                         onChange={props.handleChange}
                     />
                 </div>
@@ -76,7 +73,7 @@ export const Form = (props) => {
                         name="published"
                         className="btn--update-review"
                         onChange={props.handleChange}
-                        required={pathname === '/CreateReview' && true}
+                        required={urlMatched && true}
                         value="none"
                     >
                         <option value="none" disabled>Published?</option>
@@ -85,11 +82,12 @@ export const Form = (props) => {
                     </select>
 
                     <button className="btn--update-review">
-                        {pathname === '/CreateReview' ? 'Create Review' : 'Update'}
+                        {urlMatched ? 'Create Review' : 'Update'}
                     </button>
 
                     <button
                         className="btn--update-review"
+                        hidden={urlMatched && true}
                         onClick={
                             () => {
                                 confirm('Are you sure you want to delete?')
@@ -100,7 +98,6 @@ export const Form = (props) => {
                     >Delete Review?</button>
                 </div>
             </div>
-
         </form>
     )
 }

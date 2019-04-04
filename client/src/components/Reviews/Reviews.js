@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
 import { graphql } from 'react-apollo'
-import { QueryReviews, QueryReviewOptions } from '../../queries/Reviews'
+import { QueryReviews } from '../../queries/Reviews'
 import { checkAuth } from '../../actions/auth'
 
 export class Reviews extends Component {
@@ -13,6 +13,7 @@ export class Reviews extends Component {
 
     render() {
         const { data: { loading, error, reviews, history } } = this.props
+        console.log(this.props)
 
         if (loading) return <span>Loading</span>
         if (error) return <span>Error</span>
