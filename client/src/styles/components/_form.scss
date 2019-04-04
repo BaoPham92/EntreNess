@@ -1,3 +1,26 @@
+// Form styling
+
+.form__head {
+    background: $darken-pink;
+    padding: $xs-size;
+    color: darken($apollo-gray, 12%);
+}
+
+.form__input {
+    background: darken($apollo-gray, 2%) !important;
+    color: $off-white !important;
+    text-align: center;
+    border-radius: 0.5rem;
+    border: none;
+}
+
+.form__input:-webkit-autofill,
+.form__input:-webkit-autofill:hover,
+.form__input:-webkit-autofill:focus {
+    -webkit-text-fill-color: $off-white !important;
+    -webkit-box-shadow: 0 0 0 10rem darken($apollo-gray, 2%) inset;
+}
+
 // Forms for updating reviews
 
 .update--grid {
@@ -9,8 +32,8 @@
     }
 
     & .update--head {
+        @extend .form__head;
         grid-column: 1 / 3;
-        color: darken($apollo-gray, 12%);
     }
 
     & .update--username {
@@ -51,25 +74,71 @@
     }
 }
 
-.update--head {
-    background: $darken-pink;
-    padding: $xs-size;
-}
-
 .update-textarea {
     background: darken($off-white, 2%);
     color: darken($apollo-gray, 12%);
     resize: none;
-}
-
-.update-title-input {
-    background: darken($apollo-gray, 2%);
-    color: $off-white;
-}
-
-.update-title-input,
-.update-textarea {
     text-align: center;
     border-radius: 0.5rem;
     border: none;
+}
+
+.update-title-input {
+    @extend .form__input;
+}
+
+// Forms for Creating User
+
+.create-user--main {
+    @extend .template__main;
+    max-width: 55rem;
+    margin: 0 auto;
+}
+
+.create-user--grid {
+    @extend .form__create-grid;
+
+    & strong {
+        color: $off-white;
+    }
+
+    & .create-user--head {
+        @extend .form__head;
+        grid-column: 1 / 3;
+    }
+
+    & .create-user--info {
+        grid-column: 1 / 3;
+        grid-row: 2 / 3;
+    }
+
+    & .create-user--options {
+        grid-column: 1 / 3;
+        grid-row: 3 /4;
+    }
+
+    & .create-user-name,
+    .create-user-password,
+    .create-user-email,
+    .create-user-contact,
+    .create-user-age {
+        display: grid;
+        grid-template-columns: 1fr 2fr;
+        grid-row-gap: 0.2rem;
+
+        border-bottom: 1px solid lighten($apollo-gray, 2%);
+        padding: $xs-size;
+    }
+}
+
+.create--input {
+    @extend .form__input;
+    width: 25rem;
+    justify-self: end;
+}
+
+.create-user--options {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    justify-items: center;
 }

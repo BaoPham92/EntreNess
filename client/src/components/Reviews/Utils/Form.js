@@ -86,7 +86,7 @@ export const Form = (props) => {
                     </button>
 
                     <button
-                        className="btn--update-review"
+                        className="btn__main"
                         hidden={urlMatched && true}
                         onClick={
                             () => {

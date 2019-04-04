@@ -6,7 +6,7 @@
     color: lighten($darken-pink, 15%);
 }
 
-.btn--update-review {
+.btn__main {
     background: darken($off-white, 2%);
     color: $apollo-gray;
     text-align: center;
@@ -16,7 +16,7 @@
     cursor: pointer;
 }
 
-.btn--update-review:hover {
+.btn__main:hover {
     background: darken($off-white, 6%);
     color: darken($apollo-gray, 4%);
 }

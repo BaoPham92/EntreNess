@@ -21,7 +21,7 @@ export class CreateUser extends Component {
         const { mutate } = this.props
 
         return (
-            <div>
+            <div className="create-user--main">
                 <Form 
                 handleChange={this.handleChange}
                 mutate={mutate}

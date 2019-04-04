@@ -14,7 +14,16 @@
     grid-row-gap: 0.5rem;
 }
 
+// CreateUser component grid.
+.form__create-grid {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    grid-template-rows: repeat(3, min-content);
+    grid-row-gap: 0.5rem;
+}
+
 // Reviews component grid.
+
 .grid__reviews {
     display: grid;
     grid-template-columns: 3fr 1fr;
