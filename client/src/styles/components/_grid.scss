@@ -6,19 +6,19 @@
     grid-row-gap: 0.2rem;
 }
 
-// UpdateReview component grid.
-.form__update-grid {
-    display: grid;
-    grid-template-columns: 1fr 2fr;
-    grid-template-rows: repeat(5, min-content);
-    grid-row-gap: 0.5rem;
-}
-
 // CreateUser component grid.
 .form__create-grid {
     display: grid;
     grid-template-columns: 1fr 2fr;
     grid-template-rows: repeat(3, min-content);
+    grid-row-gap: 0.5rem;
+}
+
+// UpdateReview component grid.
+.form__update-grid {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    grid-template-rows: repeat(5, min-content);
     grid-row-gap: 0.5rem;
 }
 

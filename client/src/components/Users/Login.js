@@ -22,49 +22,68 @@ class Login extends Component {
 
     render() {
         const { mutate, client } = this.props
-        
+        const variables = {
+            variables: {
+                data: {
+                    email: this.state.email,
+                    password: this.state.password
+                }
+            }
+        }
+
         return (
-            <div>
+            <div className="login--main">
                 <form
-                className="user__form"
                     onSubmit={
                         (e) => {
                             e.preventDefault()
-                            mutate({
-                                variables: {
-                                    data: {
-                                        email: this.state.email,
-                                        password: this.state.password
-                                    }
-                                }
-                            })
-                            .then((res) => {
-                                this.setToken(res.data.login.token)
-                                this.props.checkAuth()
-                            })
-                            .catch(e => alert(e))
+                            mutate(variables)
+                                .then((res) => {
+                                    this.setToken(res.data.login.token)
+                                    this.props.checkAuth()
+                                }).catch(e => alert(e))
                         }
                     }>
-                    <input
-                        type="text"
-                        name="email"
-                        placeholder="Email"
-                        required
-                        onChange={this.handleChange}
-                    />
-                    <input
-                        type="password"
-                        name="password"
-                        placeholder="Password"
-                        required
-                        onChange={this.handleChange}
-                    />
-                    <button 
-                    className="button button--userInfo"
-                    type="submit"
-                    >
-                    Login
-                    </button>
+
+                    <div className="login--grid">
+
+                        <section className="login--head">
+                            <h3>Login</h3>
+                        </section>
+
+                        <div className="login--info">
+
+                            <div className="login-email">
+                                <strong>Email:</strong>
+                                <input
+                                    className="login--input"
+                                    type="text"
+                                    name="email"
+                                    placeholder="Email"
+                                    required
+                                    onChange={this.handleChange}
+                                />
+                            </div>
+
+                            <div className="login-password">
+                                <strong>Password:</strong>
+                                <input
+                                    className="login--input"
+                                    type="password"
+                                    name="password"
+                                    placeholder="Password"
+                                    required
+                                    onChange={this.handleChange}
+                                />
+                            </div>
+
+                        </div>
+
+                        <div className="login--options">
+                            <button className="btn__main" type="submit">Login</button>
+                        </div>
+                        
+                    </div>
                 </form>
             </div>
         )

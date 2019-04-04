@@ -31,12 +31,13 @@ const Form = (props) => {
                 }
             }>
             <div className="create-user--grid">
-
+            
                 <section className="create-user--head">
                     <h3>Create Account</h3>
                 </section>
 
                 <div className="create-user--info">
+
                     <div className="create-user-name">
                         <strong>User:</strong>
                         <input
@@ -45,9 +46,10 @@ const Form = (props) => {
                             placeholder="name"
                             name="name"
                             required={pathname === "/CreateUser" && true}
-                            on
-                            Change={props.handleChange}
-                        /></div>
+                            onChange={props.handleChange}
+                        />
+                    </div>
+
                     <div className="create-user-email">
                         <strong>Email:</strong>
                         <input
@@ -56,9 +58,10 @@ const Form = (props) => {
                             placeholder="email"
                             name="email"
                             required={pathname === "/CreateUser" && true}
-                            on
-                            Change={props.handleChange}
-                        /></div>
+                            onChange={props.handleChange}
+                        />
+                    </div>
+
                     <div className="create-user-password">
                         <strong>Password:</strong>
                         <input
@@ -67,9 +70,10 @@ const Form = (props) => {
                             placeholder="password"
                             name="password"
                             required={pathname === "/CreateUser" && true}
-                            on
-                            Change={props.handleChange}
-                        /></div>
+                            onChange={props.handleChange}
+                        />
+                    </div>
+
                     <div className="create-user-contact">
                         <strong>Contact Number:</strong>
                         <input
@@ -80,6 +84,7 @@ const Form = (props) => {
                             onChange={props.handleChange}
                         />
                     </div>
+
                     <div className="create-user-age">
                         <strong>Age:</strong>
                         <input
