@@ -14,6 +14,15 @@
     border: none;
 }
 
+.form__text-area {
+    background: darken($off-white, 2%);
+    color: darken($apollo-gray, 12%);
+    resize: none;
+    text-align: center;
+    border-radius: 0.5rem;
+    border: none;
+}
+
 .form__input:-webkit-autofill,
 .form__input:-webkit-autofill:hover,
 .form__input:-webkit-autofill:focus {
@@ -75,12 +84,7 @@
 }
 
 .update-textarea {
-    background: darken($off-white, 2%);
-    color: darken($apollo-gray, 12%);
-    resize: none;
-    text-align: center;
-    border-radius: 0.5rem;
-    border: none;
+    @extend .form__text-area;
 }
 
 .update-title-input {
@@ -187,4 +191,48 @@
 
 .login--input {
     @extend .create--input;
+}
+
+// Form for CreateComment
+
+.create-comment--main {
+    @extend .template__main;
+    max-width: 80rem;
+    margin: $m-size auto;
+    padding: $s-size;
+}
+
+.create-comment--grid {
+    @extend .form__create-grid;
+
+    & .create-comment--head {
+        @extend .form__head;
+        grid-column: 1 / 3;
+    }
+
+    & .create-comment--info {
+        grid-column: 1 / 3;
+        grid-row: 2 / 3;
+
+        display: grid;
+        grid-template-columns: 1fr 2fr;
+
+        & .create-comment--side {
+
+            & strong {
+                color: $off-white;
+                margin-top: $l-size;
+            }
+
+            grid-column: 1 / 2;
+
+            display: grid;
+            grid-template-rows: 10rem min-content;
+            justify-items: center;
+        }
+    }
+}
+
+.create-comment-textarea {
+    @extend .form__text-area;
 }

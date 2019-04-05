@@ -71,7 +71,7 @@ export const Form = (props) => {
                 <div className="update--options">
                     <select
                         name="published"
-                        className="btn--update-review"
+                        className="btn__main"
                         onChange={props.handleChange}
                         required={urlMatched && true}
                         value="none"
@@ -81,7 +81,7 @@ export const Form = (props) => {
                         <option value="false">False</option>
                     </select>
 
-                    <button className="btn--update-review">
+                    <button className="btn__main">
                         {urlMatched ? 'Create Review' : 'Update'}
                     </button>
 

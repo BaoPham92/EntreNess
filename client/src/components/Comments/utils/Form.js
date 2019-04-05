@@ -11,9 +11,8 @@ export const Form = (props) => {
 
     return (
 
-        <div>
+        <div className="create-comment--main">
             <form
-                className="reviewItem--create-comment"
                 onSubmit={
                     (e) => {
                         e.preventDefault()
@@ -22,22 +21,42 @@ export const Form = (props) => {
                             hasCommentId ? { variables: { data: comment, id: hasCommentId.id } }
                                 : { variables: { data: { ...comment, review: props.reviewId } } }
 
-                        console.log(validCommentId)
                         mutate(validCommentId)
                             .then(result => {
                                 console.log(result)
                                 history.go(0)
                             })
                     }}>
-                <input
-                    type="text"
-                    name="text"
-                    placeholder={ selectedComment? 'Update Comment' : 'Add Comment'}
-                    onChange={handleChange}
-                />
-                <button className="button button--userInfo">
-                {selectedComment ? 'Update Comment' : 'Add Comment'}
-                </button>
+
+
+                <div className="create-comment--grid">
+                    <section className="create-comment--head">
+                        <h3>Reply</h3>
+                    </section>
+
+                    <div className="create-comment--info">
+
+                        <div className="create-comment--side">
+                            <strong>Add Reply:</strong>
+
+                            <button className="btn__main">
+                                {selectedComment ? 'Update Comment' : 'Add Comment'}
+                            </button>
+                        </div>
+                        
+                        <textarea
+                            className="create-comment-textarea"
+                            type="text"
+                            cols="45"
+                            rows="10"
+                            name="comment"
+                            placeholder="comment"
+                            placeholder={selectedComment ? 'Update Comment' : 'Add Comment'}
+                            onChange={handleChange}
+                        />
+                    </div>
+
+                </div>
             </form>
         </div>
     )

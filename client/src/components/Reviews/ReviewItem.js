@@ -49,47 +49,47 @@ export class ReviewItem extends Component {
 
         return (
             <div className="container__main">
-                <div className="reviewItem--main">
+                {reviews.map((review, index) => (
+                    review.id === this.props.match.params.id &&
+                    <div key={index}>
+                        <div className="reviewItem--main">
+                            <div className="container__sub">
+                                <section className="reviewItem--section-main">
 
-                    {reviews.map((review, index) => (
-                        review.id === this.props.match.params.id &&
-                        <div className="container__sub" key={index}>
-                            <section className="reviewItem--section-main">
+                                    <div className="reviewItem--section-intro">
+                                        <h2 className="reviewItem--title">{review.title}</h2>
+                                    </div>
 
-                                <div className="reviewItem--section-intro">
-                                    <h2 className="reviewItem--title">{review.title}</h2>
-                                </div>
-
-                                <ReviewContent 
-                                review={review}
-                                auth={auth}
-                                />
-
-                                <div>
-                                    {review.comments.length > 0 && review.comments.map((comment, index) => (
-                                        <CommentContent
-                                        key={index}
-                                        comment={comment}
+                                    <ReviewContent
+                                        review={review}
                                         auth={auth}
-                                        updateSelected={this.state.updateSelected}
-                                        updateClear={this.updateClear}
-                                        updateClicker={this.updateClicker}
-                                        selectedComment={this.state.selectedComment}
-                                        handleChange={this.handleUpdateComment}
-                                        history={this.props.history}
-                                        />
-                                    ))}
-                                </div>
+                                    />
 
-                                <CreateComment
-                                    handleChange={this.handleCreateComment}
-                                    reviewId={review.id}
-                                    history={this.props.history}
-                                />
-                            </section>
+                                    <div>
+                                        {review.comments.length > 0 && review.comments.map((comment, index) => (
+                                            <CommentContent
+                                                key={index}
+                                                comment={comment}
+                                                auth={auth}
+                                                updateSelected={this.state.updateSelected}
+                                                updateClear={this.updateClear}
+                                                updateClicker={this.updateClicker}
+                                                selectedComment={this.state.selectedComment}
+                                                handleChange={this.handleUpdateComment}
+                                                history={this.props.history}
+                                            />
+                                        ))}
+                                    </div>
+                                </section>
+                            </div>
                         </div>
-                    ))}
-                </div>
+                        <CreateComment
+                            handleChange={this.handleCreateComment}
+                            reviewId={review.id}
+                            history={this.props.history}
+                        />
+                    </div>
+                ))}
             </div>
         )
     }
