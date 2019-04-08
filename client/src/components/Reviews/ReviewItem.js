@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { graphql } from 'react-apollo'
+import { graphql, compose } from 'react-apollo'
 import { ReviewContent } from './Utils/ReviewContent'
 import { CommentContent } from './Utils/CommentContent'
 import CreateComment from '../Comments/CreateComment'
@@ -8,6 +8,7 @@ import { QueryReviews } from '../../queries/Reviews'
 import { checkAuth } from '../../actions/auth'
 import { startCreateComment } from '../../actions/comments'
 import { startUpdateComment } from '../../actions/comments'
+import { UpdateCommentMutation } from '../../mutations/Comments'
 
 export class ReviewItem extends Component {
 
@@ -69,7 +70,9 @@ export class ReviewItem extends Component {
                                         {review.comments.length > 0 && review.comments.map((comment, index) => (
                                             <CommentContent
                                                 key={index}
+                                                data-key={index}
                                                 comment={comment}
+                                                newComment={this.props.newComment}
                                                 auth={auth}
                                                 updateSelected={this.state.updateSelected}
                                                 updateClear={this.updateClear}
@@ -77,6 +80,7 @@ export class ReviewItem extends Component {
                                                 selectedComment={this.state.selectedComment}
                                                 handleChange={this.handleUpdateComment}
                                                 history={this.props.history}
+                                                mutate={this.props.mutate}
                                             />
                                         ))}
                                     </div>
@@ -95,7 +99,10 @@ export class ReviewItem extends Component {
     }
 }
 
-const mapQueriesToProps = graphql(QueryReviews)
+const mapQueriesToProps = compose(
+    graphql(QueryReviews),
+    graphql(UpdateCommentMutation)
+)
 const ReviewItemWithQuery = mapQueriesToProps(ReviewItem)
 
 const mapDispatchToProps = (dispatch) => ({
@@ -106,7 +113,8 @@ const mapDispatchToProps = (dispatch) => ({
 
 const mapStateToProps = (state) => {
     return {
-        auth: state.auth.userId
+        auth: state.auth.userId,
+        newComment: state.comment
     }
 }
 

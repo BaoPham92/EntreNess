@@ -1,11 +1,11 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-import UpdateComment from '../../Comments/UpdateComment'
+import { QuickEdit } from '../../Comments/utils/QuickEdit'
 import moment from 'moment'
 
 export const CommentContent = (props) => {
 
-    const { comment, auth } = props
+    const { updateSelected, selectedComment, comment, auth } = props
 
     return (
         <div className="reviewItem__content">
@@ -31,7 +31,21 @@ export const CommentContent = (props) => {
 
             <article className="reviewItem__article">
                 <div className="reviewItem--article-head">{moment(comment.updatedAt).format("YYYY-MM-DD, h:mm:ss a")}</div>
-                <p>{comment.text}</p>
+                {
+                    updateSelected === true && selectedComment.id === comment.id
+                        ?
+                        <QuickEdit
+                            updateSelected={updateSelected}
+                            updateClear={props.updateClear}
+                            selectedComment={selectedComment}
+                            handleChange={props.handleChange}
+                            newComment={props.newComment}
+                            history={props.history}
+                            mutate={props.mutate}
+                        />
+                        :
+                        <p>{comment.text}</p>
+                }
             </article>
 
             <div className="reviewItem__footer">
@@ -39,19 +53,14 @@ export const CommentContent = (props) => {
                     comment.author.id === auth &&
                     <button
                         className="btn--review-item"
-                        onClick={() => props.updateClicker(comment)}>
+                        onClick={() => {
+                            props.updateClear()
+                            props.updateClicker(comment)
+                        }}>
                         Update
                     </button>
                 }
             </div>
-
-            <UpdateComment
-                updateSelected={props.updateSelected}
-                updateClear={props.updateClear}
-                selectedComment={props.selectedComment}
-                handleChange={props.handleUpdateComment}
-                history={props.history}
-            />
         </div>
     )
 }

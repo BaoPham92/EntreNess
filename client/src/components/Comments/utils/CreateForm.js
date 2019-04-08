@@ -1,6 +1,6 @@
 import React from 'react'
 
-export const Form = (props) => {
+export const CreateForm = (props) => {
     const {
         history,
         selectedComment,
@@ -16,12 +16,9 @@ export const Form = (props) => {
                 onSubmit={
                     (e) => {
                         e.preventDefault()
-                        const hasCommentId = selectedComment
-                        const validCommentId =
-                            hasCommentId ? { variables: { data: comment, id: hasCommentId.id } }
-                                : { variables: { data: { ...comment, review: props.reviewId } } }
+                        const variable = { variables: { data: { ...comment, review: props.reviewId } } }
 
-                        mutate(validCommentId)
+                        mutate(variable)
                             .then(result => {
                                 console.log(result)
                                 history.go(0)
@@ -39,19 +36,18 @@ export const Form = (props) => {
                         <div className="create-comment--side">
                             <strong>Add Reply:</strong>
 
-                            <button className="btn__main">
-                                {selectedComment ? 'Update Comment' : 'Add Comment'}
+                            <button className="btn__main" type="submit">
+                                Add Comment
                             </button>
                         </div>
-                        
+
                         <textarea
                             className="create-comment-textarea"
                             type="text"
                             cols="45"
                             rows="10"
-                            name="comment"
-                            placeholder="comment"
-                            placeholder={selectedComment ? 'Update Comment' : 'Add Comment'}
+                            name="text"
+                            placeholder="Add Comment"
                             onChange={handleChange}
                         />
                     </div>

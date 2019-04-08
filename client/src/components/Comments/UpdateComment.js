@@ -4,7 +4,6 @@ import { connect } from 'react-redux'
 import { graphql } from 'react-apollo'
 import { UpdateCommentMutation } from '../../mutations/Comments'
 import { startUpdateComment } from '../../actions/comments'
-import { Form } from './utils/Form'
 
 export class UpdateComment extends Component {
 
@@ -26,16 +25,7 @@ export class UpdateComment extends Component {
                     contentLabel="Update Comment"
                     className="modal"
                 >
-                    <h1>Update Comment</h1>
-                    <p className="modal__body">{selectedComment && selectedComment.text}</p>
-
-                    <Form
-                        handleChange={handleChange}
-                        comment={comment}
-                        mutate={mutate}
-                        selectedComment={selectedComment}
-                        history={this.props.history}
-                    />
+                {/* TODO: Full page edit implementation later. */}
 
                 </Modal>
             </div>

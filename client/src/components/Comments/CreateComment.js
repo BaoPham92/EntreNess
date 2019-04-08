@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { graphql } from 'react-apollo'
 import { CreateCommentMutation } from '../../mutations/Comments'
-import { Form } from './utils/Form'
+import { CreateForm } from './utils/CreateForm'
 
 export class CreateComment extends Component {
 
@@ -11,7 +11,7 @@ export class CreateComment extends Component {
 
         return (
             <div>
-                <Form
+                <CreateForm
                     handleChange={this.props.handleChange}
                     mutate={mutate}
                     reviewId={reviewId}

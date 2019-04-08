@@ -82,7 +82,7 @@
         justify-items: center;
     }
 
-    & .update--options > * {
+    & .update--options>* {
         grid-row: 1 / 2;
     }
 }
@@ -239,4 +239,11 @@
 
 .create-comment-textarea {
     @extend .form__text-area;
+}
+
+.quick-edit-textarea {
+    @extend .form__text-area;
+    background: darken($apollo-gray, 8%);
+    color: $off-white;
+    width: 90%;
 }
