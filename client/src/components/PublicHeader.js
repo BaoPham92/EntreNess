@@ -9,8 +9,8 @@ const PrivateHeader = (props) => (
         <div className="header">
             <span>Welcome {!props.auth ? `, Guest` : `back, user: ${props.id}`}</span>
 
-            {!props.auth 
-                ? <Link className="btn__header" to="/HomePage">Login</Link>
+            {!props.auth
+                ? <Link className="btn__header" to="/">Login</Link>
                 : <button
                     className="btn__header"
                     type="button"

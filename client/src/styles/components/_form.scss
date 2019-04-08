@@ -77,9 +77,13 @@
 
     & .update--options {
         display: grid;
-        grid-template-columns: repeat(3, 1fr);
+        grid-template-columns: repeat(auto-fit, 1fr);
         grid-column-gap: $s-size;
         justify-items: center;
+    }
+
+    & .update--options > * {
+        grid-row: 1 / 2;
     }
 }
 
