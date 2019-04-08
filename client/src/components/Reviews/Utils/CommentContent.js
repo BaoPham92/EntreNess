@@ -38,9 +38,9 @@ export const CommentContent = (props) => {
                 {
                     comment.author.id === auth &&
                     <button
-                        className="button button--update-comment"
+                        className="btn--review-item"
                         onClick={() => props.updateClicker(comment)}>
-                        Update Comment?
+                        Update
                     </button>
                 }
             </div>

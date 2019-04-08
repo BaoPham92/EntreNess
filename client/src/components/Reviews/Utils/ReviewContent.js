@@ -43,7 +43,7 @@ export const ReviewContent = (props)  => {
                                 review: review
                             }
                         }}
-                        className="userReview__edit">Edit Review</Link>
+                        className="btn--review-item">Edit</Link>
                 }
             </div>
         </div>
