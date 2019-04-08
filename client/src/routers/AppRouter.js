@@ -2,7 +2,7 @@ import React from 'react'
 import { Router, Route, Switch } from 'react-router-dom'
 import createHistory from 'history/createBrowserHistory'
 import NotFoundPage from '../components/NotFoundPage'
-import HomePage from '../components/view/HomePage'
+import LoginPage from '../components/view/LoginPage'
 import Login from '../components/Users/Login'
 import Users from '../components/Users/Users'
 import UserProfile from '../components/Users/UserProfile'
@@ -20,7 +20,7 @@ const AppRouter = () => (
     <Router history={history}>
         <div>
             <Switch>
-                <PublicRoute exact path="/" component={HomePage} />
+                <PublicRoute exact path="/" component={LoginPage} />
                 <PrivateRoute path="/Dashboard" component={DashBoard} />
                 <PublicRoute path="/users" component={Users} />
                 <PrivateRoute path="/UserProfile" component={UserProfile} />

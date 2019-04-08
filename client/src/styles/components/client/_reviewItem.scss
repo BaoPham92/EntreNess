@@ -1,7 +1,7 @@
 .reviewItem--main {
     @extend .template__main;
     background: $redux-purple;
-    border-bottom-color: darken($apollo-gray, 12%);
+    border-bottom: none;
     max-width: 80rem;
     margin: 0 auto;
 }
@@ -18,7 +18,7 @@
     @extend .section__main,
     .grid__reviewItem;
     background: $redux-purple;
-    border: 1px solid $apollo-gray;
+    border: none;
     padding: 0;
 }
 
@@ -111,4 +111,5 @@
     background: darken($apollo-gray, 10%);
     color: $react-blue;
     font-size: $s-size;
+    padding: 0.4rem 0;
 }

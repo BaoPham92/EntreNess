@@ -7,7 +7,7 @@ import { logout } from '../actions/auth'
 const PrivateHeader = (props) => (
     <div className="container__header">
         <div className="header">
-            <span>Welcome {!props.auth ? `, Guest` : `back, user: ${props.id}`}</span>
+            <span>Welcome{!props.auth ? `, Guest` : `back, user: ${props.id}`}</span>
 
             {!props.auth
                 ? <Link className="btn__header" to="/">Login</Link>
@@ -23,9 +23,7 @@ const PrivateHeader = (props) => (
         </div>
 
         <div className="nav-menu">
-            <NavLink exact to="/DashBoard">DashBoard</NavLink>
             <NavLink to="/Users">Users</NavLink>
-            <NavLink to="/UserProfile">UserProfile</NavLink>
             <NavLink to="/Reviews">Reviews</NavLink>
         </div>
     </div>

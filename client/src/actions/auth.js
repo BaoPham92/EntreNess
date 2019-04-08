@@ -9,10 +9,6 @@ export const login = (userId) => ({
 export const logout = () => {
     return (dispatch) => {
 
-        if (history.location.pathname !== '/') {
-            history.replace('/')
-        }
-
         localStorage.removeItem('auth_token')
         dispatch({type: 'LOG_OUT'})
     }
