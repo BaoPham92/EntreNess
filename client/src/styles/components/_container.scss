@@ -15,15 +15,10 @@
 }
 
 // container for header component
-.container {
+.container__header {
     max-width: 100rem;
-    margin: 0 auto;
-    padding: 0 $m-size;
-}
-
-.header__inner-container {
-    display: flex;
-    justify-content: space-between;
+    margin: 8rem auto;
+    padding: $m-size;
 }
 
 // container for user forms component

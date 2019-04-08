@@ -5,41 +5,34 @@ import { withApollo } from 'react-apollo'
 import { logout } from '../actions/auth'
 
 const PrivateHeader = (props) => (
-    <div className="container">
-        <header className="header">
-            <div className="header__inner-container">
-                <h1 className="header__title">EntreNess</h1>
-                <nav>
-                    <NavLink exact to="/DashBoard">DashBoard</NavLink>
-                    <NavLink to="/Users">Users</NavLink>
-                    <NavLink to="/UserProfile">UserProfile</NavLink>
-                    <NavLink to="/Reviews">Reviews</NavLink>
-                </nav>
-            </div>
+    <div className="container__header">
+        <div className="header">
+            <span>Welcome { props.auth && `back, user: ${props.id}`}</span>
 
-            <div className="header__inner-container">
-                <h2 className="header__subtitle">
-                    Explore entreprenuership, authentic ratings, and community trust!
-                </h2>
+            <button
+                className="btn__header"
+                type="button"
+                onClick={() => {
+                    props.logout()
+                    props.client.resetStore()
+                }}>
+                Logout
+            </button>
+        </div>
 
-                <button
-                    className="button"
-                    type="button"
-                    onClick={() => {
-                        props.logout()
-                        props.client.resetStore()
-                    }}>
-                    Logout
-                </button>
-            </div>
-
-        </header>
+        <div className="nav-menu">
+            <NavLink exact to="/DashBoard">DashBoard</NavLink>
+            <NavLink to="/Users">Users</NavLink>
+            <NavLink to="/UserProfile">UserProfile</NavLink>
+            <NavLink to="/Reviews">Reviews</NavLink>
+        </div>
     </div>
 )
 
 const mapToStateProps = (state) => {
     return {
-        auth: !!state.auth.userId
+        auth: !!state.auth.userId,
+        id: state.auth.userId
     }
 }
 

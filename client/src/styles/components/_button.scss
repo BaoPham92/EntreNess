@@ -1,9 +1,10 @@
-.button {
-    background-color: $redux-purple;
+.btn__header {
+    background-color: darken($apollo-gray, 8%);
+    color: $off-white;
+    font-size: 1.5rem;
+    padding: 0 $xs-size;
+    border-radius: 0.5rem;
     border: none;
-    border-bottom: 0.25rem solid darken($react-blue, 20%);
-    border-left: 0.1rem solid darken($darken-pink, 10%);
-    color: lighten($darken-pink, 15%);
 }
 
 .btn__main {
