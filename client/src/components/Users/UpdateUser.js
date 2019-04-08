@@ -58,14 +58,6 @@ export class UpdateUser extends Component {
                                         handleChange={this.handleChange}
                                         mutate={UpdateUser}
                                     />
-
-                                    <button onClick={() => {
-                                        DeleteUser()
-                                            .then((res) => {
-                                                console.log(res)
-                                                this.props.logout()
-                                            })
-                                    }}>Close Account?</button>
                                 </div>
                             </div>
                         </section>

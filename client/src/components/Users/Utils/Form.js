@@ -32,9 +32,15 @@ const Form = (props) => {
             }>
             <div className="create-user--grid">
             
-                <section className="create-user--head">
-                    <h3>Create Account</h3>
-                </section>
+                {
+                    pathname === "/" 
+                    ? 
+                    <section className="create-user--head">
+                        <h3>Create Account</h3>
+                    </section> 
+                    : 
+                    ''
+                }
 
                 <div className="create-user--info">
 
@@ -102,15 +108,23 @@ const Form = (props) => {
                         {
                             pathname === '/'
                                 ? 'Register'
-                                : pathname === '/UpdateUser'
-                                    ? 'Update'
-                                    : console.log('Error')
+                                : 'Update'
                         }
                     </button>
 
-                    <button className="btn__main">
-                        Cancel
-                    </button>
+                    {
+                        pathname === '/'
+                            ? <button className="btn__main">Cancel</button>
+                            : <button 
+                            className="btn__main"
+                            onClick={() => {
+                                DeleteUser()
+                                    .then((res) => {
+                                        console.log(res)
+                                        this.props.logout()
+                                    })
+                            }}>Close Account?</button>
+                    }
                 </div>
             </div>
         </form>
