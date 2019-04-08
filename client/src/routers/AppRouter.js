@@ -1,6 +1,6 @@
 import React from 'react'
 import { Router, Route, Switch } from 'react-router-dom'
-import createHistory from 'history/createBrowserHistory'
+import { createBrowserHistory } from 'history'
 import NotFoundPage from '../components/NotFoundPage'
 import LoginPage from '../components/view/LoginPage'
 import Login from '../components/Users/Login'
@@ -14,7 +14,7 @@ import Reviews from '../components/Reviews/Reviews'
 import ReviewItem from '../components/Reviews/ReviewItem'
 import UpdateReview from '../components/Reviews/UpdateReview'
 
-export const history = createHistory()
+export const history = createBrowserHistory()
 
 const AppRouter = () => (
     <Router history={history}>
