@@ -2,6 +2,7 @@ import React from 'react'
 import { Route, Redirect } from 'react-router-dom'
 import { connect } from 'react-redux'
 import PublicHeader from '../components/PublicHeader'
+import PrivateHeader from '../components/PrivateHeader'
 
 export const PublicRoute = ({
     auth,
@@ -12,7 +13,7 @@ export const PublicRoute = ({
             auth ? (
 
                 <div>
-                    <PublicHeader />
+                    <PrivateHeader />
                     <Component {...props} />
                 </div>
 
