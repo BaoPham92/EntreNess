@@ -1,6 +1,7 @@
 type Query {
     users(query: String): [User!]!
     reviews(query: String): [Review!]!
+    review(query: String, id: ID): Review!
     businesses(query: String): [Business!]!
     events(query: String): [Event!]!
     comments: [Comment!]!
@@ -91,14 +92,12 @@ input UpdateEventInput {
 input CreateReviewInput {
     title: String!
     body: String!
-    experience: String!
     published: Boolean!
 }
 
 input UpdateReviewInput {
     title: String
     body: String
-    experience: String
     published: Boolean
 }
 

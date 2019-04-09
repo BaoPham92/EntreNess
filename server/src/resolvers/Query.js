@@ -51,6 +51,19 @@ const Query = {
 
         return prisma.query.reviews(opArgs, info)
     },
+    review(parent, args, {
+        prisma
+    }, info) {
+        const opArgs = {}
+
+        if (args.id) {
+            opArgs.where = {
+                id: args.id
+            }
+        }
+
+        return prisma.query.review(opArgs, info)
+    },
     comments(parent, args, {
         prisma
     }, info) {

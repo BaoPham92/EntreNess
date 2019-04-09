@@ -4,7 +4,7 @@ import { graphql, compose } from 'react-apollo'
 import { ReviewContent } from './Utils/ReviewContent'
 import { CommentContent } from './Utils/CommentContent'
 import CreateComment from '../Comments/CreateComment'
-import { QueryReviews } from '../../queries/Reviews'
+import { QueryReview } from '../../queries/Reviews'
 import { checkAuth } from '../../actions/auth'
 import { startCreateComment } from '../../actions/comments'
 import { startUpdateComment } from '../../actions/comments'
@@ -40,67 +40,68 @@ export class ReviewItem extends Component {
 
     componentDidMount() {
         this.props.checkAuth()
+
+        // Update variable for query before query results
+        const data = this.props.data
+        const match = this.props.match
+
+        data.variables.id = match.params.id
     }
 
     render() {
-        const { data: { loading, error, reviews }, location, auth } = this.props
+        const { data: { loading, error, review }, location, auth } = this.props
 
         if (loading) return <span>Loading</span>
         if (error) return <span>Error</span>
 
         return (
             <div className="container__main">
-                {reviews.map((review, index) => (
-                    review.id === this.props.match.params.id &&
-                    <div key={index}>
-                        <div className="reviewItem--main">
-                            <div className="container__sub">
-                                <section className="reviewItem--section-main">
+                <div className="reviewItem--main">
+                    <div className="container__sub">
+                        <section className="reviewItem--section-main">
 
-                                    <div className="reviewItem--section-intro">
-                                        <h2 className="reviewItem--title">{review.title}</h2>
-                                    </div>
-
-                                    <ReviewContent
-                                        review={review}
-                                        auth={auth}
-                                    />
-
-                                    <div>
-                                        {review.comments.length > 0 && review.comments.map((comment, index) => (
-                                            <CommentContent
-                                                key={index}
-                                                data-key={index}
-                                                comment={comment}
-                                                newComment={this.props.newComment}
-                                                auth={auth}
-                                                updateSelected={this.state.updateSelected}
-                                                updateClear={this.updateClear}
-                                                updateClicker={this.updateClicker}
-                                                selectedComment={this.state.selectedComment}
-                                                handleChange={this.handleUpdateComment}
-                                                history={this.props.history}
-                                                mutate={this.props.mutate}
-                                            />
-                                        ))}
-                                    </div>
-                                </section>
+                            <div className="reviewItem--section-intro">
+                                <h2 className="reviewItem--title">{review.title}</h2>
                             </div>
-                        </div>
-                        <CreateComment
-                            handleChange={this.handleCreateComment}
-                            reviewId={review.id}
-                            history={this.props.history}
-                        />
+
+                            <ReviewContent
+                                review={review}
+                                auth={auth}
+                            />
+
+                            <div>
+                                {review.comments.length > 0 && review.comments.map((comment, index) => (
+                                    <CommentContent
+                                        key={index}
+                                        data-key={index}
+                                        comment={comment}
+                                        newComment={this.props.newComment}
+                                        auth={auth}
+                                        updateSelected={this.state.updateSelected}
+                                        updateClear={this.updateClear}
+                                        updateClicker={this.updateClicker}
+                                        selectedComment={this.state.selectedComment}
+                                        handleChange={this.handleUpdateComment}
+                                        history={this.props.history}
+                                        mutate={this.props.mutate}
+                                    />
+                                ))}
+                            </div>
+                        </section>
                     </div>
-                ))}
+                </div>
+                <CreateComment
+                    handleChange={this.handleCreateComment}
+                    reviewId={review.id}
+                    history={this.props.history}
+                />
             </div>
         )
     }
 }
 
 const mapQueriesToProps = compose(
-    graphql(QueryReviews),
+    graphql(QueryReview),
     graphql(UpdateCommentMutation)
 )
 const ReviewItemWithQuery = mapQueriesToProps(ReviewItem)
