@@ -61,7 +61,6 @@ const Query = {
                 id: args.id
             }
         }
-
         return prisma.query.review(opArgs, info)
     },
     comments(parent, args, {

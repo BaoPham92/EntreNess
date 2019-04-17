@@ -1,10 +1,13 @@
+# import CommentsConnection, CommentConnection from './generated/prisma.graphql'
+
 type Query {
-    users(query: String): [User!]!
-    reviews(query: String): [Review!]!
+    users(query: String, first: Int, skip: Int, after: String): [User!]!
+    reviews(query: String, first: Int, skip: Int, after: String): [Review!]!
     review(query: String, id: ID): Review!
     businesses(query: String): [Business!]!
     events(query: String): [Event!]!
-    comments: [Comment!]!
+    comments(first: Int, skip: Int, after: String): [Comment!]!
+    commentsConnection(first: Int, skip: Int, after: String): CommentConnection!
     self: User!
 }
 
@@ -160,7 +163,8 @@ type Review {
     updatedAt: String!
     createdAt: String!
     author: User!
-    comments: [Comment!]
+    comments(first: Int, skip: Int, after: String): [Comment!]
+    commentsConnection(first: Int, skip: Int, after: String): CommentConnection!
     business: Business
 }
 
