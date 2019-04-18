@@ -3,6 +3,8 @@
     border-bottom: $s-size solid darken($apollo-gray, 15%);
     padding: 0.5rem;
     padding-bottom: 0.8rem;
+    max-width: 70vw;
+    margin: 0 auto;
 }
 
 .template__title {

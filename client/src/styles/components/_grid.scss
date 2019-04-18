@@ -6,6 +6,14 @@
     grid-row-gap: 0.2rem;
 }
 
+// AppLayout grid.
+.app__layout-grid {
+    display: grid;
+    height: 100vh;
+    grid-template-columns: repeat(5, minmax(10rem, 1fr)) 2fr;
+    grid-template-rows: 20rem;
+}
+
 // CreateUser component grid.
 .form__create-grid {
     display: grid;

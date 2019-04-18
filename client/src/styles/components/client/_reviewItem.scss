@@ -1,9 +1,6 @@
 .reviewItem--main {
     @extend .template__main;
-    background: $redux-purple;
     border-bottom: none;
-    max-width: 80rem;
-    margin: 0 auto;
 }
 
 .reviewItem--section-intro {

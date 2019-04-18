@@ -1,5 +1,5 @@
 .section__intro {
-    max-width: 85rem;
+    // max-width: 85rem;
     margin: 0 auto;
     background: $darken-pink;
     border-bottom: $s-size solid darken($darken-pink, 12.5%);
@@ -14,10 +14,10 @@
 }
 
 .section__main {
-    max-width: 80rem;
+    // max-width: 80rem;
     background: $darken-pink;
     border-bottom: $s-size solid darken($darken-pink, 10%);
-    margin: 0 auto;
+    // margin: 0 auto;
     padding: $s-size;
 }
 

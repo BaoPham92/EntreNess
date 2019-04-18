@@ -12,13 +12,13 @@ export const PublicRoute = ({
         <Route {...rest} component={(props) => (
             auth ? (
 
-                <div>
+                <div className="app__layout-grid">
                     <PrivateHeader />
                     <Component {...props} />
                 </div>
 
             ) : (
-                <div>
+                <div className="app__layout-grid">
                     <PublicHeader />
                     <Component {...props} />
                 </div>
