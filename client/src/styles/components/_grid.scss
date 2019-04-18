@@ -12,6 +12,10 @@
     height: 100vh;
     grid-template-columns: repeat(5, minmax(10rem, 1fr)) 2fr;
     grid-template-rows: 20rem;
+
+    & .container__side {
+        position: sticky;
+    }
 }
 
 // CreateUser component grid.

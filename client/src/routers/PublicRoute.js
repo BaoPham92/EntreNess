@@ -3,6 +3,7 @@ import { Route, Redirect } from 'react-router-dom'
 import { connect } from 'react-redux'
 import PublicHeader from '../components/PublicHeader'
 import PrivateHeader from '../components/PrivateHeader'
+import SideBar from '../components/view/SideBar/SideBar'
 
 export const PublicRoute = ({
     auth,
@@ -14,12 +15,14 @@ export const PublicRoute = ({
 
                 <div className="app__layout-grid">
                     <PrivateHeader />
+                    <SideBar />
                     <Component {...props} />
                 </div>
 
             ) : (
                 <div className="app__layout-grid">
                     <PublicHeader />
+                    <SideBar />
                     <Component {...props} />
                 </div>
                 )

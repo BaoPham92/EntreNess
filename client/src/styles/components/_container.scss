@@ -5,6 +5,10 @@
     grid-row: 2 / 3;
 }
 
+.container__side {
+    grid-column: 6 / 7;
+}
+
 .container__sub {
     max-width: 80rem;
     margin: 0 auto;
