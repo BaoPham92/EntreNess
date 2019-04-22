@@ -4,7 +4,7 @@ import { NavLink, Link } from 'react-router-dom'
 import { withApollo } from 'react-apollo'
 import { logout } from '../actions/auth'
 
-const PrivateHeader = (props) => (
+const PublicHeader = (props) => (
     <div className="container__header">
         <div className="header">
             <span>Welcome{!props.auth ? `, Guest` : `back, user: ${props.id}`}</span>
@@ -40,4 +40,4 @@ const mapDispatchToProps = (dispatch) => ({
     logout: () => dispatch(logout())
 })
 
-export default withApollo(connect(mapToStateProps, mapDispatchToProps)(PrivateHeader))
+export default withApollo(connect(mapToStateProps, mapDispatchToProps)(PublicHeader))

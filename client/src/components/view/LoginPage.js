@@ -5,7 +5,7 @@ import CreateUser from '../Users/CreateUser'
 import Login from '../Users/Login'
 
 export const HomePage = (props) => (
-    <div className="container__main">
+    <div className="user-login">
         {
             props.auth.userId
                 ?<Redirect to="/DashBoard" />

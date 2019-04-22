@@ -6,7 +6,6 @@ import { withApollo } from 'react-apollo'
 const Form = (props) => {
 
     const pathname = props.location.pathname
-    console.log(props)
 
     return (
         <form
