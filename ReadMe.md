@@ -39,6 +39,8 @@ Revisit the board, reanalyze the application for adjustments, possible productio
 ---
 
 ## Progress:
+
+#### Back-End:
 - Base template for GraphQL & Prisma schemas drafted.
 - Base working (CRUD) template for Queries & Mutations drafted.
 - Utils for authorizations || tokens & hashing drafted.
@@ -46,8 +48,18 @@ Revisit the board, reanalyze the application for adjustments, possible productio
 - PostGreSQL hosting our Prod & Dev.
 - Application & Production for GraphQL Playground of our working schemas deployed but not finished.
 
+#### Front-End:
+- Base working Front-End layout created.
+- Working implementations of root GraphQL operations connected.
+- Base draft styling created.
+- Standard Redux base implementation produced.
+- Apollo integration.
+
 Todo
 ---
+
+#### Back-End:
+
 - Optimize mutations and finish remaining comments.
 - Add the remaining custom resolvers. (Currently not added due to finalizations & testing of root operations of Queries, Mutations & Subscriptions.)
 - Check for security vulnerability. 1 being a dependancy.
@@ -55,10 +67,18 @@ Todo
 - Adjustments for NodeJS API consistency with Prisma API for our GraphQL to our database.
 - Configure cases for root operation subscriptions after sorting out out rough draft of our API functionalities.
 - Minor, but should update ERD on the current standing of the drafted application.
+- Reconfigure schemas to adjusted usage of app.
+
+#### Front-End:
+- Overhaul for styling and layout now that a base working draft has been created.
+- Reconfigure and optimize components to overhaul.
+- Recalibrate stack usages.
 
 Current Task:
 ---
-- Now that a presentable working back-end is in tact. Its time to start building our front-end and connecting it.
+- ~~Now that a presentable working back-end is in tact. Its time to start building our front-end and connecting it.~~
+
+- A working presentable Front-End has been created for a general outlook. Time to present a overhaul to the layout & styling for the Front-End then fully implement the functions from the Back-End.
 
 ---
 All information is subject to change as this project grows.
