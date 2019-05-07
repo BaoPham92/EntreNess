@@ -15,7 +15,6 @@ export const PublicRoute = ({
 
                 <div className="app__layout-grid">
                     <PrivateHeader />
-                    <SideBar />
                     <Component {...props} />
                 </div>
 
