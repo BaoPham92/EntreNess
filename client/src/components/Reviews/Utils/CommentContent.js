@@ -1,9 +1,9 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { graphql, compose } from 'react-apollo'
-import { Link, withRouter } from 'react-router-dom'
+import { withRouter } from 'react-router-dom'
 import { QuickEdit } from '../../Comments/utils/QuickEdit'
-import { QueryReview, QueryReviewProps } from '../../../queries/Reviews'
+import { QueryPost, QueryPostProps } from '../../../queries/Posts'
 import { startUpdateComment } from '../../../actions/comments'
 import { UpdateCommentMutation } from '../../../mutations/Comments'
 import moment from 'moment'
@@ -87,8 +87,8 @@ export class CommentContent extends Component {
                                 </div>
 
                                 <div className="reviewItem__user-details">
-                                    <dt>Reviews:</dt>
-                                    <dd>{comment.author.reviews.length}</dd>
+                                    <dt>Posts:</dt>
+                                    <dd>{comment.author.posts.length}</dd>
                                     <dt>Comments:</dt>
                                     <dd>{comment.author.comments.length}</dd>
                                     <dt>Companies:</dt>
@@ -140,7 +140,7 @@ export class CommentContent extends Component {
 }
 
 const mapQueriesToProps = compose(
-    graphql(QueryReview, QueryReviewProps),
+    graphql(QueryPost, QueryPostProps),
     graphql(UpdateCommentMutation)
 )
 const CommentContentWithQuery = mapQueriesToProps(CommentContent)

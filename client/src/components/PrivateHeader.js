@@ -24,7 +24,7 @@ const PrivateHeader = (props) => (
             <NavLink exact to="/DashBoard">DashBoard</NavLink>
             <NavLink to="/Users">Users</NavLink>
             <NavLink to="/UserProfile">UserProfile</NavLink>
-            <NavLink to="/Reviews">Reviews</NavLink>
+            <NavLink to="/Posts">Posts</NavLink>
         </div>
     </div>
 )

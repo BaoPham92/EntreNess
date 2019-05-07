@@ -10,9 +10,9 @@ import UpdateUser from '../components/Users/UpdateUser'
 import PrivateRoute from '../routers/PrivateRoute'
 import PublicRoute from '../routers/PublicRoute'
 import DashBoard from '../components/view/DashBoard'
-import Reviews from '../components/Reviews/Reviews'
-import ReviewItem from '../components/Reviews/ReviewItem'
-import UpdateReview from '../components/Reviews/UpdateReview'
+import Posts from '../components/Reviews/Posts'
+import PostItem from '../components/Reviews/PostItem'
+import UpdatePost from '../components/Reviews/UpdatePost'
 
 export const history = createBrowserHistory()
 
@@ -25,11 +25,11 @@ const AppRouter = () => (
                 <PublicRoute path="/users" component={Users} />
                 <PrivateRoute path="/UserProfile" component={UserProfile} />
                 <PrivateRoute path="/UpdateUser" component={UpdateUser}/>
-                <PublicRoute exact={true} path="/Reviews" component={Reviews}/>
-                <PublicRoute exact={true} path="/ReviewItem/:id" component={ReviewItem}/>
-                <PrivateRoute path="/CreateReview" component={UpdateReview}/>
-                <PrivateRoute exact={true} path="/Reviews/:id" component={Reviews}/>
-                <PrivateRoute exact={true} path="/EditReview/:id" component={UpdateReview}/>
+                <PublicRoute exact={true} path="/Posts" component={Posts}/>
+                <PublicRoute exact={true} path="/PostItem/:id" component={PostItem}/>
+                <PrivateRoute path="/CreatePost" component={UpdatePost}/>
+                <PrivateRoute exact={true} path="/Posts/:id" component={Posts}/>
+                <PrivateRoute exact={true} path="/EditPost/:id" component={UpdatePost}/>
                 <Route component={NotFoundPage} />
             </Switch>
         </div>

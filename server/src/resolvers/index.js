@@ -3,14 +3,14 @@ import Query from './Query'
 import Mutation from './Mutation'
 import Subscription from './Subscription'
 import User from './User'
-import Review from './Review'
+import Post from './Post'
 
 const resolvers = {
     Query,
     Mutation,
     // Subscription,
     User,
-    Review
+    Post
 }
 
 const fragmentReplacements = extractFragmentReplacements(resolvers)

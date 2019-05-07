@@ -27,13 +27,13 @@ export class Users extends Component {
                     </div>
 
                     <div className="container__sub">
-                        {users.map(({ id, name, reviews, comments }) => (
+                        {users.map(({ id, name, posts, comments }) => (
                             <section key={id} className="users--section-main">
                                 <div className="users--grid-main">
                                     <dt>User:</dt>
                                     <dd>{name}</dd>
-                                    <dt>Reviews:</dt>
-                                    <dd>{reviews.length} Reviews made.</dd>
+                                    <dt>posts:</dt>
+                                    <dd>{posts.length} Posts made.</dd>
                                     <dt>Comments:</dt>
                                     <dd>{comments.length} Comments made.</dd>
                                 </div>

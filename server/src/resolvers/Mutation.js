@@ -250,13 +250,13 @@ const Mutation = {
             }
         }, info)
     },
-    async createReview(parent, args, { 
+    async createPost(parent, args, { 
         prisma,
         request
      }, info) {
         const userId = getUserId(request)
 
-        return prisma.mutation.createReview({
+        return prisma.mutation.createPost({
             data: {
                 title: args.data.title,
                 body: args.data.body,
@@ -269,52 +269,52 @@ const Mutation = {
             }
         }, info)
     },
-    async updateReview(parent, args, {
+    async updatePost(parent, args, {
         prisma,
         request
     }, info) {
         const userId = getUserId(request)
-        const reviewExist = await prisma.exists.Review({
+        const postExist = await prisma.exists.Post({
             id: args.id,
             author: {
                 id: userId
             }
         })
-        const isPublished = await prisma.exists.Review({
+        const isPublished = await prisma.exists.Post({
             id: args.id, published: true
         })
 
-        if (!reviewExist) {
+        if (!postExist) {
             throw new Error('Cannot find post!')
         }
 
         // Create if statement when creating (Comment) custom type here.
         // If published is true && input args.data.published === false | then delete comments.
 
-        return prisma.mutation.updateReview({
+        return prisma.mutation.updatePost({
             where: {
                 id: args.id
             },
             data: args.data
         }, info)
     },
-    async deleteReview(parent, args, {
+    async deletePost(parent, args, {
         prisma,
         request
     }, info) {
         const userId = getUserId(request)
-        const reviewExist = await prisma.exists.Review({
+        const postExist = await prisma.exists.Post({
             id: args.id,
             author: {
                 id: userId
             }
         })
 
-        if (!reviewExist) {
-            throw new Error('Cannot delete review!')
+        if (!postExist) {
+            throw new Error('Cannot delete post!')
         }
 
-        return prisma.mutation.deleteReview({
+        return prisma.mutation.deletePost({
             where: {
                 id: args.id
             }
@@ -325,12 +325,12 @@ const Mutation = {
         request
     }, info) {
         const userId = getUserId(request)
-        const reviewExist = await prisma.exists.Review({
-            id: args.data.review,
+        const postExist = await prisma.exists.Post({
+            id: args.data.post,
             published: true
         })
 
-        if (!reviewExist) {
+        if (!postExist) {
             throw new Error('Unable to post comment!')
         }
 
@@ -342,9 +342,9 @@ const Mutation = {
                         id: userId
                     }
                 },
-                review: {
+                post: {
                     connect: {
-                        id: args.data.review
+                        id: args.data.post
                     }
                 }
             }

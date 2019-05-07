@@ -1,6 +1,6 @@
 import getUserId from '../utils/getUserId'
 
-const Review = {
+const Post = {
     commentsConnection: {
         async resolve(parent, args, {
             prisma
@@ -14,7 +14,7 @@ const Review = {
 
             return await prisma.query.commentsConnection({
                 where: {
-                    review: {
+                    post: {
                         id: parent.id
                     }
                 }
@@ -24,6 +24,6 @@ const Review = {
 }
 
 export {
-    Review as
+    Post as
     default
 }

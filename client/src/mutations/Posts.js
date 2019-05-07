@@ -1,9 +1,9 @@
 import gql from 'graphql-tag'
 
 // Mutation for CreateReview
-export const CreateReviewMutation = gql`
-    mutation CreateReview($data: CreateReviewInput!) {
-        createReview(data: $data) {
+export const CreatePostMutation = gql`
+    mutation CreatePost($data: CreateReviewInput!) {
+        createPost(data: $data) {
             id
             title
             body
@@ -16,9 +16,9 @@ export const CreateReviewMutation = gql`
     }
 `
 // Mutation for UpdateReview
-export const UpdateReviewMutation = gql`
-    mutation UpdateReview($id: ID!, $data: UpdateReviewInput!) {
-        updateReview(id: $id, data: $data) {
+export const UpdatePostMutation = gql`
+    mutation UpdatePost($id: ID!, $data: UpdateReviewInput!) {
+        updatePost(id: $id, data: $data) {
             id
             title
             body
@@ -28,9 +28,9 @@ export const UpdateReviewMutation = gql`
 `
 
 // Mutation for DeleteReview
-export const DeleteReviewMutation = gql`
-    mutation DeleteReview($id: ID!) {
-        deleteReview(id: $id) {
+export const DeletePostMutation = gql`
+    mutation DeletePost($id: ID!) {
+        deletePost(id: $id) {
             title
             body
             published

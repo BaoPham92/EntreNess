@@ -18,8 +18,8 @@ export class SideBar extends Component {
                     <h4 className="side-bar__user">{self && self.name}</h4>
 
                     <div className="side-bar__content">
-                        <dt>Reviews:</dt>
-                        <dd>{self && self.reviews.length}</dd>
+                        <dt>Posts:</dt>
+                        <dd>{self && self.posts.length}</dd>
                         <dt>Comments:</dt>
                         <dd>{self && self.comments.length}</dd>
                         <dt>Joined:</dt>

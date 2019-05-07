@@ -1,5 +1,5 @@
-# source: http://localhost:4466/entre_nesss/dev
-# timestamp: Tue Apr 02 2019 15:44:10 GMT-0400 (Eastern Daylight Time)
+# source: http://localhost:4466/VueBloc/Dev
+# timestamp: Mon May 06 2019 18:56:08 GMT-0400 (Eastern Daylight Time)
 
 type AggregateBusiness {
   count: Int!
@@ -13,7 +13,7 @@ type AggregateEvent {
   count: Int!
 }
 
-type AggregateReview {
+type AggregatePost {
   count: Int!
 }
 
@@ -35,7 +35,7 @@ type Business implements Node {
   updatedAt: DateTime!
   createdAt: DateTime!
   owner: User!
-  reviews(where: ReviewWhereInput, orderBy: ReviewOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Review!]
+  posts(where: PostWhereInput, orderBy: PostOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Post!]
   employees(where: UserWhereInput, orderBy: UserOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [User!]
   events(where: EventWhereInput, orderBy: EventOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Event!]
 }
@@ -56,7 +56,7 @@ input BusinessCreateInput {
   contactNumber: String!
   description: String!
   owner: UserCreateOneWithoutCompaniesInput!
-  reviews: ReviewCreateManyWithoutBusinessInput
+  posts: PostCreateManyWithoutBusinessInput
   employees: UserCreateManyWithoutEmploymentInput
   events: EventCreateManyWithoutBusinessInput
 }
@@ -76,8 +76,8 @@ input BusinessCreateOneWithoutEventsInput {
   connect: BusinessWhereUniqueInput
 }
 
-input BusinessCreateOneWithoutReviewsInput {
-  create: BusinessCreateWithoutReviewsInput
+input BusinessCreateOneWithoutPostsInput {
+  create: BusinessCreateWithoutPostsInput
   connect: BusinessWhereUniqueInput
 }
 
@@ -87,7 +87,7 @@ input BusinessCreateWithoutEmployeesInput {
   contactNumber: String!
   description: String!
   owner: UserCreateOneWithoutCompaniesInput!
-  reviews: ReviewCreateManyWithoutBusinessInput
+  posts: PostCreateManyWithoutBusinessInput
   events: EventCreateManyWithoutBusinessInput
 }
 
@@ -97,7 +97,7 @@ input BusinessCreateWithoutEventsInput {
   contactNumber: String!
   description: String!
   owner: UserCreateOneWithoutCompaniesInput!
-  reviews: ReviewCreateManyWithoutBusinessInput
+  posts: PostCreateManyWithoutBusinessInput
   employees: UserCreateManyWithoutEmploymentInput
 }
 
@@ -106,12 +106,12 @@ input BusinessCreateWithoutOwnerInput {
   email: String!
   contactNumber: String!
   description: String!
-  reviews: ReviewCreateManyWithoutBusinessInput
+  posts: PostCreateManyWithoutBusinessInput
   employees: UserCreateManyWithoutEmploymentInput
   events: EventCreateManyWithoutBusinessInput
 }
 
-input BusinessCreateWithoutReviewsInput {
+input BusinessCreateWithoutPostsInput {
   name: String!
   email: String!
   contactNumber: String!
@@ -457,7 +457,7 @@ input BusinessUpdateInput {
   contactNumber: String
   description: String
   owner: UserUpdateOneRequiredWithoutCompaniesInput
-  reviews: ReviewUpdateManyWithoutBusinessInput
+  posts: PostUpdateManyWithoutBusinessInput
   employees: UserUpdateManyWithoutEmploymentInput
   events: EventUpdateManyWithoutBusinessInput
 }
@@ -512,13 +512,13 @@ input BusinessUpdateOneRequiredWithoutEventsInput {
   upsert: BusinessUpsertWithoutEventsInput
 }
 
-input BusinessUpdateOneWithoutReviewsInput {
-  create: BusinessCreateWithoutReviewsInput
+input BusinessUpdateOneWithoutPostsInput {
+  create: BusinessCreateWithoutPostsInput
   connect: BusinessWhereUniqueInput
   disconnect: Boolean
   delete: Boolean
-  update: BusinessUpdateWithoutReviewsDataInput
-  upsert: BusinessUpsertWithoutReviewsInput
+  update: BusinessUpdateWithoutPostsDataInput
+  upsert: BusinessUpsertWithoutPostsInput
 }
 
 input BusinessUpdateWithoutEmployeesDataInput {
@@ -527,7 +527,7 @@ input BusinessUpdateWithoutEmployeesDataInput {
   contactNumber: String
   description: String
   owner: UserUpdateOneRequiredWithoutCompaniesInput
-  reviews: ReviewUpdateManyWithoutBusinessInput
+  posts: PostUpdateManyWithoutBusinessInput
   events: EventUpdateManyWithoutBusinessInput
 }
 
@@ -537,7 +537,7 @@ input BusinessUpdateWithoutEventsDataInput {
   contactNumber: String
   description: String
   owner: UserUpdateOneRequiredWithoutCompaniesInput
-  reviews: ReviewUpdateManyWithoutBusinessInput
+  posts: PostUpdateManyWithoutBusinessInput
   employees: UserUpdateManyWithoutEmploymentInput
 }
 
@@ -546,12 +546,12 @@ input BusinessUpdateWithoutOwnerDataInput {
   email: String
   contactNumber: String
   description: String
-  reviews: ReviewUpdateManyWithoutBusinessInput
+  posts: PostUpdateManyWithoutBusinessInput
   employees: UserUpdateManyWithoutEmploymentInput
   events: EventUpdateManyWithoutBusinessInput
 }
 
-input BusinessUpdateWithoutReviewsDataInput {
+input BusinessUpdateWithoutPostsDataInput {
   name: String
   email: String
   contactNumber: String
@@ -576,9 +576,9 @@ input BusinessUpsertWithoutEventsInput {
   create: BusinessCreateWithoutEventsInput!
 }
 
-input BusinessUpsertWithoutReviewsInput {
-  update: BusinessUpdateWithoutReviewsDataInput!
-  create: BusinessCreateWithoutReviewsInput!
+input BusinessUpsertWithoutPostsInput {
+  update: BusinessUpdateWithoutPostsDataInput!
+  create: BusinessCreateWithoutPostsInput!
 }
 
 input BusinessUpsertWithWhereUniqueWithoutEmployeesInput {
@@ -847,9 +847,9 @@ input BusinessWhereInput {
   """All values greater than or equal the given value."""
   createdAt_gte: DateTime
   owner: UserWhereInput
-  reviews_every: ReviewWhereInput
-  reviews_some: ReviewWhereInput
-  reviews_none: ReviewWhereInput
+  posts_every: PostWhereInput
+  posts_some: PostWhereInput
+  posts_none: PostWhereInput
   employees_every: UserWhereInput
   employees_some: UserWhereInput
   employees_none: UserWhereInput
@@ -870,7 +870,7 @@ type Comment implements Node {
   updatedAt: DateTime!
   createdAt: DateTime!
   author: User!
-  review: Review!
+  post: Post!
 }
 
 """A connection to a list of items."""
@@ -886,7 +886,7 @@ type CommentConnection {
 input CommentCreateInput {
   text: String!
   author: UserCreateOneWithoutCommentsInput!
-  review: ReviewCreateOneWithoutCommentsInput!
+  post: PostCreateOneWithoutCommentsInput!
 }
 
 input CommentCreateManyWithoutAuthorInput {
@@ -894,17 +894,17 @@ input CommentCreateManyWithoutAuthorInput {
   connect: [CommentWhereUniqueInput!]
 }
 
-input CommentCreateManyWithoutReviewInput {
-  create: [CommentCreateWithoutReviewInput!]
+input CommentCreateManyWithoutPostInput {
+  create: [CommentCreateWithoutPostInput!]
   connect: [CommentWhereUniqueInput!]
 }
 
 input CommentCreateWithoutAuthorInput {
   text: String!
-  review: ReviewCreateOneWithoutCommentsInput!
+  post: PostCreateOneWithoutCommentsInput!
 }
 
-input CommentCreateWithoutReviewInput {
+input CommentCreateWithoutPostInput {
   text: String!
   author: UserCreateOneWithoutCommentsInput!
 }
@@ -1113,7 +1113,7 @@ input CommentSubscriptionWhereInput {
 input CommentUpdateInput {
   text: String
   author: UserUpdateOneRequiredWithoutCommentsInput
-  review: ReviewUpdateOneRequiredWithoutCommentsInput
+  post: PostUpdateOneRequiredWithoutCommentsInput
 }
 
 input CommentUpdateManyDataInput {
@@ -1136,16 +1136,16 @@ input CommentUpdateManyWithoutAuthorInput {
   upsert: [CommentUpsertWithWhereUniqueWithoutAuthorInput!]
 }
 
-input CommentUpdateManyWithoutReviewInput {
-  create: [CommentCreateWithoutReviewInput!]
+input CommentUpdateManyWithoutPostInput {
+  create: [CommentCreateWithoutPostInput!]
   connect: [CommentWhereUniqueInput!]
   set: [CommentWhereUniqueInput!]
   disconnect: [CommentWhereUniqueInput!]
   delete: [CommentWhereUniqueInput!]
-  update: [CommentUpdateWithWhereUniqueWithoutReviewInput!]
+  update: [CommentUpdateWithWhereUniqueWithoutPostInput!]
   updateMany: [CommentUpdateManyWithWhereNestedInput!]
   deleteMany: [CommentScalarWhereInput!]
-  upsert: [CommentUpsertWithWhereUniqueWithoutReviewInput!]
+  upsert: [CommentUpsertWithWhereUniqueWithoutPostInput!]
 }
 
 input CommentUpdateManyWithWhereNestedInput {
@@ -1155,10 +1155,10 @@ input CommentUpdateManyWithWhereNestedInput {
 
 input CommentUpdateWithoutAuthorDataInput {
   text: String
-  review: ReviewUpdateOneRequiredWithoutCommentsInput
+  post: PostUpdateOneRequiredWithoutCommentsInput
 }
 
-input CommentUpdateWithoutReviewDataInput {
+input CommentUpdateWithoutPostDataInput {
   text: String
   author: UserUpdateOneRequiredWithoutCommentsInput
 }
@@ -1168,9 +1168,9 @@ input CommentUpdateWithWhereUniqueWithoutAuthorInput {
   data: CommentUpdateWithoutAuthorDataInput!
 }
 
-input CommentUpdateWithWhereUniqueWithoutReviewInput {
+input CommentUpdateWithWhereUniqueWithoutPostInput {
   where: CommentWhereUniqueInput!
-  data: CommentUpdateWithoutReviewDataInput!
+  data: CommentUpdateWithoutPostDataInput!
 }
 
 input CommentUpsertWithWhereUniqueWithoutAuthorInput {
@@ -1179,10 +1179,10 @@ input CommentUpsertWithWhereUniqueWithoutAuthorInput {
   create: CommentCreateWithoutAuthorInput!
 }
 
-input CommentUpsertWithWhereUniqueWithoutReviewInput {
+input CommentUpsertWithWhereUniqueWithoutPostInput {
   where: CommentWhereUniqueInput!
-  update: CommentUpdateWithoutReviewDataInput!
-  create: CommentCreateWithoutReviewInput!
+  update: CommentUpdateWithoutPostDataInput!
+  create: CommentCreateWithoutPostInput!
 }
 
 input CommentWhereInput {
@@ -1319,7 +1319,7 @@ input CommentWhereInput {
   """All values greater than or equal the given value."""
   createdAt_gte: DateTime
   author: UserWhereInput
-  review: ReviewWhereInput
+  post: PostWhereInput
 }
 
 input CommentWhereUniqueInput {
@@ -2209,32 +2209,32 @@ type Mutation {
   createUser(data: UserCreateInput!): User!
   createBusiness(data: BusinessCreateInput!): Business!
   createEvent(data: EventCreateInput!): Event!
-  createReview(data: ReviewCreateInput!): Review!
+  createPost(data: PostCreateInput!): Post!
   createComment(data: CommentCreateInput!): Comment!
   updateUser(data: UserUpdateInput!, where: UserWhereUniqueInput!): User
   updateBusiness(data: BusinessUpdateInput!, where: BusinessWhereUniqueInput!): Business
   updateEvent(data: EventUpdateInput!, where: EventWhereUniqueInput!): Event
-  updateReview(data: ReviewUpdateInput!, where: ReviewWhereUniqueInput!): Review
+  updatePost(data: PostUpdateInput!, where: PostWhereUniqueInput!): Post
   updateComment(data: CommentUpdateInput!, where: CommentWhereUniqueInput!): Comment
   deleteUser(where: UserWhereUniqueInput!): User
   deleteBusiness(where: BusinessWhereUniqueInput!): Business
   deleteEvent(where: EventWhereUniqueInput!): Event
-  deleteReview(where: ReviewWhereUniqueInput!): Review
+  deletePost(where: PostWhereUniqueInput!): Post
   deleteComment(where: CommentWhereUniqueInput!): Comment
   upsertUser(where: UserWhereUniqueInput!, create: UserCreateInput!, update: UserUpdateInput!): User!
   upsertBusiness(where: BusinessWhereUniqueInput!, create: BusinessCreateInput!, update: BusinessUpdateInput!): Business!
   upsertEvent(where: EventWhereUniqueInput!, create: EventCreateInput!, update: EventUpdateInput!): Event!
-  upsertReview(where: ReviewWhereUniqueInput!, create: ReviewCreateInput!, update: ReviewUpdateInput!): Review!
+  upsertPost(where: PostWhereUniqueInput!, create: PostCreateInput!, update: PostUpdateInput!): Post!
   upsertComment(where: CommentWhereUniqueInput!, create: CommentCreateInput!, update: CommentUpdateInput!): Comment!
   updateManyUsers(data: UserUpdateManyMutationInput!, where: UserWhereInput): BatchPayload!
   updateManyBusinesses(data: BusinessUpdateManyMutationInput!, where: BusinessWhereInput): BatchPayload!
   updateManyEvents(data: EventUpdateManyMutationInput!, where: EventWhereInput): BatchPayload!
-  updateManyReviews(data: ReviewUpdateManyMutationInput!, where: ReviewWhereInput): BatchPayload!
+  updateManyPosts(data: PostUpdateManyMutationInput!, where: PostWhereInput): BatchPayload!
   updateManyComments(data: CommentUpdateManyMutationInput!, where: CommentWhereInput): BatchPayload!
   deleteManyUsers(where: UserWhereInput): BatchPayload!
   deleteManyBusinesses(where: BusinessWhereInput): BatchPayload!
   deleteManyEvents(where: EventWhereInput): BatchPayload!
-  deleteManyReviews(where: ReviewWhereInput): BatchPayload!
+  deleteManyPosts(where: PostWhereInput): BatchPayload!
   deleteManyComments(where: CommentWhereInput): BatchPayload!
   executeRaw(database: PrismaDatabase, query: String!): Json!
 }
@@ -2266,35 +2266,7 @@ type PageInfo {
   endCursor: String
 }
 
-enum PrismaDatabase {
-  default
-}
-
-type Query {
-  users(where: UserWhereInput, orderBy: UserOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [User]!
-  businesses(where: BusinessWhereInput, orderBy: BusinessOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Business]!
-  events(where: EventWhereInput, orderBy: EventOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Event]!
-  reviews(where: ReviewWhereInput, orderBy: ReviewOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Review]!
-  comments(where: CommentWhereInput, orderBy: CommentOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Comment]!
-  user(where: UserWhereUniqueInput!): User
-  business(where: BusinessWhereUniqueInput!): Business
-  event(where: EventWhereUniqueInput!): Event
-  review(where: ReviewWhereUniqueInput!): Review
-  comment(where: CommentWhereUniqueInput!): Comment
-  usersConnection(where: UserWhereInput, orderBy: UserOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): UserConnection!
-  businessesConnection(where: BusinessWhereInput, orderBy: BusinessOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): BusinessConnection!
-  eventsConnection(where: EventWhereInput, orderBy: EventOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): EventConnection!
-  reviewsConnection(where: ReviewWhereInput, orderBy: ReviewOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): ReviewConnection!
-  commentsConnection(where: CommentWhereInput, orderBy: CommentOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): CommentConnection!
-
-  """Fetches an object given its ID"""
-  node(
-    """The ID of an object"""
-    id: ID!
-  ): Node
-}
-
-type Review implements Node {
+type Post implements Node {
   id: ID!
   title: String!
   body: String!
@@ -2307,73 +2279,73 @@ type Review implements Node {
 }
 
 """A connection to a list of items."""
-type ReviewConnection {
+type PostConnection {
   """Information to aid in pagination."""
   pageInfo: PageInfo!
 
   """A list of edges."""
-  edges: [ReviewEdge]!
-  aggregate: AggregateReview!
+  edges: [PostEdge]!
+  aggregate: AggregatePost!
 }
 
-input ReviewCreateInput {
+input PostCreateInput {
   title: String!
   body: String!
   published: Boolean!
-  author: UserCreateOneWithoutReviewsInput!
-  comments: CommentCreateManyWithoutReviewInput
-  business: BusinessCreateOneWithoutReviewsInput
+  author: UserCreateOneWithoutPostsInput!
+  comments: CommentCreateManyWithoutPostInput
+  business: BusinessCreateOneWithoutPostsInput
 }
 
-input ReviewCreateManyWithoutAuthorInput {
-  create: [ReviewCreateWithoutAuthorInput!]
-  connect: [ReviewWhereUniqueInput!]
+input PostCreateManyWithoutAuthorInput {
+  create: [PostCreateWithoutAuthorInput!]
+  connect: [PostWhereUniqueInput!]
 }
 
-input ReviewCreateManyWithoutBusinessInput {
-  create: [ReviewCreateWithoutBusinessInput!]
-  connect: [ReviewWhereUniqueInput!]
+input PostCreateManyWithoutBusinessInput {
+  create: [PostCreateWithoutBusinessInput!]
+  connect: [PostWhereUniqueInput!]
 }
 
-input ReviewCreateOneWithoutCommentsInput {
-  create: ReviewCreateWithoutCommentsInput
-  connect: ReviewWhereUniqueInput
+input PostCreateOneWithoutCommentsInput {
+  create: PostCreateWithoutCommentsInput
+  connect: PostWhereUniqueInput
 }
 
-input ReviewCreateWithoutAuthorInput {
+input PostCreateWithoutAuthorInput {
   title: String!
   body: String!
   published: Boolean!
-  comments: CommentCreateManyWithoutReviewInput
-  business: BusinessCreateOneWithoutReviewsInput
+  comments: CommentCreateManyWithoutPostInput
+  business: BusinessCreateOneWithoutPostsInput
 }
 
-input ReviewCreateWithoutBusinessInput {
+input PostCreateWithoutBusinessInput {
   title: String!
   body: String!
   published: Boolean!
-  author: UserCreateOneWithoutReviewsInput!
-  comments: CommentCreateManyWithoutReviewInput
+  author: UserCreateOneWithoutPostsInput!
+  comments: CommentCreateManyWithoutPostInput
 }
 
-input ReviewCreateWithoutCommentsInput {
+input PostCreateWithoutCommentsInput {
   title: String!
   body: String!
   published: Boolean!
-  author: UserCreateOneWithoutReviewsInput!
-  business: BusinessCreateOneWithoutReviewsInput
+  author: UserCreateOneWithoutPostsInput!
+  business: BusinessCreateOneWithoutPostsInput
 }
 
 """An edge in a connection."""
-type ReviewEdge {
+type PostEdge {
   """The item at the end of the edge."""
-  node: Review!
+  node: Post!
 
   """A cursor for use in pagination."""
   cursor: String!
 }
 
-enum ReviewOrderByInput {
+enum PostOrderByInput {
   id_ASC
   id_DESC
   title_ASC
@@ -2388,7 +2360,7 @@ enum ReviewOrderByInput {
   createdAt_DESC
 }
 
-type ReviewPreviousValues {
+type PostPreviousValues {
   id: ID!
   title: String!
   body: String!
@@ -2397,15 +2369,15 @@ type ReviewPreviousValues {
   createdAt: DateTime!
 }
 
-input ReviewScalarWhereInput {
+input PostScalarWhereInput {
   """Logical AND on all given filters."""
-  AND: [ReviewScalarWhereInput!]
+  AND: [PostScalarWhereInput!]
 
   """Logical OR on all given filters."""
-  OR: [ReviewScalarWhereInput!]
+  OR: [PostScalarWhereInput!]
 
   """Logical NOT on all given filters combined by AND."""
-  NOT: [ReviewScalarWhereInput!]
+  NOT: [PostScalarWhereInput!]
   id: ID
 
   """All values that are not equal to given value."""
@@ -2576,22 +2548,22 @@ input ReviewScalarWhereInput {
   createdAt_gte: DateTime
 }
 
-type ReviewSubscriptionPayload {
+type PostSubscriptionPayload {
   mutation: MutationType!
-  node: Review
+  node: Post
   updatedFields: [String!]
-  previousValues: ReviewPreviousValues
+  previousValues: PostPreviousValues
 }
 
-input ReviewSubscriptionWhereInput {
+input PostSubscriptionWhereInput {
   """Logical AND on all given filters."""
-  AND: [ReviewSubscriptionWhereInput!]
+  AND: [PostSubscriptionWhereInput!]
 
   """Logical OR on all given filters."""
-  OR: [ReviewSubscriptionWhereInput!]
+  OR: [PostSubscriptionWhereInput!]
 
   """Logical NOT on all given filters combined by AND."""
-  NOT: [ReviewSubscriptionWhereInput!]
+  NOT: [PostSubscriptionWhereInput!]
 
   """
   The subscription event gets dispatched when it's listed in mutation_in
@@ -2612,126 +2584,126 @@ input ReviewSubscriptionWhereInput {
   The subscription event gets only dispatched when some of the field names included in this list have been updated
   """
   updatedFields_contains_some: [String!]
-  node: ReviewWhereInput
+  node: PostWhereInput
 }
 
-input ReviewUpdateInput {
+input PostUpdateInput {
   title: String
   body: String
   published: Boolean
-  author: UserUpdateOneRequiredWithoutReviewsInput
-  comments: CommentUpdateManyWithoutReviewInput
-  business: BusinessUpdateOneWithoutReviewsInput
+  author: UserUpdateOneRequiredWithoutPostsInput
+  comments: CommentUpdateManyWithoutPostInput
+  business: BusinessUpdateOneWithoutPostsInput
 }
 
-input ReviewUpdateManyDataInput {
-  title: String
-  body: String
-  published: Boolean
-}
-
-input ReviewUpdateManyMutationInput {
+input PostUpdateManyDataInput {
   title: String
   body: String
   published: Boolean
 }
 
-input ReviewUpdateManyWithoutAuthorInput {
-  create: [ReviewCreateWithoutAuthorInput!]
-  connect: [ReviewWhereUniqueInput!]
-  set: [ReviewWhereUniqueInput!]
-  disconnect: [ReviewWhereUniqueInput!]
-  delete: [ReviewWhereUniqueInput!]
-  update: [ReviewUpdateWithWhereUniqueWithoutAuthorInput!]
-  updateMany: [ReviewUpdateManyWithWhereNestedInput!]
-  deleteMany: [ReviewScalarWhereInput!]
-  upsert: [ReviewUpsertWithWhereUniqueWithoutAuthorInput!]
-}
-
-input ReviewUpdateManyWithoutBusinessInput {
-  create: [ReviewCreateWithoutBusinessInput!]
-  connect: [ReviewWhereUniqueInput!]
-  set: [ReviewWhereUniqueInput!]
-  disconnect: [ReviewWhereUniqueInput!]
-  delete: [ReviewWhereUniqueInput!]
-  update: [ReviewUpdateWithWhereUniqueWithoutBusinessInput!]
-  updateMany: [ReviewUpdateManyWithWhereNestedInput!]
-  deleteMany: [ReviewScalarWhereInput!]
-  upsert: [ReviewUpsertWithWhereUniqueWithoutBusinessInput!]
-}
-
-input ReviewUpdateManyWithWhereNestedInput {
-  where: ReviewScalarWhereInput!
-  data: ReviewUpdateManyDataInput!
-}
-
-input ReviewUpdateOneRequiredWithoutCommentsInput {
-  create: ReviewCreateWithoutCommentsInput
-  connect: ReviewWhereUniqueInput
-  update: ReviewUpdateWithoutCommentsDataInput
-  upsert: ReviewUpsertWithoutCommentsInput
-}
-
-input ReviewUpdateWithoutAuthorDataInput {
+input PostUpdateManyMutationInput {
   title: String
   body: String
   published: Boolean
-  comments: CommentUpdateManyWithoutReviewInput
-  business: BusinessUpdateOneWithoutReviewsInput
 }
 
-input ReviewUpdateWithoutBusinessDataInput {
+input PostUpdateManyWithoutAuthorInput {
+  create: [PostCreateWithoutAuthorInput!]
+  connect: [PostWhereUniqueInput!]
+  set: [PostWhereUniqueInput!]
+  disconnect: [PostWhereUniqueInput!]
+  delete: [PostWhereUniqueInput!]
+  update: [PostUpdateWithWhereUniqueWithoutAuthorInput!]
+  updateMany: [PostUpdateManyWithWhereNestedInput!]
+  deleteMany: [PostScalarWhereInput!]
+  upsert: [PostUpsertWithWhereUniqueWithoutAuthorInput!]
+}
+
+input PostUpdateManyWithoutBusinessInput {
+  create: [PostCreateWithoutBusinessInput!]
+  connect: [PostWhereUniqueInput!]
+  set: [PostWhereUniqueInput!]
+  disconnect: [PostWhereUniqueInput!]
+  delete: [PostWhereUniqueInput!]
+  update: [PostUpdateWithWhereUniqueWithoutBusinessInput!]
+  updateMany: [PostUpdateManyWithWhereNestedInput!]
+  deleteMany: [PostScalarWhereInput!]
+  upsert: [PostUpsertWithWhereUniqueWithoutBusinessInput!]
+}
+
+input PostUpdateManyWithWhereNestedInput {
+  where: PostScalarWhereInput!
+  data: PostUpdateManyDataInput!
+}
+
+input PostUpdateOneRequiredWithoutCommentsInput {
+  create: PostCreateWithoutCommentsInput
+  connect: PostWhereUniqueInput
+  update: PostUpdateWithoutCommentsDataInput
+  upsert: PostUpsertWithoutCommentsInput
+}
+
+input PostUpdateWithoutAuthorDataInput {
   title: String
   body: String
   published: Boolean
-  author: UserUpdateOneRequiredWithoutReviewsInput
-  comments: CommentUpdateManyWithoutReviewInput
+  comments: CommentUpdateManyWithoutPostInput
+  business: BusinessUpdateOneWithoutPostsInput
 }
 
-input ReviewUpdateWithoutCommentsDataInput {
+input PostUpdateWithoutBusinessDataInput {
   title: String
   body: String
   published: Boolean
-  author: UserUpdateOneRequiredWithoutReviewsInput
-  business: BusinessUpdateOneWithoutReviewsInput
+  author: UserUpdateOneRequiredWithoutPostsInput
+  comments: CommentUpdateManyWithoutPostInput
 }
 
-input ReviewUpdateWithWhereUniqueWithoutAuthorInput {
-  where: ReviewWhereUniqueInput!
-  data: ReviewUpdateWithoutAuthorDataInput!
+input PostUpdateWithoutCommentsDataInput {
+  title: String
+  body: String
+  published: Boolean
+  author: UserUpdateOneRequiredWithoutPostsInput
+  business: BusinessUpdateOneWithoutPostsInput
 }
 
-input ReviewUpdateWithWhereUniqueWithoutBusinessInput {
-  where: ReviewWhereUniqueInput!
-  data: ReviewUpdateWithoutBusinessDataInput!
+input PostUpdateWithWhereUniqueWithoutAuthorInput {
+  where: PostWhereUniqueInput!
+  data: PostUpdateWithoutAuthorDataInput!
 }
 
-input ReviewUpsertWithoutCommentsInput {
-  update: ReviewUpdateWithoutCommentsDataInput!
-  create: ReviewCreateWithoutCommentsInput!
+input PostUpdateWithWhereUniqueWithoutBusinessInput {
+  where: PostWhereUniqueInput!
+  data: PostUpdateWithoutBusinessDataInput!
 }
 
-input ReviewUpsertWithWhereUniqueWithoutAuthorInput {
-  where: ReviewWhereUniqueInput!
-  update: ReviewUpdateWithoutAuthorDataInput!
-  create: ReviewCreateWithoutAuthorInput!
+input PostUpsertWithoutCommentsInput {
+  update: PostUpdateWithoutCommentsDataInput!
+  create: PostCreateWithoutCommentsInput!
 }
 
-input ReviewUpsertWithWhereUniqueWithoutBusinessInput {
-  where: ReviewWhereUniqueInput!
-  update: ReviewUpdateWithoutBusinessDataInput!
-  create: ReviewCreateWithoutBusinessInput!
+input PostUpsertWithWhereUniqueWithoutAuthorInput {
+  where: PostWhereUniqueInput!
+  update: PostUpdateWithoutAuthorDataInput!
+  create: PostCreateWithoutAuthorInput!
 }
 
-input ReviewWhereInput {
+input PostUpsertWithWhereUniqueWithoutBusinessInput {
+  where: PostWhereUniqueInput!
+  update: PostUpdateWithoutBusinessDataInput!
+  create: PostCreateWithoutBusinessInput!
+}
+
+input PostWhereInput {
   """Logical AND on all given filters."""
-  AND: [ReviewWhereInput!]
+  AND: [PostWhereInput!]
 
   """Logical OR on all given filters."""
-  OR: [ReviewWhereInput!]
+  OR: [PostWhereInput!]
 
   """Logical NOT on all given filters combined by AND."""
-  NOT: [ReviewWhereInput!]
+  NOT: [PostWhereInput!]
   id: ID
 
   """All values that are not equal to given value."""
@@ -2907,15 +2879,43 @@ input ReviewWhereInput {
   business: BusinessWhereInput
 }
 
-input ReviewWhereUniqueInput {
+input PostWhereUniqueInput {
   id: ID
+}
+
+enum PrismaDatabase {
+  default
+}
+
+type Query {
+  users(where: UserWhereInput, orderBy: UserOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [User]!
+  businesses(where: BusinessWhereInput, orderBy: BusinessOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Business]!
+  events(where: EventWhereInput, orderBy: EventOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Event]!
+  posts(where: PostWhereInput, orderBy: PostOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Post]!
+  comments(where: CommentWhereInput, orderBy: CommentOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Comment]!
+  user(where: UserWhereUniqueInput!): User
+  business(where: BusinessWhereUniqueInput!): Business
+  event(where: EventWhereUniqueInput!): Event
+  post(where: PostWhereUniqueInput!): Post
+  comment(where: CommentWhereUniqueInput!): Comment
+  usersConnection(where: UserWhereInput, orderBy: UserOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): UserConnection!
+  businessesConnection(where: BusinessWhereInput, orderBy: BusinessOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): BusinessConnection!
+  eventsConnection(where: EventWhereInput, orderBy: EventOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): EventConnection!
+  postsConnection(where: PostWhereInput, orderBy: PostOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): PostConnection!
+  commentsConnection(where: CommentWhereInput, orderBy: CommentOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): CommentConnection!
+
+  """Fetches an object given its ID"""
+  node(
+    """The ID of an object"""
+    id: ID!
+  ): Node
 }
 
 type Subscription {
   user(where: UserSubscriptionWhereInput): UserSubscriptionPayload
   business(where: BusinessSubscriptionWhereInput): BusinessSubscriptionPayload
   event(where: EventSubscriptionWhereInput): EventSubscriptionPayload
-  review(where: ReviewSubscriptionWhereInput): ReviewSubscriptionPayload
+  post(where: PostSubscriptionWhereInput): PostSubscriptionPayload
   comment(where: CommentSubscriptionWhereInput): CommentSubscriptionPayload
 }
 
@@ -2928,7 +2928,7 @@ type User implements Node {
   password: String!
   updatedAt: DateTime!
   createdAt: DateTime!
-  reviews(where: ReviewWhereInput, orderBy: ReviewOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Review!]
+  posts(where: PostWhereInput, orderBy: PostOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Post!]
   comments(where: CommentWhereInput, orderBy: CommentOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Comment!]
   employment(where: BusinessWhereInput, orderBy: BusinessOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Business!]
   companies(where: BusinessWhereInput, orderBy: BusinessOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Business!]
@@ -2950,7 +2950,7 @@ input UserCreateInput {
   contactNumber: String
   age: Int
   password: String!
-  reviews: ReviewCreateManyWithoutAuthorInput
+  posts: PostCreateManyWithoutAuthorInput
   comments: CommentCreateManyWithoutAuthorInput
   employment: BusinessCreateManyWithoutEmployeesInput
   companies: BusinessCreateManyWithoutOwnerInput
@@ -2971,8 +2971,8 @@ input UserCreateOneWithoutCompaniesInput {
   connect: UserWhereUniqueInput
 }
 
-input UserCreateOneWithoutReviewsInput {
-  create: UserCreateWithoutReviewsInput
+input UserCreateOneWithoutPostsInput {
+  create: UserCreateWithoutPostsInput
   connect: UserWhereUniqueInput
 }
 
@@ -2982,7 +2982,7 @@ input UserCreateWithoutCommentsInput {
   contactNumber: String
   age: Int
   password: String!
-  reviews: ReviewCreateManyWithoutAuthorInput
+  posts: PostCreateManyWithoutAuthorInput
   employment: BusinessCreateManyWithoutEmployeesInput
   companies: BusinessCreateManyWithoutOwnerInput
 }
@@ -2993,7 +2993,7 @@ input UserCreateWithoutCompaniesInput {
   contactNumber: String
   age: Int
   password: String!
-  reviews: ReviewCreateManyWithoutAuthorInput
+  posts: PostCreateManyWithoutAuthorInput
   comments: CommentCreateManyWithoutAuthorInput
   employment: BusinessCreateManyWithoutEmployeesInput
 }
@@ -3004,12 +3004,12 @@ input UserCreateWithoutEmploymentInput {
   contactNumber: String
   age: Int
   password: String!
-  reviews: ReviewCreateManyWithoutAuthorInput
+  posts: PostCreateManyWithoutAuthorInput
   comments: CommentCreateManyWithoutAuthorInput
   companies: BusinessCreateManyWithoutOwnerInput
 }
 
-input UserCreateWithoutReviewsInput {
+input UserCreateWithoutPostsInput {
   name: String!
   email: String!
   contactNumber: String
@@ -3381,7 +3381,7 @@ input UserUpdateInput {
   contactNumber: String
   age: Int
   password: String
-  reviews: ReviewUpdateManyWithoutAuthorInput
+  posts: PostUpdateManyWithoutAuthorInput
   comments: CommentUpdateManyWithoutAuthorInput
   employment: BusinessUpdateManyWithoutEmployeesInput
   companies: BusinessUpdateManyWithoutOwnerInput
@@ -3434,11 +3434,11 @@ input UserUpdateOneRequiredWithoutCompaniesInput {
   upsert: UserUpsertWithoutCompaniesInput
 }
 
-input UserUpdateOneRequiredWithoutReviewsInput {
-  create: UserCreateWithoutReviewsInput
+input UserUpdateOneRequiredWithoutPostsInput {
+  create: UserCreateWithoutPostsInput
   connect: UserWhereUniqueInput
-  update: UserUpdateWithoutReviewsDataInput
-  upsert: UserUpsertWithoutReviewsInput
+  update: UserUpdateWithoutPostsDataInput
+  upsert: UserUpsertWithoutPostsInput
 }
 
 input UserUpdateWithoutCommentsDataInput {
@@ -3447,7 +3447,7 @@ input UserUpdateWithoutCommentsDataInput {
   contactNumber: String
   age: Int
   password: String
-  reviews: ReviewUpdateManyWithoutAuthorInput
+  posts: PostUpdateManyWithoutAuthorInput
   employment: BusinessUpdateManyWithoutEmployeesInput
   companies: BusinessUpdateManyWithoutOwnerInput
 }
@@ -3458,7 +3458,7 @@ input UserUpdateWithoutCompaniesDataInput {
   contactNumber: String
   age: Int
   password: String
-  reviews: ReviewUpdateManyWithoutAuthorInput
+  posts: PostUpdateManyWithoutAuthorInput
   comments: CommentUpdateManyWithoutAuthorInput
   employment: BusinessUpdateManyWithoutEmployeesInput
 }
@@ -3469,12 +3469,12 @@ input UserUpdateWithoutEmploymentDataInput {
   contactNumber: String
   age: Int
   password: String
-  reviews: ReviewUpdateManyWithoutAuthorInput
+  posts: PostUpdateManyWithoutAuthorInput
   comments: CommentUpdateManyWithoutAuthorInput
   companies: BusinessUpdateManyWithoutOwnerInput
 }
 
-input UserUpdateWithoutReviewsDataInput {
+input UserUpdateWithoutPostsDataInput {
   name: String
   email: String
   contactNumber: String
@@ -3500,9 +3500,9 @@ input UserUpsertWithoutCompaniesInput {
   create: UserCreateWithoutCompaniesInput!
 }
 
-input UserUpsertWithoutReviewsInput {
-  update: UserUpdateWithoutReviewsDataInput!
-  create: UserCreateWithoutReviewsInput!
+input UserUpsertWithoutPostsInput {
+  update: UserUpdateWithoutPostsDataInput!
+  create: UserCreateWithoutPostsInput!
 }
 
 input UserUpsertWithWhereUniqueWithoutEmploymentInput {
@@ -3786,9 +3786,9 @@ input UserWhereInput {
 
   """All values greater than or equal the given value."""
   createdAt_gte: DateTime
-  reviews_every: ReviewWhereInput
-  reviews_some: ReviewWhereInput
-  reviews_none: ReviewWhereInput
+  posts_every: PostWhereInput
+  posts_some: PostWhereInput
+  posts_none: PostWhereInput
   comments_every: CommentWhereInput
   comments_some: CommentWhereInput
   comments_none: CommentWhereInput

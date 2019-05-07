@@ -3,7 +3,7 @@ import { connectRouter } from 'connected-react-router'
 import thunk from 'redux-thunk'
 import authReducer from '../reducers/auth'
 import userReducer from '../reducers/users'
-import reviewReducer from '../reducers/reviews'
+import postReducer from '../reducers/posts'
 import commentReducer from '../reducers/comments'
 import { history } from '../routers/AppRouter'
 
@@ -14,7 +14,7 @@ export default () => {
         combineReducers({
             auth: authReducer,
             user: userReducer,
-            review: reviewReducer,
+            post: postReducer,
             comment: commentReducer
         }),
         composeEnhancers(connectRouter(history), applyMiddleware(thunk))

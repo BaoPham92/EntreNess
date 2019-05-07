@@ -6,7 +6,7 @@ export const UsersQuery = gql`
         users {
             id
             name
-            reviews {
+            posts {
                 id
                 title
                 body
@@ -32,7 +32,7 @@ export const UserProfileQuery = gql`
             password
             createdAt
             updatedAt
-            reviews {
+            posts {
                 id
                 title
                 body

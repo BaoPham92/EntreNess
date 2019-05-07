@@ -28,7 +28,7 @@ const Query = {
             }
         }, info)
     },
-    reviews(parent, args, {
+    posts(parent, args, {
         prisma
     }, info) {
         const opArgs = {}
@@ -49,9 +49,9 @@ const Query = {
             }
         }
 
-        return prisma.query.reviews(opArgs, info)
+        return prisma.query.posts(opArgs, info)
     },
-    review(parent, args, {
+    post(parent, args, {
         prisma
     }, info) {
         const opArgs = {}
@@ -61,7 +61,7 @@ const Query = {
                 id: args.id
             }
         }
-        return prisma.query.review(opArgs, info)
+        return prisma.query.post(opArgs, info)
     },
     comments(parent, args, {
         prisma

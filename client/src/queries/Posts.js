@@ -1,9 +1,9 @@
 import gql from 'graphql-tag'
 
-// Queries for User Reviews.
-export const QueryReviews = gql`
-    query Reviews($query: String) {
-        reviews(query: $query) {
+// Queries for User Posts.
+export const QueryPosts = gql`
+    query Posts($query: String) {
+        posts(query: $query) {
             id
             title
             body
@@ -19,7 +19,7 @@ export const QueryReviews = gql`
                     id
                     name
                     createdAt
-                    reviews {
+                    posts {
                         id
                     }
                     comments {
@@ -39,7 +39,7 @@ export const QueryReviews = gql`
                 id
                 name
                 createdAt
-                reviews {
+                posts {
                     id
                 }
                 comments {
@@ -58,9 +58,9 @@ export const QueryReviews = gql`
     }
 `
 
-export const QueryReview = gql`
-    query Review($id: ID, $after: String) {
-        review(id: $id) {
+export const QueryPost = gql`
+    query Post($id: ID, $after: String) {
+        post(id: $id) {
             id
             title
             body
@@ -82,7 +82,7 @@ export const QueryReview = gql`
                             name
                             createdAt
                             updatedAt
-                            reviews {
+                            posts {
                                 id
                             }
                             comments {
@@ -109,7 +109,7 @@ export const QueryReview = gql`
                 id
                 name
                 createdAt
-                reviews {
+                posts {
                     id
                 }
                 comments {
@@ -128,29 +128,29 @@ export const QueryReview = gql`
     }
 `
 
-export const QueryReviewProps = {
+export const QueryPostProps = {
     props: ({ data, data: { networkStatus, fetchMore } }) => ({
         data: data,
-        review: data.review,
-        connection: networkStatus === 7 && data.review.commentsConnection,
+        post: data.post,
+        connection: networkStatus === 7 && data.post.commentsConnection,
         loadMore: () =>
             fetchMore({
                 variables: {
-                    after: data.review.commentsConnection.pageInfo.endCursor
+                    after: data.post.commentsConnection.pageInfo.endCursor
                 },
                 updateQuery: (prevResult, { fetchMoreResult }) => {
                     return {
-                        review: {
-                            ...prevResult.review,
+                        post: {
+                            ...prevResult.post,
                             commentsConnection: {
-                                ...prevResult.review.commentsConnection,
+                                ...prevResult.post.commentsConnection,
                                 edges: [
-                                    ...prevResult.review.commentsConnection.edges,
-                                    ...fetchMoreResult.review.commentsConnection.edges
+                                    ...prevResult.post.commentsConnection.edges,
+                                    ...fetchMoreResult.post.commentsConnection.edges
                                 ],
                                 pageInfo: {
-                                    ...prevResult.review.commentsConnection.pageInfo,
-                                    ...fetchMoreResult.review.commentsConnection.pageInfo
+                                    ...prevResult.post.commentsConnection.pageInfo,
+                                    ...fetchMoreResult.post.commentsConnection.pageInfo
                                 }
                             }
                         }

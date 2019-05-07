@@ -2,40 +2,37 @@ import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
 import { graphql } from 'react-apollo'
-import { QueryReviews } from '../../queries/Reviews'
+import { QueryPosts } from '../../queries/Posts'
 import { checkAuth } from '../../actions/auth'
 
-export class Reviews extends Component {
+export class Posts extends Component {
 
     componentDidMount() {
         this.props.checkAuth()
     }
 
     render() {
-        const { data: { loading, error, reviews, history } } = this.props
+        const { data: { loading, posts, history } } = this.props
         console.log(this.props)
 
-        if (loading) return <span>Loading</span>
-        if (error) return <span>Error</span>
-
-        return (
+        return loading ? null : (
             <div className="container__main">
                 <div className="template__main">
 
                     <div className="container__intro">
                         <section className="reviews--section-intro">
-                            <h2 className="reviews--title">Reviews</h2>
+                            <h2 className="reviews--title">Posts</h2>
                         </section>
                         <div className="reviews__create-review">
-                            <Link to="/CreateReview">
-                            CreateReview
+                            <Link to="/CreatePost">
+                            Create Post
                             </Link>
                         </div>
                     </div>
 
                     <div className="container__sub">
-                        {reviews.map((review, index) => (
-                            review.published &&
+                        {posts.map((post, index) => (
+                            post.published &&
                             <section className="reviews--section-main" key={index}>
 
                                 <div className="reviews__content">
@@ -45,15 +42,15 @@ export class Reviews extends Component {
                                     </div>
 
                                     <article className="reviews__article">
-                                        <Link to={`/ReviewItem/${review.id}`}>
-                                            <h3>{review.title}</h3>
+                                        <Link to={`/ReviewItem/${post.id}`}>
+                                            <h3>{post.title}</h3>
                                         </Link>
 
-                                        <span>{review.author.name}</span>
+                                        <span>{post.author.name}</span>
                                     </article>
 
                                     <aside className="reviews__aside">
-                                        <span>{review.comments.length}</span>
+                                        <span>{post.comments.length}</span>
                                     </aside>
                                 </div>
                             </section>
@@ -65,15 +62,15 @@ export class Reviews extends Component {
     }
 }
 
-const mapQueriesToProps = graphql(QueryReviews, {
+const mapQueriesToProps = graphql(QueryPosts, {
     options: (props) => ({
         variables: { query: props.match.params.id }
     })
 })
-const ReviewsWithQuery = mapQueriesToProps(Reviews)
+const PostsWithQuery = mapQueriesToProps(Posts)
 
 const mapDispatchToProps = (dispatch) => ({
     checkAuth: () => dispatch(checkAuth())
 })
 
-export default connect(undefined, mapDispatchToProps)(ReviewsWithQuery)
+export default connect(undefined, mapDispatchToProps)(PostsWithQuery)

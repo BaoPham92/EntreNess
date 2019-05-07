@@ -1,8 +1,8 @@
-import { QueryReviews } from '../src/queries/Reviews'
+import { QueryPosts } from '../src/queries/Posts'
 import { UsersQuery, UserProfileQuery } from '../src/queries/Users'
 
 export const refetchQueries = [
-    {query: 'QueryReviews'},
+    {query: 'QueryPosts'},
     {query: 'UsersQuery'},
     {query: 'UserProfileQuery'}
 ]

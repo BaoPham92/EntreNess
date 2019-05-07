@@ -2,8 +2,8 @@
 
 type Query {
     users(query: String, first: Int, skip: Int, after: String): [User!]!
-    reviews(query: String, first: Int, skip: Int, after: String): [Review!]!
-    review(query: String, id: ID): Review!
+    posts(query: String, first: Int, skip: Int, after: String): [Post!]!
+    post(query: String, id: ID): Post!
     businesses(query: String): [Business!]!
     events(query: String): [Event!]!
     comments(first: Int, skip: Int, after: String): [Comment!]!
@@ -16,9 +16,9 @@ type Mutation {
     login(data: LoginUserInput!): AuthPayload!
     deleteUser: User!
     updateUser(data: UpdateUserInput!): User!
-    createReview(data: CreateReviewInput!): Review!
-    deleteReview(id: ID!): Review!
-    updateReview(id: ID!, data: UpdateReviewInput!): Review!
+    createPost(data: CreatePostInput!): Post!
+    deletePost(id: ID!): Post!
+    updatePost(id: ID!, data: UpdatePostInput!): Post!
     createComment(data: CreateCommentInput!): Comment!
     deleteComment(id: ID!): Comment!
     updateComment(id: ID!, data: UpdateCommentInput!): Comment!
@@ -92,13 +92,13 @@ input UpdateEventInput {
     location: String
 }
 
-input CreateReviewInput {
+input CreatePostInput {
     title: String!
     body: String!
     published: Boolean!
 }
 
-input UpdateReviewInput {
+input UpdatePostInput {
     title: String
     body: String
     published: Boolean
@@ -106,7 +106,7 @@ input UpdateReviewInput {
 
 input CreateCommentInput {
     text: String!
-    review: ID!
+    post: ID!
 }
 
 input UpdateCommentInput {
@@ -122,7 +122,7 @@ type User {
     password: String!
     updatedAt: String!
     createdAt: String!
-    reviews: [Review!]!
+    posts: [Post!]!
     companies: [Business]!
     employment: [Business!]!
     comments: [Comment!]!
@@ -137,11 +137,12 @@ type Business {
     updatedAt: String!
     createdAt: String!
     owner: User!
-    reviews: [Review!]
+    posts: [Post!]!
     employees: [User!]!
     events: [Event!]!
 }
 
+# Keep
 type Event {
     id: ID!
     title: String!
@@ -155,7 +156,8 @@ type Event {
     business: Business!
 }
 
-type Review {
+# Revise to Posts
+type Post {
     id: ID!
     title: String!
     body: String!
@@ -174,7 +176,7 @@ type Comment {
     updatedAt: String!
     createdAt: String!
     author: User!
-    review: Review!
+    post: Post!
 }
 
 enum MutationType {

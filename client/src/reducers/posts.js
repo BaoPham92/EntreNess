@@ -1,22 +1,22 @@
-// Reducer for Reviews
+// Reducer for Posts
 
-const reviewsDefaultState = {
+const postsDefaultState = {
     title: undefined,
     body: undefined,
     published: undefined
 }
 
-export default (state = reviewsDefaultState, action) => {
+export default (state = postsDefaultState, action) => {
     switch(action.type) {
-        case 'CREATE_REVIEW': 
+        case 'CREATE_POST': 
         return {
             ...state,
-            ...action.reviewInfo
+            ...action.postInfo
         }
-        case 'UPDATE_REVIEW': 
+        case 'UPDATE_POST': 
         return {
             ...state,
-            ...action.reviewInfo
+            ...action.postInfo
         }
         default: 
             return state

@@ -63,8 +63,8 @@ export class UserProfile extends Component {
                             <div className="user-profile--grid-main">
                                 <div className="user-profile--section-sub">
                                     <div className="user-profile--grid-main">
-                                        <dt>Reviews:</dt>
-                                        <dd><Link to={`/Reviews/${self.id}`}>{self.reviews.length} Reviews made.</Link></dd>
+                                        <dt>Posts:</dt>
+                                        <dd><Link to={`/Posts/${self.id}`}>{self.posts.length} Posts made.</Link></dd>
                                         <dt>Comments:</dt>
                                         <dd><Link to={`/Comments/${self.id}`}>{self.comments.length} Comments made.</Link></dd>
                                     </div>

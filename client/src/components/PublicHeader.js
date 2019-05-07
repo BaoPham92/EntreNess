@@ -24,7 +24,7 @@ const PublicHeader = (props) => (
 
         <div className="nav-menu">
             <NavLink to="/Users">Users</NavLink>
-            <NavLink to="/Reviews">Reviews</NavLink>
+            <NavLink to="/Posts">Posts</NavLink>
         </div>
     </div>
 )

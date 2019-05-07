@@ -4,26 +4,26 @@ import { withApollo } from 'react-apollo'
 
 export const Form = (props) => {
 
-    const { mutate, remove, review, user } = props
+    const { mutate, remove, post, user } = props
     const match = props.match
-    const urlMatched = props.match.path === '/CreateReview'
+    const urlMatched = props.match.path === '/CreatePost'
 
     return (
         <form
             onSubmit={
                 (e) => {
                     e.preventDefault()
-                    review.published = JSON.parse(review.published)
+                    post.published = JSON.parse(post.published)
 
                     const hasId = props.id
                     const validId =
-                        hasId ? { variables: { id: hasId, data: review } }
-                            : { variables: { data: review } }
+                        hasId ? { variables: { id: hasId, data: post } }
+                            : { variables: { data: post } }
 
                     mutate(validId)
                         .then((res) => {
                             console.log(res)
-                            return props.history.replace('/Reviews')
+                            return props.history.replace('/Posts')
                         })
                         .catch(e => console.log(e))
                 }
@@ -32,12 +32,12 @@ export const Form = (props) => {
             <div className="update--grid">
 
                 <section className="update--head">
-                    <h3> {urlMatched ? 'Create' : 'Edit'} Review</h3>
+                    <h3> {urlMatched ? 'Create' : 'Edit'} post</h3>
                 </section>
 
                 <div className="update--username">
                     <strong>User:</strong>
-                    <span>{urlMatched ? user.name : review.author.name}</span>
+                    <span>{urlMatched ? user.name : post.author.name}</span>
                 </div>
 
                 <div className="update--subject">
@@ -47,7 +47,7 @@ export const Form = (props) => {
                         type="text"
                         name="title"
                         placeholder="title"
-                        defaultValue={urlMatched ? '' : review.title}
+                        defaultValue={urlMatched ? '' : post.title}
                         required={urlMatched && true}
                         onChange={props.handleChange}
                     />
@@ -62,7 +62,7 @@ export const Form = (props) => {
                         rows="15"
                         name="body"
                         placeholder="body"
-                        defaultValue={urlMatched ? '' : review.body}
+                        defaultValue={urlMatched ? '' : post.body}
                         required={urlMatched && true}
                         onChange={props.handleChange}
                     />
@@ -82,7 +82,7 @@ export const Form = (props) => {
                     </select>
 
                     <button className="btn__main">
-                        {urlMatched ? 'Create Review' : 'Update'}
+                        {urlMatched ? 'Create Post' : 'Update'}
                     </button>
 
                     <button
@@ -91,11 +91,11 @@ export const Form = (props) => {
                         onClick={
                             () => {
                                 confirm('Are you sure you want to delete?')
-                                remove({ variables: { id: review.id } })
+                                remove({ variables: { id: post.id } })
                                     .then(() => history.replace('/UserProfile'))
                             }
                         }
-                    >Delete Review?</button>
+                    >Delete post?</button>
                 </div>
             </div>
         </form>

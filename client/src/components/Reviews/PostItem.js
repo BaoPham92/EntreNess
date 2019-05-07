@@ -1,12 +1,12 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { graphql, compose } from 'react-apollo'
-import { ReviewContent } from './Utils/ReviewContent'
+import { ReviewContent } from './Utils/PostContent'
 import CommentContent from './Utils/CommentContent'
-import { QueryReview, QueryReviewProps } from '../../queries/Reviews'
+import { QueryPost, QueryPostProps } from '../../queries/Posts'
 import { checkAuth } from '../../actions/auth'
 
-export class ReviewItem extends Component {
+export class PostItem extends Component {
 
     componentDidMount() {
         this.props.checkAuth()
@@ -15,7 +15,7 @@ export class ReviewItem extends Component {
     render() {
 
         const {
-            data: { loading }, review, auth
+            data: { loading }, post, auth
         } = this.props
 
         return loading ? null : (
@@ -24,11 +24,11 @@ export class ReviewItem extends Component {
                     <section className="reviewItem--section-main">
 
                         <div className="reviewItem--section-intro">
-                            <h2 className="reviewItem--title">{review.title}</h2>
+                            <h2 className="reviewItem--title">{post.title}</h2>
                         </div>
 
-                        <ReviewContent 
-                            review={review}
+                        <PostContent 
+                            post={post}
                             auth={auth}
                         />
 
@@ -40,8 +40,8 @@ export class ReviewItem extends Component {
     }
 }
 
-const mapQueriesToProps = graphql(QueryReview, QueryReviewProps)
-const ReviewItemWithQuery = mapQueriesToProps(ReviewItem)
+const mapQueriesToProps = graphql(QueryPost, QueryPostProps)
+const PostItemWithQuery = mapQueriesToProps(PostItem)
 
 const mapDispatchToProps = (dispatch) => ({
     startCreateComment: (commentData) => dispatch(startCreateComment(commentData)),
@@ -54,4 +54,4 @@ const mapStateToProps = (state) => {
     }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(ReviewItemWithQuery)
+export default connect(mapStateToProps, mapDispatchToProps)(PostItemWithQuery)

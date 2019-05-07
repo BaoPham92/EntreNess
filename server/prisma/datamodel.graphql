@@ -7,7 +7,7 @@ type User {
   password: String!
   updatedAt: DateTime!
   createdAt: DateTime!
-  reviews: [Review!]! @relation(name: "ReviewToUser", onDelete: SET_NULL)
+  posts: [Post!] @relation(name: "PostToUser", onDelete: SET_NULL)
   comments: [Comment!]! @relation(name: "UserToComments", onDelete: SET_NULL)
   employment: [Business!]! @relation(name: "BusinessToUsers", onDelete: SET_NULL)
   companies: [Business]! @relation(name: "OwnerToBusiness", onDelete: SET_NULL)
@@ -22,7 +22,7 @@ type Business {
   updatedAt: DateTime!
   createdAt: DateTime!
   owner: User! @relation(name: "OwnerToBusiness", onDelete: SET_NULL)
-  reviews: [Review!] @relation(name: "BusinessToReviews", onDelete: CASCADE)
+  posts: [Post!] @relation(name: "BusinessToPosts", onDelete: CASCADE)
   employees: [User!]! @relation(name: "BusinessToUsers", onDelete: SET_NULL)
   events: [Event!]! @relation(name: "BusinessToEvents", onDelete: SET_NULL)
 }
@@ -40,16 +40,16 @@ type Event {
   business: Business! @relation(name: "BusinessToEvents", onDelete: SET_NULL)
 }
 
-type Review {
+type Post {
     id: ID! @unique
     title: String!
     body: String!
     published: Boolean!
     updatedAt: DateTime!
     createdAt: DateTime!
-    author: User! @relation(name: "ReviewToUser", onDelete: SET_NULL)
-    comments: [Comment!]! @relation(name: "ReviewToComments", onDelete: CASCADE)
-    business: Business  @relation(name: "BusinessToReviews", onDelete: SET_NULL)
+    author: User! @relation(name: "PostToUser", onDelete: SET_NULL)
+    comments: [Comment!]! @relation(name: "PostToComments", onDelete: CASCADE)
+    business: Business  @relation(name: "BusinessToPosts", onDelete: SET_NULL)
 }
 
 type Comment {
@@ -58,5 +58,5 @@ type Comment {
   updatedAt: DateTime!
   createdAt: DateTime!
   author: User! @relation(name: "UserToComments", onDelete: SET_NULL)
-  review: Review! @relation(name: "ReviewToComments", onDelete: SET_NULL)
+  post: Post! @relation(name: "PostToComments", onDelete: SET_NULL)
 }
