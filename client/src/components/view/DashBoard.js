@@ -46,7 +46,6 @@ export const DashBoard = (props) => (
             </section>
 
         </div>
-        {!props.auth.userId && <Redirect to="/" />}
     </div>
 )
 

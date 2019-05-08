@@ -2,8 +2,6 @@ import React from 'react'
 import { Router, Route, Switch } from 'react-router-dom'
 import { createBrowserHistory } from 'history'
 import NotFoundPage from '../components/NotFoundPage'
-import LoginPage from '../components/view/LoginPage'
-import Login from '../components/Users/Login'
 import Users from '../components/Users/Users'
 import UserProfile from '../components/Users/UserProfile'
 import UpdateUser from '../components/Users/UpdateUser'
@@ -20,8 +18,7 @@ const AppRouter = () => (
     <Router history={history}>
         <div>
             <Switch>
-                <PublicRoute exact path="/" component={LoginPage} />
-                <PrivateRoute path="/Dashboard" component={DashBoard} />
+                <PublicRoute exact path="/" component={DashBoard} />
                 <PublicRoute path="/users" component={Users} />
                 <PrivateRoute path="/UserProfile" component={UserProfile} />
                 <PrivateRoute path="/UpdateUser" component={UpdateUser}/>
