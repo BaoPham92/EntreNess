@@ -21,11 +21,6 @@ const PublicHeader = (props) => (
             }
 
         </div>
-
-        <div className="nav-menu">
-            <NavLink to="/Users">Users</NavLink>
-            <NavLink to="/Posts">Posts</NavLink>
-        </div>
     </div>
 )
 
@@ -41,3 +36,8 @@ const mapDispatchToProps = (dispatch) => ({
 })
 
 export default withApollo(connect(mapToStateProps, mapDispatchToProps)(PublicHeader))
+
+    // <div className="nav-menu">
+    //     <NavLink to="/Users">Users</NavLink>
+    //     <NavLink to="/Posts">Posts</NavLink>
+    // </div>
