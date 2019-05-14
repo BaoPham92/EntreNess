@@ -8,12 +8,10 @@
 }
 
 .btn__main {
-    background: darken($off-white, 2%);
+    background: $vet-blue;
     color: $apollo-gray;
-    text-align: center;
-    width: 15rem;
+    width: 100%;
     border: none;
-    border-radius: 0.5rem;
     cursor: pointer;
 }
 

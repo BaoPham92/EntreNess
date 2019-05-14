@@ -11,7 +11,7 @@
     display: grid;
     height: 100vh;
     grid-template-columns: repeat(5, minmax(10rem, 1fr));
-    grid-template-rows: repeat(10, minmax(min-content, 1fr));
+    grid-template-rows: repeat(10, minmax(10rem, 1fr));
 }
 
 // CreateUser component grid.

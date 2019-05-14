@@ -1,11 +1,20 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import { connect } from 'react-redux'
 import { withRouter } from 'react-router'
 import { withApollo } from 'react-apollo'
 
 const Form = (props) => {
 
+    // Track focus.
+    const [isActive, ifActive] = useState(false)
+    const isFocused = (e) => { ifActive !== isActive && ifActive(e.target.name) }
+
     const pathname = props.location.pathname
+
+    useEffect((e) => {
+        window.addEventListener("keydown", (e) => isFocused(e))
+        window.addEventListener("keyup", (e) => isFocused(e))
+    })
 
     return (
         <form
@@ -29,102 +38,59 @@ const Form = (props) => {
                         .catch(e => console.log(e))
                 }
             }>
-            <div className="create-user--grid">
-            
+            <div className="create-user">
+
                 {
-                    pathname === "/" 
-                    ? 
-                    <section className="create-user--head">
-                        <h3>Create Account</h3>
-                    </section> 
-                    : 
-                    ''
+                    pathname === "/"
+                    && <h2 className="form__head">Create Account</h2>
                 }
 
                 <div className="create-user--info">
 
-                    <div className="create-user-name">
-                        <strong>User:</strong>
+                    <div className="create-user-input">
+                        <label className={isActive === 'name' ? 'input-label-focused' : 'create-input-label'}>Username</label>
                         <input
+                            onClick={(e) => isFocused(e)}
                             className="create--input"
                             type="text"
-                            placeholder="name"
                             name="name"
                             required={pathname === "/CreateUser" && true}
                             onChange={props.handleChange}
                         />
                     </div>
 
-                    <div className="create-user-email">
-                        <strong>Email:</strong>
+                    <div className="create-user-input">
+                        <label className={isActive === 'email' ? 'input-label-focused' : 'create-input-label'}>Email</label>
                         <input
+                            onClick={(e) => isFocused(e)}
                             className="create--input"
                             type="text"
-                            placeholder="email"
                             name="email"
                             required={pathname === "/CreateUser" && true}
                             onChange={props.handleChange}
                         />
                     </div>
 
-                    <div className="create-user-password">
-                        <strong>Password:</strong>
+                    <div className="create-user-input">
+                        <label className={isActive === 'password' ? 'input-label-focused' : 'create-input-label'}>Password</label>
                         <input
+                            onClick={(e) => isFocused(e)}
                             className="create--input"
-                            type="text"
-                            placeholder="password"
+                            type="password"
                             name="password"
                             required={pathname === "/CreateUser" && true}
                             onChange={props.handleChange}
                         />
                     </div>
-
-                    <div className="create-user-contact">
-                        <strong>Contact Number:</strong>
-                        <input
-                            className="create--input"
-                            type="text"
-                            placeholder="contact number"
-                            name="contactNumber"
-                            onChange={props.handleChange}
-                        />
-                    </div>
-
-                    <div className="create-user-age">
-                        <strong>Age:</strong>
-                        <input
-                            className="create--input"
-                            type="number"
-                            placeholder="age"
-                            name="age"
-                            onChange={props.handleChange}
-                        />
-                    </div>
                 </div>
 
-                <div className="create-user--options">
-                    <button className="btn__main" type="submit">
-                        {
-                            pathname === '/'
-                                ? 'Register'
-                                : 'Update'
-                        }
-                    </button>
-
+                <button className="btn__main" type="submit">
                     {
                         pathname === '/'
-                            ? <button className="btn__main">Cancel</button>
-                            : <button 
-                            className="btn__main"
-                            onClick={() => {
-                                DeleteUser()
-                                    .then((res) => {
-                                        console.log(res)
-                                        this.props.logout()
-                                    })
-                            }}>Close Account?</button>
+                            ? 'Create Account'
+                            : 'Update'
                     }
-                </div>
+                </button>
             </div>
         </form>
     )

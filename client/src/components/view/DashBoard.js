@@ -2,9 +2,13 @@ import React, { Component } from 'react'
 import { Redirect } from 'react-router-dom'
 import { connect } from 'react-redux'
 import { checkAuth } from '../../actions/auth'
+import { BoardMessage } from './BoardMessage'
 
 export const DashBoard = (props) => (
     <div className="container__main">
+        {
+            !props.auth.userId && <BoardMessage />
+        }
         <div className="template__main">
 
             {/* 

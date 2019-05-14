@@ -1,3 +1,5 @@
+// DashBoard Styles
+
 .dashboard--title {
     @extend .template__title;
     animation: penta-title 4.5s infinite alternate ease-in-out;
@@ -31,5 +33,38 @@
         font-size: 1.6rem;
         color: $off-white;
         list-style: none;
+    }
+}
+
+// MessageBoard Styles
+
+.mb-menu {
+    display: flex;
+    justify-content: space-evenly;
+    margin-bottom: $m-size;
+    max-height: 22rem;
+    padding: 0 $s-size;
+
+    & a {
+        border-radius: 0.15rem;
+        border: solid 0.2rem lighten($vet-blue, 5%);
+        color: lighten($vet-blue, 5%);
+        font-family: 'Jura', sans-serif;
+    }
+}
+
+.mb-info {
+    max-width: 75rem;
+    color: lighten($vet-blue, 5%);
+    border-bottom: solid 0.2rem lighten($vet-blue, 5%);
+
+    & h1 {
+        font-weight: 100;
+    }
+
+    & dd {
+        font-family: 'Spinnaker', sans-serif;
+        color: $off-white;
+        font-size: $s-size;
     }
 }

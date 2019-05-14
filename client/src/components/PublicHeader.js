@@ -1,6 +1,6 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { NavLink, Link } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import { withApollo } from 'react-apollo'
 import { logout } from '../actions/auth'
 
@@ -36,8 +36,3 @@ const mapDispatchToProps = (dispatch) => ({
 })
 
 export default withApollo(connect(mapToStateProps, mapDispatchToProps)(PublicHeader))
-
-    // <div className="nav-menu">
-    //     <NavLink to="/Users">Users</NavLink>
-    //     <NavLink to="/Posts">Posts</NavLink>
-    // </div>

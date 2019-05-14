@@ -1,5 +1,5 @@
 .header {
-    background-color: darken($apollo-gray, 12%);
+    background-color: darken($apollo-gray, 11%);
     padding: $xs-size;
 
     display: flex;
@@ -8,20 +8,5 @@
     & span {
         font-size: $s-size;
         color: $off-white;
-    }
-}
-
-.nav-menu {
-    margin-top: $m-size;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-
-    & a {
-        padding: 1rem;
-        background: darken($apollo-gray, 12%);
-        border-radius: 0.5rem;
-        color: $off-white;
-        margin-bottom: $xs-size;
     }
 }
