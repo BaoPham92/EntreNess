@@ -45,7 +45,6 @@ const Form = (props) => {
                     && <h2 className="form__head">Create Account</h2>
                 }
 
-                <div className="create-user--info">
 
                     <div className="create-user-input">
                         <label className={isActive === 'name' ? 'input-label-focused' : 'create-input-label'}>Username</label>
@@ -82,7 +81,6 @@ const Form = (props) => {
                             onChange={props.handleChange}
                         />
                     </div>
-                </div>
 
                 <button className="btn__main" type="submit">
                     {

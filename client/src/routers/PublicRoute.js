@@ -1,8 +1,8 @@
 import React from 'react'
-import { Route, Redirect } from 'react-router-dom'
+import { Route } from 'react-router-dom'
 import { connect } from 'react-redux'
-import PublicHeader from '../components/PublicHeader'
-import PrivateHeader from '../components/PrivateHeader'
+import PublicHeader from '../components/view/Header/PublicHeader'
+import PrivateHeader from '../components/view/Header/PrivateHeader'
 
 export const PublicRoute = ({
     auth,

@@ -2,7 +2,7 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
 import { withApollo } from 'react-apollo'
-import { logout } from '../actions/auth'
+import { logout } from '../../../actions/auth'
 
 const PublicHeader = (props) => (
     <div className="container__header">
