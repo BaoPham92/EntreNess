@@ -1,26 +1,16 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { Link } from 'react-router-dom'
 import { withApollo } from 'react-apollo'
 import { logout } from '../../../actions/auth'
+import UserCP from '../Header/utils/UserCP'
 
 const PublicHeader = (props) => (
     <div className="container__header">
         <div className="header">
             <span>Welcome{!props.auth ? `, Guest` : `back, user: ${props.id}`}</span>
-
-            {!props.auth
-                ? <Link className="btn__header" to="/">Login</Link>
-                : <button
-                    className="btn__header"
-                    type="button"
-                    onClick={() => {
-                        props.logout()
-                        props.client.resetStore()
-                    }}>Logout</button>
-            }
-
+            <UserCP />
         </div>
+        <div className="dropdown-overlay"></div>
     </div>
 )
 

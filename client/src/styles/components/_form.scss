@@ -123,17 +123,22 @@
         position: absolute;
         color: $off-white;
         font-family: 'Spinnaker', sans-serif;
+        z-index: -1;
+    }
+
+    & h2 {
+        text-align: center;
     }
 }
 
 .create-user-input {
-    position: relative;
+    // position: relative;
     margin: 1rem 0;
 }
 
 .create--input {
     @extend .form__input;
-    position: relative;
+    // position: relative;
     width: 100%;
     border-bottom: 1px solid lighten($apollo-gray, 2%);
 }
@@ -146,40 +151,25 @@
 }
 
 .login--grid {
-    @extend .form__create-grid;
 
-    & strong {
+    padding: $m-size;
+    background: rgba(43, 49, 72, 0.8);
+    box-shadow: 0 0 0.5rem 0 rgba(0, 0, 0, 0.8);
+
+    & label {
+        position: absolute;
         color: $off-white;
+        font-family: 'Spinnaker', sans-serif;
     }
 
-    & .login--head {
-        @extend .form__head;
-        grid-column: 1 / 3;
+    & h2 {
+        text-align: center;
     }
 
-    & .login--options {
-        grid-column: 1 / 3;
-        grid-row: 3 / 4;
+}
 
-        display: grid;
-        justify-items: center;
-    }
-
-    & .login--info {
-        grid-column: 1 / 3;
-        grid-row: 2 / 3;
-    }
-
-    & .login-email,
-    .login-password {
-        display: grid;
-        grid-template-columns: 1fr 2fr;
-        grid-row-gap: 0.2rem;
-
-        border-bottom: 1px solid lighten($apollo-gray, 2%);
-        padding: $xs-size;
-    }
-
+.login-user-input {
+    @extend .create-user-input;
 }
 
 .login--input {

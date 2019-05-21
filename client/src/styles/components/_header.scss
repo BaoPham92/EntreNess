@@ -1,6 +1,12 @@
+// Styling for Header
+
 .header {
-    background-color: darken($apollo-gray, 11%);
+    position: fixed;
+    width: 100%;
     padding: $xs-size;
+    background-color: darken($apollo-gray, 11%);
+    border-bottom: 2px solid $vet-blue;
+    z-index: 99;
 
     display: flex;
     justify-content: space-between;
@@ -9,4 +15,77 @@
         font-size: $s-size;
         color: $off-white;
     }
+}
+
+// Control Panel
+
+.userCP {
+    color: $off-white;
+}
+
+.userCP-options {
+    display: flex;
+
+    & li {
+        list-style-type: none;
+        margin: 0 $xs-size;
+    }
+
+    & li:hover {
+        cursor: pointer;
+    }
+}
+
+.userCP-dropdown {
+    opacity: 0;
+    visibility: hidden;
+    position: fixed;
+    top: 4rem;
+    right: 0;
+    width: 20rem;
+    background-color: darken($apollo-gray, 8%);
+    transform: translate(1.875rem);
+    transition: transform .2s, opacity .2s ease-in-out, visibility 0s linear .2s;
+
+    & a {
+        display: block;
+    }
+}
+
+.dropdown-option {
+    text-align: center;
+
+    & p {
+        font-size: $s-size;
+    }
+
+    & h3 {
+        font-size: $m-size;
+    }
+}
+
+.dropdown-option:hover {
+    cursor: pointer;
+    transition: background-color .2s ease;
+    background-color: lighten($apollo-gray, 15%);
+}
+
+.dropdown-overlay {
+    visibility: hidden;
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    right: 0;
+    opacity: 0.6 !important;
+    z-index: 98;
+    background-color: darken($apollo-gray, 20%);
+}
+
+// 'active' class indicator.
+.open {
+    opacity: 1;
+    visibility: visible;
+    transform: translate(0);
+    transition: transform .3s, opacity .3s ease-in-out, visibility 0s linear .3s;
 }

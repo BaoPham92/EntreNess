@@ -1,8 +1,7 @@
 import React, { Component } from 'react'
-import { connect } from 'react-redux'
 import { graphql, withApollo } from 'react-apollo'
-import { LoginMutation } from '../../mutations/Users'
-import { checkAuth } from '../../actions/auth'
+import Modal from 'react-modal'
+import { LoginMutation } from '../../../mutations/Users'
 
 class Login extends Component {
 
@@ -33,6 +32,9 @@ class Login extends Component {
 
         return (
             <div className="login--main">
+            {/*
+                Convert to Modal
+            */}
                 <form
                     onSubmit={
                         (e) => {
@@ -47,41 +49,31 @@ class Login extends Component {
 
                     <div className="login--grid">
 
-                        <section className="login--head">
-                            <h3>Login</h3>
-                        </section>
+                        <h2 className="form__head">Login</h2>
 
-                        <div className="login--info">
-
-                            <div className="login-email">
-                                <strong>Email:</strong>
+                            <div className="login-user-input">
+                                <label classNames="login-input-label">Email:</label>
                                 <input
                                     className="login--input"
                                     type="text"
                                     name="email"
-                                    placeholder="Email"
                                     required
                                     onChange={this.handleChange}
                                 />
                             </div>
 
-                            <div className="login-password">
-                                <strong>Password:</strong>
+                            <div className="login-user-input">
+                                <label classNames="login-input-label">Password:</label>
                                 <input
                                     className="login--input"
                                     type="password"
                                     name="password"
-                                    placeholder="Password"
                                     required
                                     onChange={this.handleChange}
                                 />
                             </div>
 
-                        </div>
-
-                        <div className="login--options">
-                            <button className="btn__main" type="submit">Login</button>
-                        </div>
+                        <button className="btn__main" type="submit">Login</button>
                         
                     </div>
                 </form>
@@ -93,8 +85,4 @@ class Login extends Component {
 const mapMutationToProps = graphql(LoginMutation)
 const LoginWithMutation = withApollo(mapMutationToProps(Login))
 
-const mapDispatchToProps = (dispatch) => ({
-    checkAuth: () => dispatch(checkAuth())
-})
-
-export default connect(undefined, mapDispatchToProps)(LoginWithMutation)
+export default (LoginWithMutation)
