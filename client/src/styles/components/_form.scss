@@ -30,8 +30,7 @@
 .input-label-focused {
     font-size: 0.5rem;
     color: lighten($vet-blue, 5%) !important;
-    top: -1.55rem;
-    left: -1.3rem;
+    transform: translateY(-1.55rem) translateX(-1.3rem);
     transition: all .1s ease-in-out;
 }
 
@@ -123,7 +122,6 @@
         position: absolute;
         color: $off-white;
         font-family: 'Spinnaker', sans-serif;
-        z-index: -1;
     }
 
     & h2 {
