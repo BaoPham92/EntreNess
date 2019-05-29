@@ -6,6 +6,7 @@ import UserCP from '../Header/utils/UserCP'
 
 const PublicHeader = (props) => {
 
+    // Inidicator for click actions.
     const [isActive, ifActive] = useState(false)
     const isFocused = () => isActive !== true ? ifActive(true) : ifActive(false)
 
@@ -13,12 +14,16 @@ const PublicHeader = (props) => {
         <div className="container__header">
             <div className="header">
                 <span>Welcome{!props.auth ? `, Guest` : `back, user: ${props.id}`}</span>
-                <UserCP 
+                <UserCP
                     isFocused={isFocused}
                     isActive={isActive}
                 />
             </div>
-            <div className={isActive === true ? "dropdown-overlay open" : "dropdown-overlay"}></div>
+            <div
+                className={isActive === true ? "dropdown-overlay open" : "dropdown-overlay"}
+                onClick={isFocused}
+            >
+            </div>
         </div>
     )
 }

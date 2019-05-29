@@ -46,41 +46,41 @@ const Form = (props) => {
                 }
 
 
-                    <div className="create-user-input">
-                        <label className={isActive === 'name' ? 'input-label-focused' : 'create-input-label'}>Username</label>
-                        <input
-                            onClick={(e) => isFocused(e)}
-                            className="create--input"
-                            type="text"
-                            name="name"
-                            required={pathname === "/CreateUser" && true}
-                            onChange={props.handleChange}
-                        />
-                    </div>
+                <div className="create-user-input">
+                    <label className={isActive === 'name' ? 'input-label-focused' : 'create-input-label'}>Username</label>
+                    <input
+                        onClick={(e) => isFocused(e)}
+                        className="create--input"
+                        type="text"
+                        name="name"
+                        required={pathname === "/CreateUser" && true}
+                        onChange={props.handleChange}
+                    />
+                </div>
 
-                    <div className="create-user-input">
-                        <label className={isActive === 'email' ? 'input-label-focused' : 'create-input-label'}>Email</label>
-                        <input
-                            onClick={(e) => isFocused(e)}
-                            className="create--input"
-                            type="text"
-                            name="email"
-                            required={pathname === "/CreateUser" && true}
-                            onChange={props.handleChange}
-                        />
-                    </div>
+                <div className="create-user-input">
+                    <label className={isActive === 'email' ? 'input-label-focused' : 'create-input-label'}>Email</label>
+                    <input
+                        onClick={(e) => isFocused(e)}
+                        className="create--input"
+                        type="text"
+                        name="email"
+                        required={pathname === "/CreateUser" && true}
+                        onChange={props.handleChange}
+                    />
+                </div>
 
-                    <div className="create-user-input">
-                        <label className={isActive === 'password' ? 'input-label-focused' : 'create-input-label'}>Password</label>
-                        <input
-                            onClick={(e) => isFocused(e)}
-                            className="create--input"
-                            type="password"
-                            name="password"
-                            required={pathname === "/CreateUser" && true}
-                            onChange={props.handleChange}
-                        />
-                    </div>
+                <div className="create-user-input">
+                    <label className={isActive === 'password' ? 'input-label-focused' : 'create-input-label'}>Password</label>
+                    <input
+                        onClick={(e) => isFocused(e)}
+                        className="create--input"
+                        type="password"
+                        name="password"
+                        required={pathname === "/CreateUser" && true}
+                        onChange={props.handleChange}
+                    />
+                </div>
 
                 <button className="btn__main" type="submit">
                     {
