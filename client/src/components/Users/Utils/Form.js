@@ -7,7 +7,7 @@ const Form = (props) => {
 
     // Track focus.
     const [isActive, ifActive] = useState(false)
-    const isFocused = (e) => { ifActive !== isActive && ifActive(e.target.name) }
+    const isFocused = (e) => { isActive !== true && ifActive(e.target.name) }
 
     const pathname = props.location.pathname
 

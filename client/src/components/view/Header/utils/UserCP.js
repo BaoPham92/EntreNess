@@ -7,7 +7,11 @@ import CreateUser from '../../../Users/CreateUser'
 
 const UserCP = (props) => {
 
-    console.log(props)
+     const {
+        isActive,
+        isFocused,
+        auth 
+    } = props
 
     return (
 
@@ -18,10 +22,11 @@ const UserCP = (props) => {
                         Stats
                     </div>
                 </li>
-                <li>
+                <li 
+                className={isActive === true ? "userCP-icon active" : "userCP-icon"} 
+                onClick={isFocused}>
                     <div className="userCP-profile">
-
-                        <div className="userCP-icon">
+                        <div>
                             {
                                 props.auth.userId
                                     ? 'User'
@@ -29,7 +34,7 @@ const UserCP = (props) => {
                             }
                         </div>
 
-                        <div className="userCP-dropdown">
+                        <div className={isActive === true ? "userCP-dropdown open" : "userCP-dropdown"}>
                             {
                                 props.auth.userId ?
                                     <div className="registered-options">
