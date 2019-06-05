@@ -10,17 +10,27 @@ class Login extends Component {
         password: undefined
     }
 
+    // Input redux state logic.
     handleChange = (e) => {
         e.persist();
         this.setState(() => ({ [e.target.name]: e.target.value }))
     }
 
+    //  Save token upon successful user login.
     setToken = (token) => {
         localStorage.setItem('auth_token', token)
     }
 
+    // React-Modal
+    componentDidMount() {
+        Modal.setAppElement('#app')
+    }
+
+    closeModal = () => this.props.setPick(undefined)
+
     render() {
-        const { mutate, client } = this.props
+
+        //  Variables for GraphQL Mutation operation.
         const variables = {
             variables: {
                 data: {
@@ -30,29 +40,41 @@ class Login extends Component {
             }
         }
 
+        const { 
+            mutate,
+            client,
+            picked,
+            setPick 
+        } = this.props
+        console.log(picked)
+
         return (
-            <div className="login--main">
-            {/*
-                Convert to Modal
-            */}
-                <form
-                    onSubmit={
-                        (e) => {
-                            e.preventDefault()
-                            mutate(variables)
-                                .then((res) => {
-                                    this.setToken(res.data.login.token)
-                                    this.props.checkAuth()
-                                }).catch(e => alert(e))
-                        }
-                    }>
+            <Modal
+                isOpen={!!picked}
+                onRequestClose={this.closeModal}
+                contentLabel="Login Modal"
+            >
+                <div className="login--main">
+                    <form
+                        onSubmit={
+                            (e) => {
+                                e.preventDefault()
+                                mutate(variables)
+                                    .then((res) => {
+                                        this.setToken(res.data.login.token)
+                                        this.props.checkAuth()
+                                    }).catch(e => alert(e))
+                            }
+                        }>
 
-                    <div className="login--grid">
+                        <div className="login--grid">
 
-                        <h2 className="form__head">Login</h2>
+                            <button onClick={this.closeModal} className="login--close">X</button>
+
+                            <h2 className="form__head">Login</h2>
 
                             <div className="login-user-input">
-                                <label classNames="login-input-label">Email:</label>
+                                <label className="login-input-label">Email:</label>
                                 <input
                                     className="login--input"
                                     type="text"
@@ -63,7 +85,7 @@ class Login extends Component {
                             </div>
 
                             <div className="login-user-input">
-                                <label classNames="login-input-label">Password:</label>
+                                <label className="login-input-label">Password:</label>
                                 <input
                                     className="login--input"
                                     type="password"
@@ -73,11 +95,12 @@ class Login extends Component {
                                 />
                             </div>
 
-                        <button className="btn__main" type="submit">Login</button>
-                        
-                    </div>
-                </form>
-            </div>
+                            <button className="btn__main" type="submit">Login</button>
+
+                        </div>
+                    </form>
+                </div>
+            </Modal>
         )
     }
 }

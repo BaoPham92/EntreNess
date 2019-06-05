@@ -14,20 +14,25 @@
     border-radius: 0.35rem;
 }
 
-.ReactModalPortal>div {
-    background-color: rgba(255, 255, 255, 0.01) !important;
-    opacity: 0;
+.ReactModal__Content,
+.ReactModal__Content--after-open {
+    background: none !important;
+    border: none !important;
 }
 
-.ReactModalPortal .ReactModal__Overlay {
+.ReactModalPortal,
+.ReactModal__Overlay {
+    position: relative;
     display: flex;
     align-items: center;
     justify-content: center;
     transition: opacity 300ms ease-in-out;
+    background-color: darken($apollo-gray, 20%) !important;
 }
 
-.ReactModalPortal .ReactModal__Overlay--after-open {
-    opacity: 1;
+.ReactModal__Overlay--after-open {
+    z-index: 1000;
+    opacity: 0.6;
 }
 
 .ReactModalPortal .ReactModal__Overlay--before-close {
