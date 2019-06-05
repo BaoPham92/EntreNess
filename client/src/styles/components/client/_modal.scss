@@ -22,17 +22,15 @@
 
 .ReactModalPortal,
 .ReactModal__Overlay {
-    position: relative;
     display: flex;
     align-items: center;
     justify-content: center;
     transition: opacity 300ms ease-in-out;
-    background-color: darken($apollo-gray, 20%) !important;
+    background-color: rgba(15, 17, 24, 0.8) !important;
 }
 
 .ReactModal__Overlay--after-open {
     z-index: 1000;
-    opacity: 0.6;
 }
 
 .ReactModalPortal .ReactModal__Overlay--before-close {

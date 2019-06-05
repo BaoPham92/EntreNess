@@ -145,16 +145,15 @@
 
 .login--main {
     @extend .create-user--main;
-    margin-bottom: $m-size;
-    // width: 50rem;
 }
 
 .login--grid {
     position: relative;
-    width: 50rem;
     padding: $m-size;
     background: rgba(43, 49, 72, 1);
     box-shadow: 0 0 0.5rem 0 rgba(0, 0, 0, 0.8);
+    margin: 0 auto;
+    width: 50%;
 
     & label {
         position: absolute;
@@ -182,6 +181,7 @@
     width: 5%;
     top: 2.8%;
     left: 93.5%;
+    box-shadow: 0rem 0rem 0.5rem 0.15rem rgba(0, 0, 0, 0.8);
 }
 
 // Form for CreateComment
