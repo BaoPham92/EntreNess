@@ -18,6 +18,8 @@
 .ReactModal__Content--after-open {
     background: none !important;
     border: none !important;
+    margin: 0 auto;
+    width: min-content;
 }
 
 .ReactModalPortal,
