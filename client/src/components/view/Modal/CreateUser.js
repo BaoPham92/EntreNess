@@ -27,7 +27,7 @@ const CreateUser = props => {
   return (
     <Modal
       isOpen={picked === "Sign Up"}
-      onRequestClose={props.closeModal}
+      onRequestClose={closeModal}
       contentLabel="CreateUser Modal"
     >
       <form
