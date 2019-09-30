@@ -3,7 +3,8 @@
 *:after {
     margin: 0;
     padding: 0;
-    box-sizing: inherit;
+    max-width: 100%;
+    box-sizing: border-box;
 }
 
 h1,
@@ -17,7 +18,7 @@ h6 {
 
 html {
     font-size: 62.5%;
-    box-sizing: border-box;
+    line-height: 1.6;
 }
 
 body {
