@@ -48,6 +48,7 @@ type Post {
     title: String!
     body: String!
     published: Boolean!
+    postReputation: Int
     updatedAt: DateTime!
     createdAt: DateTime!
     author: User! @relation(name: "PostToUser", onDelete: SET_NULL)
@@ -58,6 +59,7 @@ type Post {
 type Comment {
   id: ID! @unique
   text: String!
+  postReputation: Int
   updatedAt: DateTime!
   createdAt: DateTime!
   author: User! @relation(name: "UserToComments", onDelete: SET_NULL)
