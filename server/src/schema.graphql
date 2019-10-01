@@ -46,6 +46,7 @@ input CreateUserInput {
     contactNumber: String
     age: Int
 }
+
 input LoginUserInput {
     email: String!
     password: String!
@@ -119,6 +120,9 @@ type User {
     email: String
     contactNumber: String
     age: Int
+    userReputation: Int
+    postReputation: Int
+    marketReputation: Int
     password: String!
     updatedAt: String!
     createdAt: String!
