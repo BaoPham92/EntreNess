@@ -1,5 +1,5 @@
 # source: http://localhost:4466/VueBloc/Dev
-# timestamp: Mon May 06 2019 18:56:08 GMT-0400 (Eastern Daylight Time)
+# timestamp: Tue Oct 01 2019 11:16:25 GMT-0400 (Eastern Daylight Time)
 
 type AggregateBusiness {
   count: Int!
@@ -429,9 +429,7 @@ input BusinessSubscriptionWhereInput {
   """Logical NOT on all given filters combined by AND."""
   NOT: [BusinessSubscriptionWhereInput!]
 
-  """
-  The subscription event gets dispatched when it's listed in mutation_in
-  """
+  """The subscription event gets dispatched when it's listed in mutation_in"""
   mutation_in: [MutationType!]
 
   """
@@ -1088,9 +1086,7 @@ input CommentSubscriptionWhereInput {
   """Logical NOT on all given filters combined by AND."""
   NOT: [CommentSubscriptionWhereInput!]
 
-  """
-  The subscription event gets dispatched when it's listed in mutation_in
-  """
+  """The subscription event gets dispatched when it's listed in mutation_in"""
   mutation_in: [MutationType!]
 
   """
@@ -1769,9 +1765,7 @@ input EventSubscriptionWhereInput {
   """Logical NOT on all given filters combined by AND."""
   NOT: [EventSubscriptionWhereInput!]
 
-  """
-  The subscription event gets dispatched when it's listed in mutation_in
-  """
+  """The subscription event gets dispatched when it's listed in mutation_in"""
   mutation_in: [MutationType!]
 
   """
@@ -2565,9 +2559,7 @@ input PostSubscriptionWhereInput {
   """Logical NOT on all given filters combined by AND."""
   NOT: [PostSubscriptionWhereInput!]
 
-  """
-  The subscription event gets dispatched when it's listed in mutation_in
-  """
+  """The subscription event gets dispatched when it's listed in mutation_in"""
   mutation_in: [MutationType!]
 
   """
@@ -2925,6 +2917,9 @@ type User implements Node {
   email: String!
   contactNumber: String
   age: Int
+  reputation: Int
+  postReputation: Int
+  marketReputation: Int
   password: String!
   updatedAt: DateTime!
   createdAt: DateTime!
@@ -2949,6 +2944,9 @@ input UserCreateInput {
   email: String!
   contactNumber: String
   age: Int
+  reputation: Int
+  postReputation: Int
+  marketReputation: Int
   password: String!
   posts: PostCreateManyWithoutAuthorInput
   comments: CommentCreateManyWithoutAuthorInput
@@ -2981,6 +2979,9 @@ input UserCreateWithoutCommentsInput {
   email: String!
   contactNumber: String
   age: Int
+  reputation: Int
+  postReputation: Int
+  marketReputation: Int
   password: String!
   posts: PostCreateManyWithoutAuthorInput
   employment: BusinessCreateManyWithoutEmployeesInput
@@ -2992,6 +2993,9 @@ input UserCreateWithoutCompaniesInput {
   email: String!
   contactNumber: String
   age: Int
+  reputation: Int
+  postReputation: Int
+  marketReputation: Int
   password: String!
   posts: PostCreateManyWithoutAuthorInput
   comments: CommentCreateManyWithoutAuthorInput
@@ -3003,6 +3007,9 @@ input UserCreateWithoutEmploymentInput {
   email: String!
   contactNumber: String
   age: Int
+  reputation: Int
+  postReputation: Int
+  marketReputation: Int
   password: String!
   posts: PostCreateManyWithoutAuthorInput
   comments: CommentCreateManyWithoutAuthorInput
@@ -3014,6 +3021,9 @@ input UserCreateWithoutPostsInput {
   email: String!
   contactNumber: String
   age: Int
+  reputation: Int
+  postReputation: Int
+  marketReputation: Int
   password: String!
   comments: CommentCreateManyWithoutAuthorInput
   employment: BusinessCreateManyWithoutEmployeesInput
@@ -3040,6 +3050,12 @@ enum UserOrderByInput {
   contactNumber_DESC
   age_ASC
   age_DESC
+  reputation_ASC
+  reputation_DESC
+  postReputation_ASC
+  postReputation_DESC
+  marketReputation_ASC
+  marketReputation_DESC
   password_ASC
   password_DESC
   updatedAt_ASC
@@ -3054,6 +3070,9 @@ type UserPreviousValues {
   email: String!
   contactNumber: String
   age: Int
+  reputation: Int
+  postReputation: Int
+  marketReputation: Int
   password: String!
   updatedAt: DateTime!
   createdAt: DateTime!
@@ -3250,6 +3269,72 @@ input UserScalarWhereInput {
 
   """All values greater than or equal the given value."""
   age_gte: Int
+  reputation: Int
+
+  """All values that are not equal to given value."""
+  reputation_not: Int
+
+  """All values that are contained in given list."""
+  reputation_in: [Int!]
+
+  """All values that are not contained in given list."""
+  reputation_not_in: [Int!]
+
+  """All values less than the given value."""
+  reputation_lt: Int
+
+  """All values less than or equal the given value."""
+  reputation_lte: Int
+
+  """All values greater than the given value."""
+  reputation_gt: Int
+
+  """All values greater than or equal the given value."""
+  reputation_gte: Int
+  postReputation: Int
+
+  """All values that are not equal to given value."""
+  postReputation_not: Int
+
+  """All values that are contained in given list."""
+  postReputation_in: [Int!]
+
+  """All values that are not contained in given list."""
+  postReputation_not_in: [Int!]
+
+  """All values less than the given value."""
+  postReputation_lt: Int
+
+  """All values less than or equal the given value."""
+  postReputation_lte: Int
+
+  """All values greater than the given value."""
+  postReputation_gt: Int
+
+  """All values greater than or equal the given value."""
+  postReputation_gte: Int
+  marketReputation: Int
+
+  """All values that are not equal to given value."""
+  marketReputation_not: Int
+
+  """All values that are contained in given list."""
+  marketReputation_in: [Int!]
+
+  """All values that are not contained in given list."""
+  marketReputation_not_in: [Int!]
+
+  """All values less than the given value."""
+  marketReputation_lt: Int
+
+  """All values less than or equal the given value."""
+  marketReputation_lte: Int
+
+  """All values greater than the given value."""
+  marketReputation_gt: Int
+
+  """All values greater than or equal the given value."""
+  marketReputation_gte: Int
   password: String
 
   """All values that are not equal to given value."""
@@ -3353,9 +3438,7 @@ input UserSubscriptionWhereInput {
   """Logical NOT on all given filters combined by AND."""
   NOT: [UserSubscriptionWhereInput!]
 
-  """
-  The subscription event gets dispatched when it's listed in mutation_in
-  """
+  """The subscription event gets dispatched when it's listed in mutation_in"""
   mutation_in: [MutationType!]
 
   """
@@ -3380,6 +3463,9 @@ input UserUpdateInput {
   email: String
   contactNumber: String
   age: Int
+  reputation: Int
+  postReputation: Int
+  marketReputation: Int
   password: String
   posts: PostUpdateManyWithoutAuthorInput
   comments: CommentUpdateManyWithoutAuthorInput
@@ -3392,6 +3478,9 @@ input UserUpdateManyDataInput {
   email: String
   contactNumber: String
   age: Int
+  reputation: Int
+  postReputation: Int
+  marketReputation: Int
   password: String
 }
 
@@ -3400,6 +3489,9 @@ input UserUpdateManyMutationInput {
   email: String
   contactNumber: String
   age: Int
+  reputation: Int
+  postReputation: Int
+  marketReputation: Int
   password: String
 }
 
@@ -3446,6 +3538,9 @@ input UserUpdateWithoutCommentsDataInput {
   email: String
   contactNumber: String
   age: Int
+  reputation: Int
+  postReputation: Int
+  marketReputation: Int
   password: String
   posts: PostUpdateManyWithoutAuthorInput
   employment: BusinessUpdateManyWithoutEmployeesInput
@@ -3457,6 +3552,9 @@ input UserUpdateWithoutCompaniesDataInput {
   email: String
   contactNumber: String
   age: Int
+  reputation: Int
+  postReputation: Int
+  marketReputation: Int
   password: String
   posts: PostUpdateManyWithoutAuthorInput
   comments: CommentUpdateManyWithoutAuthorInput
@@ -3468,6 +3566,9 @@ input UserUpdateWithoutEmploymentDataInput {
   email: String
   contactNumber: String
   age: Int
+  reputation: Int
+  postReputation: Int
+  marketReputation: Int
   password: String
   posts: PostUpdateManyWithoutAuthorInput
   comments: CommentUpdateManyWithoutAuthorInput
@@ -3479,6 +3580,9 @@ input UserUpdateWithoutPostsDataInput {
   email: String
   contactNumber: String
   age: Int
+  reputation: Int
+  postReputation: Int
+  marketReputation: Int
   password: String
   comments: CommentUpdateManyWithoutAuthorInput
   employment: BusinessUpdateManyWithoutEmployeesInput
@@ -3702,6 +3806,72 @@ input UserWhereInput {
 
   """All values greater than or equal the given value."""
   age_gte: Int
+  reputation: Int
+
+  """All values that are not equal to given value."""
+  reputation_not: Int
+
+  """All values that are contained in given list."""
+  reputation_in: [Int!]
+
+  """All values that are not contained in given list."""
+  reputation_not_in: [Int!]
+
+  """All values less than the given value."""
+  reputation_lt: Int
+
+  """All values less than or equal the given value."""
+  reputation_lte: Int
+
+  """All values greater than the given value."""
+  reputation_gt: Int
+
+  """All values greater than or equal the given value."""
+  reputation_gte: Int
+  postReputation: Int
+
+  """All values that are not equal to given value."""
+  postReputation_not: Int
+
+  """All values that are contained in given list."""
+  postReputation_in: [Int!]
+
+  """All values that are not contained in given list."""
+  postReputation_not_in: [Int!]
+
+  """All values less than the given value."""
+  postReputation_lt: Int
+
+  """All values less than or equal the given value."""
+  postReputation_lte: Int
+
+  """All values greater than the given value."""
+  postReputation_gt: Int
+
+  """All values greater than or equal the given value."""
+  postReputation_gte: Int
+  marketReputation: Int
+
+  """All values that are not equal to given value."""
+  marketReputation_not: Int
+
+  """All values that are contained in given list."""
+  marketReputation_in: [Int!]
+
+  """All values that are not contained in given list."""
+  marketReputation_not_in: [Int!]
+
+  """All values less than the given value."""
+  marketReputation_lt: Int
+
+  """All values less than or equal the given value."""
+  marketReputation_lte: Int
+
+  """All values greater than the given value."""
+  marketReputation_gt: Int
+
+  """All values greater than or equal the given value."""
+  marketReputation_gte: Int
   password: String
 
   """All values that are not equal to given value."""

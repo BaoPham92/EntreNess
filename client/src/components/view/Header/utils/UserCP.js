@@ -5,6 +5,8 @@ import Login from "../../../view/Modal/Login";
 import { logout } from "../../../../actions/auth";
 import CreateUser from "../../Modal/CreateUser";
 
+// TODO: RE-DESIGNED USERBAR
+
 const UserCP = props => {
   const { isActive, isFocused, auth, history } = props;
 

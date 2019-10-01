@@ -4,6 +4,9 @@ type User {
   email: String! @unique
   contactNumber: String @unique
   age: Int
+  reputation: Int
+  postReputation: Int
+  marketReputation: Int
   password: String!
   updatedAt: DateTime!
   createdAt: DateTime!
