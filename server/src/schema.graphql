@@ -166,6 +166,7 @@ type Post {
     title: String!
     body: String!
     published: Boolean!
+    postReputation: Int
     updatedAt: String!
     createdAt: String!
     author: User!
@@ -177,6 +178,7 @@ type Post {
 type Comment {
     id: ID!
     text: String!
+    postReputation: Int
     updatedAt: String!
     createdAt: String!
     author: User!
