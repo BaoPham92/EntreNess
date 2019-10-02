@@ -11,10 +11,10 @@ export const PrivateRoute = ({
 }) => (
     <Route {...rest} component={(props) => (
         auth ? (
-            <div className="app__layout-grid">
+            <>
                 <PrivateHeader />
                 <Component {...props} />
-            </div>
+            </>
         ) : (
                 <Redirect to="/" />
             )

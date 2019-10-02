@@ -19,6 +19,12 @@
     position: relative;
 }
 
+.container__header::after {
+    display: block;
+    height: 5rem;
+    content: ""   
+}
+
 // container for user forms component
 .container__user-details {
     max-width: 50rem;
