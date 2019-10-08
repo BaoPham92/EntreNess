@@ -1,30 +1,17 @@
-import React, { useState } from "react";
+import React from "react";
 import { withRouter } from "react-router";
 import { connect } from "react-redux";
 import { withApollo } from "react-apollo";
 import { logout } from "../../../actions/auth";
-import UserCP from "../Header/utils/UserCP";
+import HeaderNav from './utils/HeaderNav'
 
 const PublicHeader = (props) => {
-  // Inidicator for click actions.
-  const [isActive, ifActive] = useState(false);
-  const isFocused = () => isActive !== true ? ifActive(true) : ifActive(false);
-  
-    const { id, auth, history } = props
 
   return (
     <div className="container__header">
-      <div className="header">
-        <span>
-          Welcome{!auth ? `, Guest` : `back, user: ${id}`}
-        </span>
-        <UserCP isFocused={isFocused} isActive={isActive} history={history} />
-      </div>
-      <div
-        className={
-          isActive === true ? "dropdown-overlay open" : "dropdown-overlay"
-        }
-        onClick={isFocused}
+      <HeaderNav
+        props={props}
+        history={props.history}
       />
     </div>
   );
